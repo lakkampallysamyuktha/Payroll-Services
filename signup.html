@@ -833,13 +833,13 @@
               <input type="password" id="password" placeholder=" " required style="padding-right: 48px;">
               <i class="material-icons">lock</i>
               <label for="password">Password</label>
-              <i class="material-icons toggle-password" style="position: absolute; right: 16px; left: auto; cursor: pointer; pointer-events: auto; color: rgba(252, 250, 246, 0.4);" onclick="const p = document.getElementById('password'); if(p.type === 'password'){ p.type = 'text'; this.textContent = 'visibility_off'; } else { p.type = 'password'; this.textContent = 'visibility'; }">visibility</i>
+              <i class="material-icons toggle-password" id="togglePasswordBtn" style="position: absolute; right: 16px; left: auto; cursor: pointer; pointer-events: auto; color: rgba(252, 250, 246, 0.4);">visibility</i>
             </div>
             <div class="input-group">
               <input type="password" id="confirm" placeholder=" " required style="padding-right: 48px;">
               <i class="material-icons">lock_outline</i>
               <label for="confirm">Confirm</label>
-              <i class="material-icons toggle-password" style="position: absolute; right: 16px; left: auto; cursor: pointer; pointer-events: auto; color: rgba(252, 250, 246, 0.4);" onclick="const p = document.getElementById('confirm'); if(p.type === 'password'){ p.type = 'text'; this.textContent = 'visibility_off'; } else { p.type = 'password'; this.textContent = 'visibility'; }">visibility</i>
+              <i class="material-icons toggle-password" id="toggleConfirmBtn" style="position: absolute; right: 16px; left: auto; cursor: pointer; pointer-events: auto; color: rgba(252, 250, 246, 0.4);">visibility</i>
             </div>
           </div>
 
@@ -886,24 +886,62 @@
     // Form Validation & Shake Animation
     const form = document.getElementById('signupForm');
     const formContainer = document.querySelector('.form-container');
+    const emailInput = document.getElementById('email');
+    const errorDiv = document.getElementById('formErrors');
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    // Password Toggle Logic
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const passwordInput = document.getElementById('password');
+    togglePasswordBtn.addEventListener('click', function() {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        this.textContent = 'visibility_off';
+      } else {
+        passwordInput.type = 'password';
+        this.textContent = 'visibility';
+      }
+    });
+
+    const toggleConfirmBtn = document.getElementById('toggleConfirmBtn');
+    const confirmInput = document.getElementById('confirm');
+    toggleConfirmBtn.addEventListener('click', function() {
+      if (confirmInput.type === 'password') {
+        confirmInput.type = 'text';
+        this.textContent = 'visibility_off';
+      } else {
+        confirmInput.type = 'password';
+        this.textContent = 'visibility';
+      }
+    });
+
+    // Real-time email validation
+    emailInput.addEventListener('input', () => {
+      const emailVal = emailInput.value.trim();
+      if (emailVal && !emailRegex.test(emailVal)) {
+        errorDiv.textContent = 'Please enter a valid email address.';
+      } else {
+        errorDiv.textContent = '';
+      }
+    });
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       
-      const fname = document.getElementById('fname').value;
-      const lname = document.getElementById('lname').value;
-      const email = document.getElementById('email').value;
-      const pass = document.getElementById('password').value;
-      const confirm = document.getElementById('confirm').value;
+      const fname = document.getElementById('fname').value.trim();
+      const lname = document.getElementById('lname').value.trim();
+      const email = emailInput.value.trim();
+      const pass = passwordInput.value;
+      const confirm = confirmInput.value;
       const terms = document.getElementById('terms').checked;
       
-      const errorDiv = document.getElementById('formErrors');
       errorDiv.textContent = '';
       
       let errorMsg = '';
       if (!fname) errorMsg = 'First name is required.';
       else if (!lname) errorMsg = 'Last name is required.';
       else if (!email) errorMsg = 'Work email is required.';
+      else if (!emailRegex.test(email)) errorMsg = 'Please enter a valid email address.';
       else if (!pass) errorMsg = 'Password is required.';
       else if (!confirm) errorMsg = 'Please confirm your password.';
       else if (pass !== confirm) errorMsg = 'Passwords do not match.';
