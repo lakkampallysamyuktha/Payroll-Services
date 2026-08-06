@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Dashboard | Stackly Payroll</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  
+  <style>
+    :root {
+      --primary: #2F2A26;
+      --accent: #C9A227;
+      --text: #FCFAF6;
+      --bg-dark: #221E1B;
+      --border: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.03);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .sidebar {
+      width: 260px; height: 100vh; position: fixed; left: 0; top: 0;
+      background: var(--primary); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; z-index: 100; transition: transform 0.3s ease;
+    }
+    .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+    .sidebar-header i { color: var(--accent); font-size: 24px; }
+    .sidebar-header span { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; }
+    .sidebar-header span .acc { color: var(--accent); }
+
+    .sidebar-nav { flex: 1; padding: 24px 16px; overflow-y: auto; }
+    .nav-item {
+      display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: rgba(252,250,246,0.7);
+      text-decoration: none; border-radius: 8px; margin-bottom: 8px; font-weight: 500; transition: all 0.3s ease; cursor: pointer;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.05); color: var(--text); transform: translateX(4px); }
+    .nav-item.active { background: rgba(201,162,39,0.15); color: var(--accent); border-left: 3px solid var(--accent); }
+    .nav-item i { font-size: 20px; }
+    .logout-item { margin-top: auto; color: #ff4d4f; }
+    .logout-item:hover { background: rgba(255,77,79,0.1); color: #ff4d4f; }
+
+    .user-profile { padding: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 12px; overflow: hidden; }
+    .user-avatar { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #000; }
+    .user-info { min-width: 0; flex: 1; }
+    .user-info h4 { font-size: 0.9rem; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .user-info p { font-size: 0.75rem; color: rgba(252,250,246,0.5); margin: 0; word-break: break-all; }
+
+    .main-content { margin-left: 260px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; width: calc(100% - 260px); }
+
+    .topbar {
+      position: sticky; top: 0; background: rgba(47, 42, 38, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      padding: 16px 32px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 50;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 24px; cursor: pointer; }
+    .topbar-title { font-size: 1.25rem; font-weight: 600; }
+    .topbar-right { display: flex; align-items: center; gap: 20px; }
+    
+    .icon-btn { background: var(--glass); border: 1px solid var(--border); color: var(--text); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+    .icon-btn:hover { background: var(--accent); color: #000; transform: translateY(-2px); }
+
+    .spa-section { display: none; padding: 32px; animation: fadeIn 0.4s ease forwards; }
+    .spa-section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Grids & Cards */
+    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 32px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-bottom: 32px; }
+    
+    .card { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: transform 0.3s ease; position: relative; overflow: hidden; }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity 0.3s; }
+    .card:hover { transform: translateY(-5px); }
+    .card:hover::before { opacity: 1; }
+    
+    .stat-title { font-size: 0.9rem; color: rgba(252,250,246,0.6); text-transform: uppercase; margin-bottom: 8px; }
+    .stat-value { font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .stat-change { font-size: 0.85rem; color: #52c41a; display: flex; align-items: center; gap: 4px; }
+    .stat-change.negative { color: #ff4d4f; }
+
+    /* Tables */
+    .table-container { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 32px; }
+    .table-header { padding: 20px; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    th { color: rgba(252,250,246,0.5); font-size: 0.85rem; text-transform: uppercase; font-weight: 500; }
+    td { font-size: 0.95rem; }
+    tr:hover { background: rgba(255,255,255,0.02); }
+    
+    .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; }
+    .status-paid { background: rgba(82, 196, 26, 0.2); color: #52c41a; }
+    .status-pending { background: rgba(250, 173, 20, 0.2); color: #faad14; }
+    .status-denied { background: rgba(255, 77, 79, 0.2); color: #ff4d4f; }
+
+    /* Buttons & Forms */
+    .btn-primary { background: var(--accent); color: #000; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { box-shadow: 0 4px 15px rgba(201,162,39,0.3); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--accent); padding: 12px 24px; border: 1px solid var(--accent); border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-outline:hover { background: var(--accent); color: #000; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: rgba(252,250,246,0.7); }
+    .form-control { width: 100%; padding: 14px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: inherit; font-size: 1rem; }
+    .form-control:focus { outline: none; border-color: var(--accent); }
+
+    /* Sidebar Close Button */
+    .sidebar-close-btn {
+      display: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .sidebar-close-btn:hover {
+      background: rgba(201, 162, 39, 0.2);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Mobile Overlay */
+    .sidebar-overlay { 
+      position: fixed; 
+      top: 0; left: 0; right: 0; bottom: 0; 
+      background: rgba(0,0,0,0.7); 
+      backdrop-filter: blur(6px); 
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 999; 
+      display: none; 
+      opacity: 0; 
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+
+    @media (max-width: 900px) {
+      /* Fixed Top Header on Mobile */
+      .topbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 64px !important;
+        padding: 10px 16px !important;
+        z-index: 500 !important;
+        box-sizing: border-box !important;
+        background: rgba(34, 30, 27, 0.96) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid var(--border) !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+      .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding-top: 64px !important; /* Offset for fixed header */
+        box-sizing: border-box !important;
+      }
+
+      /* Mobile Drawer Sidebar */
+      .sidebar {
+        width: 290px;
+        max-width: 86vw;
+        z-index: 1000;
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-close-btn {
+        display: flex;
+      }
+      .sidebar-header {
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Hamburger Button with Accent Glow */
+      .hamburger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: rgba(201, 162, 39, 0.1);
+        border: 1px solid rgba(201, 162, 39, 0.3);
+        color: var(--accent);
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+      .hamburger:hover {
+        background: var(--accent);
+        color: #000;
+      }
+
+      .topbar-left {
+        gap: 12px;
+        min-width: 0;
+      }
+      .topbar-title {
+        font-size: 1.1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
+      }
+      .topbar-right {
+        gap: 10px;
+      }
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+      }
+
+      /* Responsive Dashboard Grids & Cards */
+      .spa-section {
+        padding: 20px 16px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+      .dashboard-grid, .grid-2 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 28px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .card {
+        padding: 20px 18px;
+        border-radius: 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .stat-title {
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: rgba(252, 250, 246, 0.6);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+      .stat-value {
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .stat-trend {
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Luxury Mobile Table Cards */
+      .table-container {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 24px;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: visible;
+      }
+      .table-header {
+        background: var(--glass);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px 18px;
+        margin-bottom: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .table-header h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+      }
+      .table-header > div {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .table-header .btn-primary, 
+      .table-header .btn-outline {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 12px 18px;
+      }
+
+      table, tbody, tr, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 16px;
+        background: var(--glass);
+        border-radius: 16px;
+        padding: 18px;
+        margin: 0 0 14px 0;
+        border: 1px solid var(--border);
+        width: 100%;
+        box-sizing: border-box;
+      }
+      td {
+        border-bottom: none;
+        padding: 4px 0;
+        min-width: 0;
+        font-size: 0.88rem;
+        box-sizing: border-box;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.72rem;
+        color: rgba(252, 250, 246, 0.5);
+        text-transform: uppercase;
+        margin-bottom: 3px;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+      }
+      td:last-child {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 8px;
+        padding-top: 10px;
+        text-align: right;
+      }
+
+      /* iOS Auto-zoom Prevention & Form Polish */
+      .form-control {
+        font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .topbar {
+        padding: 10px 14px !important;
+      }
+      .topbar-title {
+        font-size: 1.05rem;
+        max-width: 120px;
+      }
+      .topbar-right {
+        gap: 8px;
+      }
+      .spa-section {
+        padding: 16px 12px;
+      }
+      .card {
+        padding: 16px 14px;
+      }
+      tr {
+        padding: 14px 12px;
+        gap: 10px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Left Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header" style="padding: 20px 24px;">
+      <a href="index.html" style="display: block; width: 205px; max-width: calc(100% - 40px);">
+        <div style="width: 100%; height: 58px; background-color: var(--accent); -webkit-mask: url('logo-removebg-preview.webp') left center/contain no-repeat; mask: url('logo-removebg-preview.webp') left center/contain no-repeat;"></div>
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation"><i class="material-icons">close</i></button>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-target="overview">
+        <i class="material-icons">dashboard</i> <span class="nav-text">Overview</span>
+      </a>
+      <a class="nav-item" data-target="earnings">
+        <i class="material-icons">account_balance_wallet</i> <span class="nav-text">Earnings</span>
+      </a>
+      <a class="nav-item" data-target="paystubs">
+        <i class="material-icons">receipt_long</i> <span class="nav-text">Pay Stubs</span>
+      </a>
+      <a class="nav-item" data-target="taxes">
+        <i class="material-icons">account_balance</i> <span class="nav-text">Tax Documents</span>
+      </a>
+      <a class="nav-item" data-target="time">
+        <i class="material-icons">schedule</i> <span class="nav-text">Time & Attendance</span>
+      </a>
+      <a class="nav-item" data-target="benefits">
+        <i class="material-icons">health_and_safety</i> <span class="nav-text">Benefits</span>
+      </a>
+      <a class="nav-item" data-target="expenses">
+        <i class="material-icons">request_quote</i> <span class="nav-text">Expenses</span>
+      </a>
+      <a class="nav-item" data-target="settings">
+        <i class="material-icons">settings</i> <span class="nav-text">Settings</span>
+      </a>
+      <a class="nav-item" data-target="directory">
+        <i class="material-icons">people</i> <span class="nav-text">Directory</span>
+      </a>
+      <a class="nav-item" data-target="help">
+        <i class="material-icons">support_agent</i> <span class="nav-text">Help Center</span>
+      </a>
+      
+      <a href="login.html" class="nav-item logout-item">
+        <i class="material-icons">logout</i> <span class="nav-text">Logout</span>
+      </a>
+    </nav>
+    
+    <div class="user-profile">
+      <div class="user-avatar" id="userAvatar">JD</div>
+      <div class="user-info">
+        <h4 id="userNameDisplay">Jane Doe</h4>
+        <p id="userEmailDisplay">jane@enterprise.com</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburgerBtn"><i class="material-icons">menu</i></button>
+        <div class="topbar-title" id="topbarTitle">Overview</div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn"><i class="material-icons">notifications_none</i></button>
+        <button class="icon-btn"><i class="material-icons">help_outline</i></button>
+      </div>
+    </header>
+
+    <!-- 1. Overview Section -->
+    <section class="spa-section active" id="overview">
+      <div class="dashboard-grid">
+        <div class="card" data-aos="fade-up">
+          <div class="stat-title">Last Pay Period (Net)</div>
+          <div class="stat-value" style="color: var(--text);">$4,250.00</div>
+          <div class="stat-change"><i class="material-icons">arrow_upward</i> 0.0% from last month</div>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-title">YTD Gross Earnings</div>
+          <div class="stat-value" style="color: var(--text);">$68,400.00</div>
+          <div class="stat-change"><i class="material-icons">trending_up</i> On track</div>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-title">PTO Balance</div>
+          <div class="stat-value" style="color: var(--accent);">124 Hrs</div>
+          <div class="stat-change negative"><i class="material-icons">arrow_downward</i> -8 Hrs used this month</div>
+        </div>
+      </div>
+
+      <div class="table-container" data-aos="fade-up" data-aos-delay="300">
+        <div class="table-header"><h3>Recent Pay Stubs</h3></div>
+        <table>
+          <thead>
+            <tr><th>Pay Date</th><th>Period</th><th>Gross Pay</th><th>Net Pay</th><th>Status</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Pay Date">Oct 15, 2026</td><td data-label="Period">Oct 01 - Oct 15</td>
+              <td data-label="Gross Pay">$5,700.00</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Deposited</span></td>
+              <td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View PDF</a></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Sep 30, 2026</td><td data-label="Period">Sep 16 - Sep 30</td>
+              <td data-label="Gross Pay">$5,700.00</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Deposited</span></td>
+              <td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View PDF</a></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Sep 15, 2026</td><td data-label="Period">Sep 01 - Sep 15</td>
+              <td data-label="Gross Pay">$5,700.00</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Deposited</span></td>
+              <td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View PDF</a></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Aug 31, 2026</td><td data-label="Period">Aug 16 - Aug 31</td>
+              <td data-label="Gross Pay">$5,700.00</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Deposited</span></td>
+              <td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View PDF</a></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Aug 15, 2026</td><td data-label="Period">Aug 01 - Aug 15</td>
+              <td data-label="Gross Pay">$5,700.00</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Deposited</span></td>
+              <td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View PDF</a></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Jul 31, 2026</td><td data-label="Period">Jul 16 - Jul 31</td>
+              <td data-label="Gross Pay">$5,700.00</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Deposited</span></td>
+              <td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View PDF</a></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Jul 15, 2026</td><td data-label="Period">Jul 01 - Jul 15</td>
+              <td data-label="Gross Pay">$5,700.00</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Deposited</span></td>
+              <td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View PDF</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 2. Earnings Section -->
+    <section class="spa-section" id="earnings">
+      <div class="table-header" style="border:none; padding: 0 0 20px 0;">
+        <h2>Earnings Details</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom: 16px; font-size: 1.1rem;">Gross to Net Breakdown</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Base Salary</span> <strong>$5,000.00</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Bonus / Commission</span> <strong>$700.00</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Taxes (Fed, State, FICA)</span> <strong style="color: #ff4d4f;">-$1,150.00</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Benefits / Deductions</span> <strong style="color: #ff4d4f;">-$300.00</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-top:16px;">
+            <span style="font-weight: 600;">Net Take Home</span> <strong style="color: var(--accent); font-size: 1.2rem;">$4,250.00</strong>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 16px; font-size: 1.1rem;">YTD Highlights</h3>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 0.95rem;">You are currently tracking 5% above your target bonus plan for the fiscal year.</p>
+          <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-bottom: 8px;">
+            <div style="width: 85%; height: 100%; background: var(--accent);"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
+            <span>Bonus Accrual: $8,500</span>
+            <span>Target: $10,000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container" style="margin-top: 32px;">
+        <div class="table-header">
+          <h3>Supplemental Earnings History</h3>
+          <button class="btn-outline" style="padding: 6px 12px; font-size: 0.85rem;"><i class="material-icons" style="font-size: 16px;">download</i> Export</button>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Type</th><th>Description</th><th>Amount</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Date">Oct 15, 2026</td><td data-label="Type">Commission</td><td data-label="Description">Q3 Sales Target Met</td><td data-label="Amount" style="color: var(--accent); font-weight: 600;">$700.00</td><td data-label="Status"><span class="status-badge status-paid">Paid</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Jul 15, 2026</td><td data-label="Type">Bonus</td><td data-label="Description">Mid-Year Performance Bonus</td><td data-label="Amount" style="color: var(--accent); font-weight: 600;">$2,500.00</td><td data-label="Status"><span class="status-badge status-paid">Paid</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Apr 15, 2026</td><td data-label="Type">Commission</td><td data-label="Description">Q1 Sales Target Met</td><td data-label="Amount" style="color: var(--accent); font-weight: 600;">$850.00</td><td data-label="Status"><span class="status-badge status-paid">Paid</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Jan 15, 2026</td><td data-label="Type">Bonus</td><td data-label="Description">2025 Annual Bonus</td><td data-label="Amount" style="color: var(--accent); font-weight: 600;">$5,000.00</td><td data-label="Status"><span class="status-badge status-paid">Paid</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Dec 15, 2025</td><td data-label="Type">Stipend</td><td data-label="Description">Home Office Setup</td><td data-label="Amount" style="color: var(--accent); font-weight: 600;">$500.00</td><td data-label="Status"><span class="status-badge status-paid">Paid</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Pay Stubs -->
+    <section class="spa-section" id="paystubs">
+      <div class="table-container">
+        <div class="table-header">
+          <h3>Pay Stubs Vault</h3>
+          <button class="btn-outline"><i class="material-icons">download</i> Export All</button>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Pay Date</th><th>Period</th><th>Net Pay</th><th>Bank Account</th><th>Document</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Pay Date">Oct 15, 2026</td><td data-label="Period">Oct 01 - Oct 15</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Account">Chase ****1234</td><td data-label="Document"><button class="btn-primary" style="padding: 6px 12px;"><i class="material-icons" style="font-size:16px;">picture_as_pdf</i> PDF</button></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Sep 30, 2026</td><td data-label="Period">Sep 16 - Sep 30</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Account">Chase ****1234</td><td data-label="Document"><button class="btn-primary" style="padding: 6px 12px;"><i class="material-icons" style="font-size:16px;">picture_as_pdf</i> PDF</button></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Sep 15, 2026</td><td data-label="Period">Sep 01 - Sep 15</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Account">Chase ****1234</td><td data-label="Document"><button class="btn-primary" style="padding: 6px 12px;"><i class="material-icons" style="font-size:16px;">picture_as_pdf</i> PDF</button></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Aug 31, 2026</td><td data-label="Period">Aug 16 - Aug 31</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Account">Chase ****1234</td><td data-label="Document"><button class="btn-primary" style="padding: 6px 12px;"><i class="material-icons" style="font-size:16px;">picture_as_pdf</i> PDF</button></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Aug 15, 2026</td><td data-label="Period">Aug 01 - Aug 15</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Account">Chase ****1234</td><td data-label="Document"><button class="btn-primary" style="padding: 6px 12px;"><i class="material-icons" style="font-size:16px;">picture_as_pdf</i> PDF</button></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Jul 31, 2026</td><td data-label="Period">Jul 16 - Jul 31</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Account">Chase ****1234</td><td data-label="Document"><button class="btn-primary" style="padding: 6px 12px;"><i class="material-icons" style="font-size:16px;">picture_as_pdf</i> PDF</button></td>
+            </tr>
+            <tr>
+              <td data-label="Pay Date">Jul 15, 2026</td><td data-label="Period">Jul 01 - Jul 15</td><td data-label="Net Pay">$4,250.00</td>
+              <td data-label="Account">Chase ****1234</td><td data-label="Document"><button class="btn-primary" style="padding: 6px 12px;"><i class="material-icons" style="font-size:16px;">picture_as_pdf</i> PDF</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Tax Documents -->
+    <section class="spa-section" id="taxes">
+      <h2 style="margin-bottom: 24px;">Tax Documents</h2>
+      <div class="dashboard-grid">
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">description</i>
+          <h3>2025 W-2 Form</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Available since Jan 15, 2026.</p>
+          <button class="btn-outline" style="width: 100%;">Download W-2</button>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">description</i>
+          <h3>2024 W-2 Form</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Available since Jan 18, 2025.</p>
+          <button class="btn-outline" style="width: 100%;">Download W-2</button>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">description</i>
+          <h3>2023 W-2 Form</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Available since Jan 19, 2024.</p>
+          <button class="btn-outline" style="width: 100%;">Download W-2</button>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">receipt</i>
+          <h3>2025 1099-INT</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Interest Income Statement.</p>
+          <button class="btn-outline" style="width: 100%;">Download 1099</button>
+        </div>
+        <div class="card" style="border-color: var(--border);">
+          <i class="material-icons" style="font-size: 32px; color: rgba(255,255,255,0.5); margin-bottom: 16px;">settings_applications</i>
+          <h3>W-4 Withholding</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Currently claiming 1 allowance.</p>
+          <button class="btn-primary" style="width: 100%; justify-content: center;">Update W-4</button>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">health_and_safety</i>
+          <h3>2025 1095-C Form</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Employer Health Insurance Offer.</p>
+          <button class="btn-outline" style="width: 100%;">Download 1095-C</button>
+        </div>
+      </div>
+      
+      <div class="table-container" style="margin-top: 32px;">
+        <div class="table-header">
+          <h3>State & Local Tax Documents (1099-G, 1099-MISC)</h3>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Tax Year</th><th>Form Type</th><th>Jurisdiction</th><th>Issue Date</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Tax Year">2025</td><td data-label="Form Type">1099-G</td><td data-label="Jurisdiction">California (FTB)</td><td data-label="Issue Date">Feb 01, 2026</td>
+              <td data-label="Action"><button class="btn-outline" style="padding: 4px 8px; font-size: 0.8rem;"><i class="material-icons" style="font-size:14px;">download</i> Download</button></td>
+            </tr>
+            <tr>
+              <td data-label="Tax Year">2024</td><td data-label="Form Type">1099-G</td><td data-label="Jurisdiction">California (FTB)</td><td data-label="Issue Date">Jan 28, 2025</td>
+              <td data-label="Action"><button class="btn-outline" style="padding: 4px 8px; font-size: 0.8rem;"><i class="material-icons" style="font-size:14px;">download</i> Download</button></td>
+            </tr>
+            <tr>
+              <td data-label="Tax Year">2025</td><td data-label="Form Type">1099-MISC</td><td data-label="Jurisdiction">Federal (IRS)</td><td data-label="Issue Date">Jan 31, 2026</td>
+              <td data-label="Action"><button class="btn-outline" style="padding: 4px 8px; font-size: 0.8rem;"><i class="material-icons" style="font-size:14px;">download</i> Download</button></td>
+            </tr>
+            <tr>
+              <td data-label="Tax Year">2024</td><td data-label="Form Type">1099-MISC</td><td data-label="Jurisdiction">Federal (IRS)</td><td data-label="Issue Date">Jan 31, 2025</td>
+              <td data-label="Action"><button class="btn-outline" style="padding: 4px 8px; font-size: 0.8rem;"><i class="material-icons" style="font-size:14px;">download</i> Download</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. Time & Attendance -->
+    <section class="spa-section" id="time">
+      <div class="table-header" style="border:none; padding: 0 0 20px 0;">
+        <h2>Time & Attendance</h2>
+        <button class="btn-primary"><i class="material-icons">add</i> Request PTO</button>
+      </div>
+      <div class="grid-2">
+        <div class="card" style="display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+            <div>
+              <h3 style="margin-bottom: 8px;">Current Timesheet</h3>
+              <p style="color: rgba(255,255,255,0.6); margin: 0;">Oct 16 - Oct 22</p>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1;">32.5 <span style="font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 400;">Hrs</span></div>
+            </div>
+          </div>
+          
+          <div style="flex: 1;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+              <span>Mon, Oct 16</span> <strong>8.0 Hrs</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+              <span>Tue, Oct 17</span> <strong>8.0 Hrs</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+              <span>Wed, Oct 18</span> <strong>8.5 Hrs</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+              <span>Thu, Oct 19</span> <strong style="color: #52c41a;">8.0 Hrs (Active)</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+              <span style="color: rgba(255,255,255,0.4);">Fri, Oct 20</span> <strong style="color: rgba(255,255,255,0.4);">0.0 Hrs</strong>
+            </div>
+          </div>
+
+          <div style="margin-top: 16px; display: flex; gap: 12px;">
+            <button class="btn-outline" style="flex: 1; justify-content:center; color: #ff4d4f; border-color: #ff4d4f;"><i class="material-icons" style="font-size:18px;">stop_circle</i> Clock Out</button>
+            <button class="btn-primary" style="flex: 1; justify-content:center;">View Details</button>
+          </div>
+        </div>
+        <div class="table-container" style="margin: 0; height: 100%;">
+          <div class="table-header" style="padding: 15px;"><h3>Recent PTO Requests</h3></div>
+          <table>
+            <tbody>
+              <tr><td data-label="Dates">Nov 20 - Nov 25</td><td data-label="Status"><span class="status-badge status-pending">Pending Approval</span></td></tr>
+              <tr><td data-label="Dates">Dec 24 - Dec 31</td><td data-label="Status"><span class="status-badge status-pending">Pending Approval</span></td></tr>
+              <tr><td data-label="Dates">Oct 10 - Oct 12</td><td data-label="Status"><span class="status-badge status-paid">Approved</span></td></tr>
+              <tr><td data-label="Dates">Aug 10 - Aug 14</td><td data-label="Status"><span class="status-badge status-paid">Approved</span></td></tr>
+              <tr><td data-label="Dates">Jul 01 - Jul 03</td><td data-label="Status"><span class="status-badge status-paid">Approved</span></td></tr>
+              <tr><td data-label="Dates">May 25 - May 26</td><td data-label="Status"><span class="status-badge status-denied">Denied</span></td></tr>
+              <tr><td data-label="Dates">Mar 15 - Mar 17</td><td data-label="Status"><span class="status-badge status-paid">Approved</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Benefits Section -->
+    <section class="spa-section" id="benefits">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+        <h2 style="margin: 0;">Benefits & Coverage</h2>
+        <button class="btn-primary" style="padding: 8px 16px;"><i class="material-icons" style="font-size: 18px;">edit</i> Modify Enrollment</button>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Medical Card -->
+        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <i class="material-icons" style="font-size: 32px; color: #3b82f6; margin-bottom: 16px;">health_and_safety</i>
+            <h3 style="margin-bottom: 4px;">Medical (BlueCross)</h3>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 16px; font-size: 0.9rem;">PPO Family Plan</p>
+            <div style="font-size: 1.4rem; font-weight: 700; color: var(--text-light); margin-bottom: 4px;">-$150.00<span style="font-size: 0.9rem; color: rgba(255,255,255,0.5); font-weight: 400;"> / check</span></div>
+            <p style="color: #10b981; font-size: 0.85rem; margin-bottom: 16px;">Employer covers 80%</p>
+          </div>
+          <button class="btn-outline" style="width: 100%; justify-content:center;">View ID Card</button>
+        </div>
+
+        <!-- 401(k) Card -->
+        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <i class="material-icons" style="font-size: 32px; color: #10b981; margin-bottom: 16px;">account_balance</i>
+            <h3 style="margin-bottom: 4px;">401(k) (Fidelity)</h3>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 16px; font-size: 0.9rem;">Target Date Fund 2055</p>
+            <div style="font-size: 1.4rem; font-weight: 700; color: var(--text-light); margin-bottom: 4px;">5%<span style="font-size: 0.9rem; color: rgba(255,255,255,0.5); font-weight: 400;"> Pre-tax</span></div>
+            <p style="color: #10b981; font-size: 0.85rem; margin-bottom: 16px;">4% Employer Match</p>
+          </div>
+          <button class="btn-outline" style="width: 100%; justify-content:center;">Manage Investments</button>
+        </div>
+
+        <!-- Vision & Dental Card -->
+        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <i class="material-icons" style="font-size: 32px; color: #8b5cf6; margin-bottom: 16px;">visibility</i>
+            <h3 style="margin-bottom: 4px;">Vision & Dental (VSP)</h3>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 16px; font-size: 0.9rem;">Premium Tier</p>
+            <div style="font-size: 1.4rem; font-weight: 700; color: var(--text-light); margin-bottom: 4px;">-$25.00<span style="font-size: 0.9rem; color: rgba(255,255,255,0.5); font-weight: 400;"> / check</span></div>
+            <p style="color: #10b981; font-size: 0.85rem; margin-bottom: 16px;">Includes Orthodontia</p>
+          </div>
+          <button class="btn-outline" style="width: 100%; justify-content:center;">Find Provider</button>
+        </div>
+      </div>
+
+      <div class="table-container" style="margin-top: 32px;">
+        <div class="table-header">
+          <h3>Recent Claims & Activity</h3>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Provider</th><th>Type</th><th>Total Amount</th><th>Your Responsibility</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Date">Oct 05, 2026</td><td data-label="Provider">City Smiles Dental</td><td data-label="Type">Dental</td><td data-label="Total Amount">$250.00</td><td data-label="Your Responsibility">$0.00</td><td data-label="Status"><span class="status-badge status-paid">Processed</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Sep 18, 2026</td><td data-label="Provider">Dr. Sarah Jenkins</td><td data-label="Type">Medical</td><td data-label="Total Amount">$185.00</td><td data-label="Your Responsibility">$35.00 (Copay)</td><td data-label="Status"><span class="status-badge status-paid">Processed</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Aug 30, 2026</td><td data-label="Provider">LensCrafters</td><td data-label="Type">Vision</td><td data-label="Total Amount">$420.00</td><td data-label="Your Responsibility">$120.00</td><td data-label="Status"><span class="status-badge status-paid">Processed</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Jul 12, 2026</td><td data-label="Provider">General Hospital (ER)</td><td data-label="Type">Medical</td><td data-label="Total Amount">$3,500.00</td><td data-label="Your Responsibility">$250.00</td><td data-label="Status"><span class="status-badge status-pending">Pending Review</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 7. Expenses -->
+    <section class="spa-section" id="expenses">
+      <div class="table-header" style="border:none; padding: 0 0 20px 0;">
+        <h2>Corporate Expenses</h2>
+        <button class="btn-primary"><i class="material-icons">receipt</i> New Expense</button>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Date">Oct 12, 2026</td><td data-label="Category">Travel</td>
+              <td data-label="Description">Delta Flight to NYC</td><td data-label="Amount">$450.00</td>
+              <td data-label="Status"><span class="status-badge status-pending">Pending Approval</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Oct 10, 2026</td><td data-label="Category">Meals</td>
+              <td data-label="Description">Client Dinner at Steakhouse</td><td data-label="Amount">$185.50</td>
+              <td data-label="Status"><span class="status-badge status-pending">Pending Approval</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Sep 28, 2026</td><td data-label="Category">Software</td>
+              <td data-label="Description">Adobe Creative Cloud Sub</td><td data-label="Amount">$52.99</td>
+              <td data-label="Status"><span class="status-badge status-paid">Reimbursed</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Sep 05, 2026</td><td data-label="Category">Office</td>
+              <td data-label="Description">Monitors for home office</td><td data-label="Amount">$320.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Reimbursed</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Aug 15, 2026</td><td data-label="Category">Travel</td>
+              <td data-label="Description">Uber to Airport</td><td data-label="Amount">$45.00</td>
+              <td data-label="Status"><span class="status-badge status-paid">Reimbursed</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Jul 20, 2026</td><td data-label="Category">Hardware</td>
+              <td data-label="Description">Wireless Keyboard & Mouse</td><td data-label="Amount">$129.99</td>
+              <td data-label="Status"><span class="status-badge status-paid">Reimbursed</span></td>
+            </tr>
+            <tr>
+              <td data-label="Date">Jun 10, 2026</td><td data-label="Category">Travel</td>
+              <td data-label="Description">Hotel Stay - Chicago Expo</td><td data-label="Amount">$850.00</td>
+              <td data-label="Status"><span class="status-badge status-denied">Denied</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 8. Settings -->
+    <section class="spa-section" id="settings">
+      <h2 style="margin-bottom: 24px;">Account Settings</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom: 20px;">Direct Deposit</h3>
+          <div class="form-group">
+            <label>Bank Name</label>
+            <input type="text" class="form-control" value="Chase Bank">
+          </div>
+          <div class="form-group">
+            <label>Routing Number</label>
+            <input type="password" class="form-control" value="123456789">
+          </div>
+          <div class="form-group">
+            <label>Account Number</label>
+            <input type="password" class="form-control" value="00001234">
+          </div>
+          <button class="btn-primary">Update Details</button>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 20px;">Personal Address</h3>
+          <div class="form-group">
+            <label>Street Address</label>
+            <input type="text" class="form-control" value="123 Main St, Apt 4B">
+          </div>
+          <div class="form-group">
+            <label>City & Zip</label>
+            <div style="display:flex; gap:10px;">
+              <input type="text" class="form-control" value="San Francisco" style="flex:2;">
+              <input type="text" class="form-control" value="94105" style="flex:1;">
+            </div>
+          </div>
+          <button class="btn-outline" style="margin-top: 10px;">Save Address</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Directory -->
+    <section class="spa-section" id="directory">
+      <div class="table-header" style="border:none; padding: 0 0 20px 0;">
+        <h2>Company Directory</h2>
+        <input type="text" class="form-control" placeholder="Search colleagues..." style="width: 300px; padding: 10px;">
+      </div>
+      <div class="dashboard-grid">
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div class="user-avatar" style="width:72px; height:72px; margin: 0 auto 16px; font-size: 1.5rem;">MS</div>
+          <h3 style="margin-bottom: 4px;">Mike Smith</h3>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 0.9rem;">Marketing Director</p>
+          <button class="btn-outline" style="width: 100%; justify-content:center;"><i class="material-icons" style="font-size:18px;">mail</i> Message</button>
+        </div>
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div class="user-avatar" style="width:72px; height:72px; margin: 0 auto 16px; font-size: 1.5rem; background: #3b82f6;">RJ</div>
+          <h3 style="margin-bottom: 4px;">Robert Johnson</h3>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 0.9rem;">Product Manager</p>
+          <button class="btn-outline" style="width: 100%; justify-content:center;"><i class="material-icons" style="font-size:18px;">mail</i> Message</button>
+        </div>
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div class="user-avatar" style="width:72px; height:72px; margin: 0 auto 16px; font-size: 1.5rem; background: #10b981;">EM</div>
+          <h3 style="margin-bottom: 4px;">Emily Miller</h3>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 0.9rem;">HR Specialist</p>
+          <button class="btn-outline" style="width: 100%; justify-content:center;"><i class="material-icons" style="font-size:18px;">mail</i> Message</button>
+        </div>
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div class="user-avatar" style="width:72px; height:72px; margin: 0 auto 16px; font-size: 1.5rem; background: #8b5cf6;">SJ</div>
+          <h3 style="margin-bottom: 4px;">Sarah Jones</h3>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 0.9rem;">Financial Analyst</p>
+          <button class="btn-outline" style="width: 100%; justify-content:center;"><i class="material-icons" style="font-size:18px;">mail</i> Message</button>
+        </div>
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div class="user-avatar" style="width:72px; height:72px; margin: 0 auto 16px; font-size: 1.5rem; background: #f59e0b;">DW</div>
+          <h3 style="margin-bottom: 4px;">David Wang</h3>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 0.9rem;">Lead Designer</p>
+          <button class="btn-outline" style="width: 100%; justify-content:center;"><i class="material-icons" style="font-size:18px;">mail</i> Message</button>
+        </div>
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div class="user-avatar" style="width:72px; height:72px; margin: 0 auto 16px; font-size: 1.5rem; background: #ef4444;">AC</div>
+          <h3 style="margin-bottom: 4px;">Amanda Chen</h3>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 0.9rem;">Software Engineer</p>
+          <button class="btn-outline" style="width: 100%; justify-content:center;"><i class="material-icons" style="font-size:18px;">mail</i> Message</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Help Center -->
+    <section class="spa-section" id="help">
+      <h2 style="margin-bottom: 24px;">Help Center & Support</h2>
+      <div class="grid-2">
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">library_books</i>
+          <h3>Knowledge Base</h3>
+          <p style="color: rgba(255,255,255,0.6); margin: 10px 0 24px; font-size: 0.9rem;">Read articles on how to use Aurelia Payroll, manage your benefits, and file.</p>
+          <button class="btn-outline" style="width: 100%; justify-content:center;">Browse Articles</button>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">chat</i>
+          <h3>Live Chat Support</h3>
+          <p style="color: rgba(255,255,255,0.6); margin: 10px 0 24px; font-size: 0.9rem;">Connect with an HR representative or payroll specialist in real-time.</p>
+          <button class="btn-primary" style="width: 100%; justify-content:center;">Start Chat</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <div class="table-header"><h3>Recent Support Tickets</h3></div>
+        <table>
+          <thead>
+            <tr><th>Ticket ID</th><th>Subject</th><th>Last Updated</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Ticket ID">#TK-9021</td><td data-label="Subject">Question about W-4 allowance</td><td data-label="Last Updated">Oct 12, 2026</td><td data-label="Status"><span class="status-badge status-paid">Resolved</span></td>
+            </tr>
+            <tr>
+              <td data-label="Ticket ID">#TK-8834</td><td data-label="Subject">Expense reimbursement delay</td><td data-label="Last Updated">Sep 05, 2026</td><td data-label="Status"><span class="status-badge status-paid">Resolved</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // SPA Navigation Logic
+    const navItems = document.querySelectorAll('.nav-item[data-target]');
+    const sections = document.querySelectorAll('.spa-section');
+    const titleElement = document.getElementById('topbarTitle');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(n => n.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        
+        item.classList.add('active');
+        const target = item.getAttribute('data-target');
+        const targetSection = document.getElementById(target);
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
+        
+        // Use class nav-text to avoid picking up the icon text
+        const navText = item.querySelector('.nav-text').textContent;
+        titleElement.textContent = navText.trim();
+        
+        closeSidebar();
+
+        // Always reset scroll to the top of the page when opening a new section
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) mainContent.scrollTop = 0;
+      });
+    });
+
+    // Mobile Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
+
+    function openSidebar() { 
+      sidebar.classList.add('open'); 
+      overlay.classList.add('active'); 
+      document.body.style.overflow = 'hidden';
+      if (hamburgerBtn) hamburgerBtn.innerHTML = '<i class="material-icons">close</i>';
+    }
+    function closeSidebar() { 
+      sidebar.classList.remove('open'); 
+      overlay.classList.remove('active'); 
+      document.body.style.overflow = '';
+      if (hamburgerBtn) hamburgerBtn.innerHTML = '<i class="material-icons">menu</i>';
+    }
+    function toggleSidebar() {
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    }
+
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleSidebar);
+    if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+
+    // Load User Email and Name from Login
+    const savedEmail = localStorage.getItem('userEmail');
+    const savedName = localStorage.getItem('userName');
+    
+    if (savedEmail) {
+      document.getElementById('userEmailDisplay').textContent = savedEmail;
+    }
+    
+    if (savedName) {
+      document.getElementById('userNameDisplay').textContent = savedName;
+      // Generate initials from name (up to 2 letters)
+      const names = savedName.trim().split(' ');
+      let initials = names[0][0].toUpperCase();
+      if (names.length > 1) {
+        initials += names[names.length - 1][0].toUpperCase();
+      }
+      document.getElementById('userAvatar').textContent = initials;
+    } else if (savedEmail) {
+      // Fallback to email initials
+      const initials = savedEmail.substring(0, 2).toUpperCase();
+      document.getElementById('userAvatar').textContent = initials;
+    }
+
+    // Route all CTA buttons to 404.html
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-outline, .icon-btn, .btn-run, a[href="#"]');
+    ctaElements.forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = '404.html';
+      });
+    });
+  </script>
+</body>
+</html>

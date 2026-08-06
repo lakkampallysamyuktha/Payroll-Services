@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Contact & VIP Consultation | Aurelia Payroll</title>
+  <meta name="description" content="Connect with Aurelia's enterprise solutions team. VIP 24/7 support, global deployment consulting, and dedicated engineering for complex payroll architectures.">
+
+  <!-- Google Fonts: Inter & Outfit + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS & Swiper CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Core Design Tokens & Styles -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body class="page-contact">
+
+  <!-- Top Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STICKY LUXURY GLASS HEADER
+       ══════════════════════════════════════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      
+      <a href="index.html" class="brand-logo" aria-label="Aurelia Payroll Home">
+        <div class="brand-icon-mark">
+          <div class="brand-logo-img"></div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (5 Items Only) -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="platform.html" class="nav-link">Platform</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-accent btn-md btn-magnetic header-cta-btn">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Login</span>
+        </a>
+
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Drawer" aria-expanded="false">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="brand-logo" aria-label="Aurelia Payroll Home">
+        <div class="brand-icon-mark">
+          <div class="brand-logo-img"></div>
+        </div>
+      </a>
+      <button class="mobile-drawer-close-btn" id="mobileDrawerClose" aria-label="Close Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-nav-scroll-area">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">01</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-house"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Home</span>
+              <span class="mobile-nav-subtitle">Enterprise Overview</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="services.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">02</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-cubes"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Services</span>
+              <span class="mobile-nav-subtitle">Architectural Workbench</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="platform.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">03</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Platform</span>
+              <span class="mobile-nav-subtitle">Smart Features & Pipeline</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="pricing.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">04</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-calculator"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Pricing</span>
+              <span class="mobile-nav-subtitle">Comparative Matrix & ROI</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="contact.html" class="mobile-nav-card active">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">05</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-headset"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Contact</span>
+              <span class="mobile-nav-subtitle">VIP Consultation & 24/7 SLA</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+      </div>
+
+      <!-- Drawer Footer Action -->
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="btn btn-primary btn-md" style="width: 100%; justify-content: center;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Login</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ══════════════════════════════════════════════════════════════
+         ① CONTACT HERO: VIP CONSULTATION SUITE
+         ══════════════════════════════════════════════════════════════ -->
+    <style>
+      /* ──────────────────────────────────────────────────────────
+         CONTACT SUITE COMPREHENSIVE RESPONSIVE STYLES
+         ────────────────────────────────────────────────────────── */
+      .contact-hero-section {
+        position: relative;
+        overflow: hidden;
+        padding-top: clamp(140px, 12vw, 180px);
+        padding-bottom: clamp(60px, 8vw, 100px);
+        background: var(--primary);
+      }
+      .contact-hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+      .contact-hero-tag {
+        background: rgba(201,162,39,0.1);
+        border: 1px solid rgba(201,162,39,0.3);
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      .contact-hero-title {
+        font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+        line-height: 1.15;
+        margin-bottom: 20px;
+        text-align: left;
+        color: var(--secondary);
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: none;
+      }
+      .contact-hero-desc {
+        text-align: left;
+        max-width: 550px;
+        margin-bottom: 32px;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: rgba(252,250,246,0.8);
+      }
+      .contact-floating-cpa {
+        position: absolute;
+        bottom: 24px;
+        left: 20px;
+        background: rgba(47,42,38,0.92);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(201,162,39,0.35);
+        padding: 12px 18px;
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        z-index: 10;
+        box-sizing: border-box;
+      }
+
+      /* Form & Dashboard */
+      .contact-dashboard {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(201,162,39,0.2);
+        border-radius: var(--radius-2xl);
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        overflow: hidden;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      }
+      .contact-form-pane {
+        padding: 48px 40px;
+        background: rgba(255,255,255,0.01);
+        backdrop-filter: blur(20px);
+      }
+      .contact-info-pane {
+        padding: 48px 36px;
+        background: linear-gradient(135deg, rgba(29,25,23,0.95) 0%, rgba(201,162,39,0.1) 100%);
+        border-left: 1px solid rgba(201,162,39,0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .contact-form-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      .contact-input-field label {
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(252,250,246,0.6);
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      .contact-input-field input, .contact-input-field select, .contact-input-field textarea {
+        width: 100%;
+        background: rgba(0,0,0,0.4) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        border-radius: var(--radius-md);
+        padding: 13px 15px;
+        color: var(--secondary) !important;
+        font-family: var(--font-body);
+        font-size: 14px;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+      }
+      .contact-input-field input:focus, .contact-input-field select:focus, .contact-input-field textarea:focus {
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 15px rgba(201,162,39,0.2);
+        outline: none;
+      }
+      .dispatch-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(0,0,0,0.4);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 11px;
+        color: #4caf50;
+        border: 1px solid rgba(76,175,80,0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 700;
+      }
+      .dispatch-pulse {
+        width: 8px; height: 8px;
+        background: #4caf50;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #4caf50;
+        animation: pulse-green 2s infinite;
+      }
+      @keyframes pulse-green {
+        0% { box-shadow: 0 0 0 0 rgba(76,175,80,0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(76,175,80,0); }
+        100% { box-shadow: 0 0 0 0 rgba(76,175,80,0); }
+      }
+
+      /* Hubs & Grid */
+      .contact-hubs-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: var(--space-2xl);
+      }
+      @media (max-width: 1100px) {
+        .contact-hubs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .contact-hub-card {
+        background: var(--primary);
+        color: var(--secondary);
+        padding: 20px;
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(201,162,39,0.2);
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      /* Channels */
+      .channel-pipeline {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        position: relative;
+        margin-top: var(--space-3xl);
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .channel-pipeline::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 5%;
+        right: 5%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(201,162,39,0.3), transparent);
+        z-index: 1;
+      }
+      .channel-node {
+        position: relative;
+        z-index: 2;
+        width: 28%;
+        text-align: center;
+      }
+      .channel-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        background: var(--primary);
+        border: 2px solid var(--accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--accent);
+        margin: 0 auto 24px auto;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .channel-node:hover .channel-icon-wrapper {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(201,162,39,0.25);
+      }
+      .channel-node h4 {
+        font-size: 1.25rem;
+        color: var(--primary);
+        margin-bottom: 12px;
+      }
+      .channel-node p {
+        font-size: 14px;
+        color: var(--primary-muted);
+        line-height: 1.6;
+      }
+
+      /* Timeline */
+      .onboarding-timeline {
+        position: relative;
+        margin-top: var(--space-3xl);
+      }
+      .onboarding-timeline::before {
+        content: '';
+        position: absolute;
+        left: 24px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: rgba(201,162,39,0.2);
+      }
+      .timeline-step {
+        position: relative;
+        padding-left: 80px;
+        margin-bottom: 50px;
+        box-sizing: border-box;
+      }
+      .timeline-step:last-child { margin-bottom: 0; }
+      .timeline-marker {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        background: var(--primary);
+        border: 2px solid var(--accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: var(--accent);
+        box-shadow: 0 0 20px rgba(201,162,39,0.2);
+        z-index: 2;
+      }
+      .timeline-content h4 {
+        font-size: 1.4rem;
+        color: var(--secondary);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .timeline-content p {
+        font-size: 14.5px;
+        color: rgba(252,250,246,0.7);
+        line-height: 1.6;
+      }
+
+      /* Compliance Vault */
+      .compliance-vault {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: var(--space-3xl);
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @media (max-width: 991px) {
+        .compliance-vault {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .compliance-panel {
+        background: rgba(255,255,255,0.02);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: var(--radius-xl);
+        padding: 36px 30px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      .compliance-panel::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .compliance-panel:hover {
+        transform: translateY(-5px);
+        background: rgba(255,255,255,0.04);
+        border-color: rgba(201,162,39,0.3);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      }
+      .compliance-panel:hover::before { opacity: 1; }
+      .compliance-icon {
+        font-size: 2.3rem;
+        color: var(--accent);
+        margin-bottom: 20px;
+        filter: drop-shadow(0 0 10px rgba(201,162,39,0.4));
+      }
+      .compliance-panel h4 {
+        font-size: 1.35rem;
+        color: var(--secondary);
+        margin-bottom: 10px;
+        font-family: var(--font-mono);
+        letter-spacing: 0.05em;
+      }
+      .compliance-panel p {
+        font-size: 13.5px;
+        color: rgba(252,250,246,0.6);
+        line-height: 1.6;
+      }
+      .compliance-status {
+        position: absolute;
+        top: 32px;
+        right: 28px;
+        background: rgba(76,175,80,0.1);
+        color: #4caf50;
+        border: 1px solid rgba(76,175,80,0.3);
+        padding: 4px 12px;
+        border-radius: 50px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* ──────────────────────────────────────────────────────────
+         RESPONSIVE MEDIA QUERIES (TABLET & MOBILE)
+         ────────────────────────────────────────────────────────── */
+      @media (max-width: 991px) {
+        .contact-hero-grid {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+        .contact-hero-title {
+          font-size: clamp(2rem, 6vw, 3rem);
+          margin-bottom: 16px;
+        }
+        .contact-hero-desc {
+          font-size: 1rem;
+          margin-bottom: 24px;
+        }
+        .contact-dashboard {
+          grid-template-columns: 1fr;
+        }
+        .contact-form-pane, .contact-info-pane {
+          padding: 32px 24px;
+        }
+        .contact-info-pane {
+          border-left: none;
+          border-top: 1px solid rgba(201,162,39,0.2);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .contact-hero-section {
+          padding-top: 120px;
+          padding-bottom: 40px;
+        }
+        .channel-pipeline {
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+        }
+        .channel-pipeline::before { display: none; }
+        .channel-node { width: 100%; max-width: 350px; }
+      }
+
+      @media (max-width: 576px) {
+        .contact-hero-tag {
+          font-size: 9.5px;
+          padding: 5px 12px;
+          letter-spacing: 0.05em;
+          margin-bottom: 16px;
+        }
+        .contact-hero-title {
+          font-size: 1.85rem;
+          line-height: 1.2;
+        }
+        .contact-hero-desc {
+          font-size: 0.92rem;
+          margin-bottom: 20px;
+        }
+        .contact-floating-cpa {
+          position: static;
+          margin-top: 14px;
+          width: 100%;
+        }
+        .contact-dashboard {
+          border-radius: var(--radius-lg);
+        }
+        .contact-form-pane, .contact-info-pane {
+          padding: 22px 16px;
+        }
+        .contact-form-grid-2 {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+        .contact-form-pane h3, .contact-info-pane h3 {
+          font-size: 1.25rem !important;
+        }
+        .contact-form-pane p, .contact-info-pane p {
+          font-size: 13px !important;
+          margin-bottom: 20px !important;
+        }
+        .contact-form-pane .btn {
+          width: 100%;
+          justify-content: center;
+        }
+        .contact-hubs-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .onboarding-timeline::before {
+          left: 18px;
+        }
+        .timeline-step {
+          padding-left: 54px;
+          margin-bottom: 32px;
+        }
+        .timeline-marker {
+          width: 38px;
+          height: 38px;
+          font-size: 1rem;
+        }
+        .timeline-content h4 {
+          font-size: 1.15rem;
+          gap: 6px;
+        }
+        .timeline-content p {
+          font-size: 13px;
+        }
+        .compliance-vault {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .compliance-panel {
+          padding: 22px 16px;
+        }
+        .compliance-status {
+          top: 20px;
+          right: 16px;
+          font-size: 9px;
+          padding: 3px 8px;
+        }
+        .compliance-icon {
+          font-size: 2rem;
+          margin-bottom: 14px;
+        }
+        .compliance-panel h4 {
+          font-size: 1.2rem;
+        }
+        .compliance-panel p {
+          font-size: 13px;
+        }
+      }
+    </style>
+
+    <section class="contact-hero-section" id="contact-hero">
+      <!-- Abstract Glowing Orbs for Premium Vibe -->
+      <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(40px); z-index: 1;"></div>
+      <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(30px); z-index: 1;"></div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        
+        <div class="contact-hero-grid">
+          
+          <div data-aos="fade-right">
+            <div class="contact-hero-tag">
+              <i class="fa-solid fa-shield-halved" style="margin-right: 8px;"></i>
+              <span>EXECUTIVE DISPATCH DESK &bull; 15-MIN SLA</span>
+            </div>
+            
+            <h1 class="contact-hero-title">
+              Connect with a Senior <br><span class="text-accent" style="position: relative; display: inline-block;">Payroll Architect
+                <svg width="100%" height="12" viewBox="0 0 200 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; bottom: -5px; left: 0;">
+                  <path d="M2 10Q50 2 100 5T198 2" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </h1>
+            
+            <p class="contact-hero-desc">
+              Skip junior support queues. Speak directly with a licensed CPA and enterprise integration engineer regarding your 50-state tax migration and parallel ledger audit.
+            </p>
+            
+            <div style="display: flex; gap: 16px;">
+              <a href="#contact-form-section" class="btn btn-accent btn-lg btn-magnetic">
+                <span>Start Technical Briefing</span>
+                <i class="fa-solid fa-arrow-down" style="margin-left: 8px;"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div data-aos="fade-left" style="position: relative;">
+            <div style="position: relative; border-radius: var(--radius-2xl); overflow: hidden; border: 1px solid rgba(201,162,39,0.2); box-shadow: 0 30px 60px rgba(0,0,0,0.6);">
+              <img src="Images/photo-1556761175-5973dc0f32e7.webp" alt="Executive Conference" style="width: 100%; height: auto; display: block;" loading="lazy">
+              <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(29,25,23,0.4) 0%, rgba(201,162,39,0.2) 100%);"></div>
+              
+              <!-- Floating CPA Badge -->
+              <div class="contact-floating-cpa">
+                <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <div>
+                  <div style="color: var(--secondary); font-weight: 700; font-size: 13px;">Licensed CPAs Only</div>
+                  <div style="color: rgba(252,250,246,0.9); font-size: 11px;">Zero Junior Support Agents</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ② INTERACTIVE VIP CONSULTATION DESK (FORM & BRIEFING DOCK)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="contact-suite-section" id="contact-form-section" style="background: var(--primary) !important; padding: 0 0 var(--space-3xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up" style="margin-bottom: var(--space-2xl);">
+          <div class="section-tag-gold">ARCHITECTURAL DESK</div>
+          <h2 class="section-title" style="color: var(--secondary) !important;">Initiate Your Enterprise Audit</h2>
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.8) !important;">
+            Securely submit your architecture requirements directly to our tier-1 engineering and tax defense teams.
+          </p>
+        </div>
+
+        <div class="contact-dashboard" data-aos="zoom-in">
+          
+          <!-- Left: Architectural Inquiry Form -->
+          <div class="contact-form-pane">
+            <h3 style="font-size: 1.5rem; color: var(--secondary); margin-bottom: 8px;">Request Enterprise Architecture Briefing</h3>
+            <p style="font-size: 14px; color: rgba(252,250,246,0.7); line-height: 1.6; margin-bottom: 28px;">
+              Complete this technical briefing form for a complimentary parallel ledger reconciliation audit.
+            </p>
+
+            <form id="enterpriseContactForm" action="404.html">
+              <div class="contact-form-grid-2">
+                <div class="contact-input-field">
+                  <label>Full Name *</label>
+                  <input type="text" placeholder="Eleanor Vance" required>
+                </div>
+                <div class="contact-input-field">
+                  <label>Executive Title *</label>
+                  <input type="text" placeholder="Chief Financial Officer" required>
+                </div>
+              </div>
+
+              <div class="contact-form-grid-2">
+                <div class="contact-input-field">
+                  <label>Corporate Email *</label>
+                  <input type="email" placeholder="vance@enterprise.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$" title="Please enter a valid corporate email address ending in .com" required>
+                </div>
+                <div class="contact-input-field">
+                  <label>Phone Number *</label>
+                  <input type="tel" placeholder="+1 (555) 234-5678" required>
+                </div>
+              </div>
+
+              <div class="contact-form-grid-2">
+                <div class="contact-input-field">
+                  <label>Active Employee Count *</label>
+                  <select required>
+                    <option value="50-250">50 - 250 Staff</option>
+                    <option value="250-1000" selected>250 - 1,000 Staff</option>
+                    <option value="1000-5000">1,000 - 5,000 Staff</option>
+                    <option value="5000+">5,000+ Global Workforce</option>
+                  </select>
+                </div>
+                <div class="contact-input-field">
+                  <label>Primary ERP / GL *</label>
+                  <select required>
+                    <option value="netsuite">Oracle NetSuite</option>
+                    <option value="sap">SAP S/4HANA</option>
+                    <option value="workday">Workday Financials</option>
+                    <option value="quickbooks">QuickBooks Enterprise</option>
+                    <option value="other">Other / Custom GL</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="contact-input-field" style="margin-bottom: 28px;">
+                <label>Key Architectural Priorities *</label>
+                <textarea rows="4" placeholder="E.g., Migrating from ADP, multi-state tax nexus defense, biometric integration..." style="resize: vertical;" required></textarea>
+              </div>
+
+              <div style="display: flex; justify-content: center;">
+                <button type="submit" class="btn btn-accent btn-lg btn-magnetic">
+                  <i class="fa-solid fa-satellite-dish"></i>
+                  <span>Dispatch Architecture Request</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: Command Center Visual -->
+          <div class="contact-info-pane">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 10px;">
+                <span class="badge badge-gold">COMMAND CENTER</span>
+                <div class="dispatch-status">
+                  <div class="dispatch-pulse"></div>
+                  Dispatch Active
+                </div>
+              </div>
+              
+              <h3 style="font-size: 1.5rem; color: var(--secondary); margin-bottom: 10px; line-height: 1.3;">Secure Executive Channels</h3>
+              <p style="font-size: 13.5px; color: rgba(252,250,246,0.7); line-height: 1.6; margin-bottom: 28px;">
+                Access our tier-1 treasury engineers and licensed tax defense attorneys through encrypted, zero-trust sovereign communication lines.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; align-items: flex-start; gap: 14px;">
+                  <div style="width: 44px; height: 44px; background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.3); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.1rem; flex-shrink: 0;">
+                    <i class="fa-solid fa-phone-volume"></i>
+                  </div>
+                  <div>
+                    <span style="font-size: 11px; color: rgba(252,250,246,0.5); text-transform: uppercase; letter-spacing: 0.1em;">Direct Wire Desk</span>
+                    <div style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); font-family: var(--font-mono); margin-top: 2px;">+91 1800 849 2910</div>
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: flex-start; gap: 14px;">
+                  <div style="width: 44px; height: 44px; background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.3); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.1rem; flex-shrink: 0;">
+                    <i class="fa-solid fa-fingerprint"></i>
+                  </div>
+                  <div>
+                    <span style="font-size: 11px; color: rgba(252,250,246,0.5); text-transform: uppercase; letter-spacing: 0.1em;">Encrypted Relay</span>
+                    <div style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); font-family: var(--font-mono); margin-top: 2px; word-break: break-all;">support@stackly.com</div>
+                    <span style="font-size: 11px; color: var(--accent); display: inline-block; margin-top: 3px;"><i class="fa-solid fa-key"></i> RSA-4096 PGP Available</span>
+                  </div>
+                </div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 14px;">
+                  <div style="width: 44px; height: 44px; background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.3); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.1rem; flex-shrink: 0;">
+                    <i class="fa-solid fa-stopwatch"></i>
+                  </div>
+                  <div>
+                    <span style="font-size: 11px; color: rgba(252,250,246,0.5); text-transform: uppercase; letter-spacing: 0.1em;">Response Guarantee</span>
+                    <div style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); font-family: var(--font-mono); margin-top: 2px;">Under 15 Mins</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Vault Banner -->
+            <div style="background: rgba(0,0,0,0.5); border: 1px solid rgba(201,162,39,0.2); border-radius: var(--radius-lg); padding: 16px; margin-top: 32px; display: flex; gap: 14px; align-items: center;">
+              <i class="fa-solid fa-vault text-accent" style="font-size: 1.8rem; flex-shrink: 0;"></i>
+              <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin: 0;">
+                <strong style="color: var(--secondary); display: block; margin-bottom: 2px;">Sovereign Vault Integrity</strong>
+                All inbound architecture requests are routed directly to licensed CPAs and encrypted with customer KMS keys.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ③ GLOBAL FINANCIAL HUB LOCATIONS WITH CITY PHOTOGRAPHY
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="contact-locations" style="background: var(--bg-light); padding: var(--space-3xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">GLOBAL PRESENCE</div>
+          <h2 class="section-title">Treasury & Regional Operations Hubs</h2>
+          <p class="section-subtitle">
+            Strategic operations centers aligned across key global financial clearing zones.
+          </p>
+        </div>
+
+        <div class="contact-hubs-grid">
+          
+          <!-- Hub 1: San Francisco -->
+          <div class="contact-hub-card" data-aos="fade-up" data-aos-delay="50">
+            <div class="visual-frame" style="height: 120px; margin-bottom: 14px; border-radius: var(--radius-md);">
+              <img src="Images/photo-1506146332389-18140dc7b2fb.webp" alt="San Francisco Financial District Hub" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+              <div class="floating-glass-badge top-left" style="font-size: 10px;">GLOBAL HQ</div>
+            </div>
+            <h4 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 4px;">Salem, India</h4>
+            <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 8px;">
+              IT Park, Omalur Main Road<br>Salem, Tamil Nadu 636004
+            </p>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">SOUTH ASIA CLEARING HUB</span>
+          </div>
+
+          <!-- Hub 2: New York -->
+          <div class="contact-hub-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="visual-frame" style="height: 120px; margin-bottom: 14px; border-radius: var(--radius-md);">
+              <img src="Images/photo-1496442226666-8d4d0e62e6e9.webp" alt="New York Financial Center Hub" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+              <div class="floating-glass-badge top-left" style="font-size: 10px;">TREASURY & TAX DEFENSE</div>
+            </div>
+            <h4 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 4px;">New York, NY</h4>
+            <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 8px;">
+              1 World Trade Center, Floor 64<br>New York, NY 10007
+            </p>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">FEDLINE CLEARING NODE</span>
+          </div>
+
+          <!-- Hub 3: London -->
+          <div class="contact-hub-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="visual-frame" style="height: 120px; margin-bottom: 14px; border-radius: var(--radius-md);">
+              <img src="Images/photo-1513635269975-59663e0ac1ad.webp" alt="London Financial Hub" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+              <div class="floating-glass-badge top-left" style="font-size: 10px;">EMEA CLEARING</div>
+            </div>
+            <h4 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 4px;">London, UK</h4>
+            <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 8px;">
+              30 St Mary Axe, Level 22<br>London EC3A 8EP, UK
+            </p>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">SEPA & BACS NODE</span>
+          </div>
+
+          <!-- Hub 4: Singapore -->
+          <div class="contact-hub-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="visual-frame" style="height: 120px; margin-bottom: 14px; border-radius: var(--radius-md);">
+              <img src="Images/photo-1525625293386-3f8f99389edd.webp" alt="Singapore Financial Center Hub" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+              <div class="floating-glass-badge top-left" style="font-size: 10px;">APAC TREASURY</div>
+            </div>
+            <h4 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 4px;">Singapore</h4>
+            <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 8px;">
+              Marina Bay Financial Centre, Tower 2<br>Singapore 018983
+            </p>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">FAST FX CLEARING</span>
+          </div>
+
+          <!-- Hub 5: Frankfurt -->
+          <div class="contact-hub-card" data-aos="fade-up" data-aos-delay="250">
+            <div class="visual-frame" style="height: 120px; margin-bottom: 14px; border-radius: var(--radius-md);">
+              <img src="Images/photo-1587330979470-3595ac045ab0.webp" alt="Frankfurt Financial Center Hub" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+              <div class="floating-glass-badge top-left" style="font-size: 10px;">EURO CLEARING</div>
+            </div>
+            <h4 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 4px;">Frankfurt, DE</h4>
+            <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 8px;">
+              Taunusanlage 12, Main Tower<br>60325 Frankfurt am Main
+            </p>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">TARGET2 ECB NODE</span>
+          </div>
+
+          <!-- Hub 6: Tokyo -->
+          <div class="contact-hub-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="visual-frame" style="height: 120px; margin-bottom: 14px; border-radius: var(--radius-md);">
+              <img src="Images/photo-1540959733332-eab4deabeeaf.webp" alt="Tokyo Financial Center Hub" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+              <div class="floating-glass-badge top-left" style="font-size: 10px;">EAST ASIA HUB</div>
+            </div>
+            <h4 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 4px;">Tokyo, JP</h4>
+            <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 8px;">
+              Otemachi Tower, 1-5-6<br>Chiyoda City, Tokyo 100-0004
+            </p>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">ZENGIN CLEARING</span>
+          </div>
+
+          <!-- Hub 7: Dubai -->
+          <div class="contact-hub-card" data-aos="fade-up" data-aos-delay="350">
+            <div class="visual-frame" style="height: 120px; margin-bottom: 14px; border-radius: var(--radius-md);">
+              <img src="Images/photo-1512453979798-5ea266f8880c.webp" alt="Dubai Financial Center Hub" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+              <div class="floating-glass-badge top-left" style="font-size: 10px;">MENA TREASURY</div>
+            </div>
+            <h4 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 4px;">Dubai, UAE</h4>
+            <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 8px;">
+              DIFC Gate Precinct 4, Level 15<br>Dubai, United Arab Emirates
+            </p>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">CBUAE RTGS NODE</span>
+          </div>
+
+          <!-- Hub 8: Sydney -->
+          <div class="contact-hub-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="visual-frame" style="height: 120px; margin-bottom: 14px; border-radius: var(--radius-md);">
+              <img src="Images/photo-1506973035872-a4ec16b8e8d9.webp" alt="Sydney Financial District Hub" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+              <div class="floating-glass-badge top-left" style="font-size: 10px;">ANZ CLEARING</div>
+            </div>
+            <h4 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 4px;">Sydney, AU</h4>
+            <p style="font-size: 12px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 8px;">
+              100 Barangaroo Avenue, Tower 1<br>Sydney NSW 2000, Australia
+            </p>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">NPP & BECS CLEARING</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ④ 24/7 ENTERPRISE SUPPORT CHANNELS (PIPELINE LAYOUT)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="contact-channels" style="background: var(--bg-light); padding: 0 0 var(--space-3xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">INSTITUTIONAL CHANNELS</div>
+          <h2 class="section-title">Direct Enterprise Collaboration</h2>
+          <p class="section-subtitle">
+            Never wait on standard ticketing systems. Engage through your existing team workflow tools.
+          </p>
+        </div>
+
+        <div class="channel-pipeline" data-aos="fade-up">
+          
+          <div class="channel-node">
+            <div class="channel-icon-wrapper"><i class="fa-brands fa-slack"></i></div>
+            <h4>Private Slack / Teams Connect</h4>
+            <p>Dedicated shared channel between your payroll leads and our named CPAs and engineers.</p>
+          </div>
+
+          <div class="channel-node">
+            <div class="channel-icon-wrapper"><i class="fa-solid fa-headset"></i></div>
+            <h4>24/7 Priority Bridge</h4>
+            <p>Direct unqueued telephone connection to on-duty treasury architects for urgent off-cycle runs.</p>
+          </div>
+
+          <div class="channel-node">
+            <div class="channel-icon-wrapper"><i class="fa-solid fa-shield-halved"></i></div>
+            <h4>Emergency Audit Hotline</h4>
+            <p>Instant mobilization of our licensed CPA legal defense unit for state notice arbitration.</p>
+          </div>
+          
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         NEW SECTION: CONCIERGE ONBOARDING TIMELINE
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="contact-onboarding" style="background: var(--primary); color: var(--secondary); padding: var(--space-3xl) 0; overflow: hidden;">
+      <div class="container" style="max-width: 800px;">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">ZERO-FRICTION MIGRATION</div>
+          <h2 class="section-title" style="color: var(--secondary) !important;">Dedicated Concierge Onboarding</h2>
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.8) !important;">
+            Our migration engineering team runs a parallel ledger to guarantee 100% data fidelity before you ever turn off your legacy system.
+          </p>
+        </div>
+
+        <div class="onboarding-timeline">
+          
+          <div class="timeline-step" data-aos="fade-up" data-aos-delay="50">
+            <div class="timeline-marker"><i class="fa-solid fa-1"></i></div>
+            <div class="timeline-content">
+              <h4>Architectural Briefing <span class="badge badge-gold" style="font-size: 10px;">DAY 1</span></h4>
+              <p>We map your current multi-state tax liabilities, custom general ledger requirements, and active employee structures. Our team builds a custom integration blueprint tailored to your specific ERP instance.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step" data-aos="fade-up" data-aos-delay="100">
+            <div class="timeline-marker"><i class="fa-solid fa-2"></i></div>
+            <div class="timeline-content">
+              <h4>Parallel Ledger Audit <span class="badge badge-gold" style="font-size: 10px;">DAYS 2-14</span></h4>
+              <p>We run Stackly silently alongside your legacy provider (like ADP or Workday). Our AI reconciliation engine guarantees to-the-penny accuracy across all state and federal tax calculations before we ever ask you to flip the switch.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step" data-aos="fade-up" data-aos-delay="150">
+            <div class="timeline-marker"><i class="fa-solid fa-3"></i></div>
+            <div class="timeline-content">
+              <h4>Zero-Downtime Go-Live <span class="badge badge-gold" style="font-size: 10px;">DAY 15</span></h4>
+              <p>With 100% data fidelity proven, you go live on Stackly. We assume full legal indemnity for all future tax filings, and your team reclaims hundreds of manual administrative hours instantly.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         NEW SECTION: SOVEREIGN COMPLIANCE PROTOCOL
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="contact-security" style="background: var(--primary); color: var(--secondary); padding: 0 0 var(--space-3xl) 0; position: relative; overflow: hidden;">
+      
+      <!-- Abstract Tech Background -->
+      <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(201,162,39,0.1) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.5;"></div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(201,162,39,0.05) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; z-index: 1;"></div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">INSTITUTIONAL TRUST</div>
+          <h2 class="section-title" style="color: var(--secondary) !important;">Sovereign Compliance Protocol</h2>
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.8) !important;">
+            Audited continuously by Big 4 accounting firms. Built to military-grade sovereign transmission standards.
+          </p>
+        </div>
+
+        <div class="compliance-vault">
+          
+          <div class="compliance-panel" data-aos="fade-up" data-aos-delay="50">
+            <div class="compliance-status">Verified Active</div>
+            <div class="compliance-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h4>SOC-2 Type II</h4>
+            <p>Comprehensive continuous auditing of our security, availability, processing integrity, confidentiality, and privacy controls by independent Big 4 auditors.</p>
+          </div>
+
+          <div class="compliance-panel" data-aos="fade-up" data-aos-delay="100">
+            <div class="compliance-status">Verified Active</div>
+            <div class="compliance-icon"><i class="fa-solid fa-lock"></i></div>
+            <h4>ISO 27001 Certified</h4>
+            <p>Strict adherence to international standards for information security management systems (ISMS), ensuring holistic sovereign data protection.</p>
+          </div>
+
+          <div class="compliance-panel" data-aos="fade-up" data-aos-delay="150">
+            <div class="compliance-status">Federal Node</div>
+            <div class="compliance-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <h4>FedLine Direct Node</h4>
+            <p>We do not use third-party banking APIs. Stackly maintains a direct architectural node into the Federal Reserve for sub-second ACH clearing.</p>
+          </div>
+
+          <div class="compliance-panel" data-aos="fade-up" data-aos-delay="200">
+            <div class="compliance-status">Encrypted</div>
+            <div class="compliance-icon"><i class="fa-solid fa-key"></i></div>
+            <h4>Customer-Held KMS</h4>
+            <p>Your wage data is yours. We employ Bring Your Own Key (BYOK) cryptography, ensuring Stackly staff can never access raw ledger unencrypted payload data.</p>
+          </div>
+
+          <div class="compliance-panel" data-aos="fade-up" data-aos-delay="250">
+            <div class="compliance-status">Sovereign Privacy</div>
+            <div class="compliance-icon"><i class="fa-solid fa-user-lock"></i></div>
+            <h4>GDPR & CCPA Sovereign</h4>
+            <p>Zero-telemetry European and California workforce data isolation with automated right-to-be-forgotten cryptographic shredding and strict regional residency.</p>
+          </div>
+
+          <div class="compliance-panel" data-aos="fade-up" data-aos-delay="300">
+            <div class="compliance-status">Tier-1 Certified</div>
+            <div class="compliance-icon"><i class="fa-solid fa-credit-card"></i></div>
+            <h4>PCI-DSS & NACHA</h4>
+            <p>Highest echelon payment security architecture with automated multi-bank ACH tokenization and real-time OFAC sanctioned entity screening.</p>
+          </div>
+          
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ⑤ PANORAMIC CTA WITH LUXURY CITYSCAPE
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="panoramic-cta-section" id="contact-cta" style="background-image: url('Images/photo-1486406146926-c627a92ad1ab.webp');">
+      <div class="panoramic-cta-bg-overlay"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="panoramic-cta-content" data-aos="zoom-in">
+          <div class="page-hero-tag" style="background: rgba(201, 162, 39, 0.2); margin-bottom: var(--space-md); display: inline-flex;">
+            <i class="fa-solid fa-calendar-check text-accent"></i>
+            <span>EXECUTIVE BRIEFINGS OPEN</span>
+          </div>
+          <h2 class="panoramic-cta-title">Ready for Sovereign Payroll Precision?</h2>
+          <p class="panoramic-cta-desc">
+            Experience why leading enterprises trust Stackly with over $4.8B in annual compliant disbursements.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <a href="404.html" class="btn btn-accent btn-lg btn-magnetic">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Explore Services Suite</span>
+            </a>
+            <a href="404.html" class="btn btn-outline-gold btn-lg btn-magnetic">
+              <i class="fa-solid fa-calculator"></i>
+              <span>View Pricing Plans</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SOVEREIGN ENTERPRISE MASTER LEDGER FOOTER
+       ══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--secondary);">
+            <div class="brand-icon-mark">
+              <div class="brand-logo-img"></div>
+            </div>
+          </a>
+          <p>
+            Award-winning enterprise payroll automation, multi-jurisdiction tax defense, and sovereign workforce treasury infrastructure engineered for finance leaders.
+          </p>
+          <div class="compliance-badges">
+            <div class="compliance-badge"><i class="fa-solid fa-shield-halved"></i> SOC-2 Type II</div>
+            <div class="compliance-badge"><i class="fa-solid fa-lock"></i> ISO 27001</div>
+            <div class="compliance-badge"><i class="fa-solid fa-globe"></i> GDPR Compliant</div>
+            <div class="compliance-badge"><i class="fa-solid fa-building-columns"></i> IRS Registered</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-nav-list">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+            <li><a href="platform.html"><i class="fa-solid fa-chevron-right"></i> Platform</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Pricing</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Architecture & Trust</div>
+          <ul class="footer-nav-list">
+            <li><a href="platform.html"><i class="fa-solid fa-chevron-right"></i> 7-Pillar Defense System</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Continuous Transit Pipeline</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Real-Time ROI Engine</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Transparent Pricing Matrix</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Statutory Knowledge & FAQ</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> VIP Priority Scheduling</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-intel-column">
+          <div class="footer-col-title">Executive Briefing</div>
+          <p style="font-size: var(--text-xs); color: rgba(252, 250, 246, 0.75); line-height: 1.5; margin-bottom: var(--space-xs);">
+            Subscribe to quarterly CFO payroll analysis, tax law amendments, and workforce treasury reports.
+          </p>
+          <form class="footer-newsletter-form" id="newsletter-form">
+            <div class="newsletter-input-wrap">
+              <input type="email" class="newsletter-input" placeholder="cfo@enterprise.com" required aria-label="Corporate Email Address">
+              <button type="submit" class="newsletter-submit-btn">Subscribe</button>
+            </div>
+          </form>
+          <div class="footer-network-status">
+            <div class="status-node-indicator">
+              <span class="status-live-beacon"></span>
+              <span class="status-node-text">FedLine ACH Gateway: <strong>Operational (99.999% SLA)</strong></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; 2026 Stackly Payroll Services Inc. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <a href="404.html">Privacy Shield</a>
+          <span>&bull;</span>
+          <a href="404.html">Terms of Service</a>
+          <span>&bull;</span>
+          <a href="404.html">Security Disclosure</a>
+          <span>&bull;</span>
+          <a href="404.html">IRS Indemnity Policy</a>
+        </div>
+        <div class="footer-social-links">
+          <a href="#" class="social-icon-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-icon-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="js/animations.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Explicit form submission handler to enforce validation
+    const contactForm = document.getElementById('enterpriseContactForm');
+    const emailInput = contactForm ? contactForm.querySelector('input[type="email"]') : null;
+
+    // Robust standard approximation for full email validation
+    function isStrictlyValidEmail(email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      // Also ensure no trailing dots which some regex might miss
+      if (email.endsWith('.')) return false;
+      return re.test(String(email).toLowerCase());
+    }
+
+    if (contactForm && emailInput) {
+      // Real-time validation checking and trimming
+      emailInput.addEventListener('input', () => {
+        // Trim extra spaces in real time
+        emailInput.value = emailInput.value.trim();
+        
+        if (emailInput.value.length > 0 && !isStrictlyValidEmail(emailInput.value)) {
+          emailInput.setCustomValidity("Please enter a valid email address");
+        } else {
+          emailInput.setCustomValidity("");
+        }
+      });
+
+      contactForm.addEventListener('submit', (event) => {
+        // Prevent default submission to validate first
+        event.preventDefault();
+        
+        // Final trim and strict check on submit
+        emailInput.value = emailInput.value.trim();
+        if (!isStrictlyValidEmail(emailInput.value)) {
+          emailInput.setCustomValidity("Please enter a valid email address");
+        } else {
+          emailInput.setCustomValidity("");
+        }
+        
+        // If form is valid, redirect to 404.html manually
+        if (contactForm.checkValidity()) {
+          const btn = contactForm.querySelector('button[type="submit"]');
+          if (btn) {
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Dispatching...</span>';
+            btn.disabled = true;
+          }
+          
+          setTimeout(() => {
+            window.location.href = '404.html';
+          }, 600);
+        } else {
+          // Force the browser to show validation errors
+          contactForm.reportValidity();
+        }
+      });
+    }
+
+    // Reset form when navigating back from 404 page
+    window.addEventListener('pageshow', (event) => {
+      if (contactForm) {
+        contactForm.reset();
+        const btn = contactForm.querySelector('button[type="submit"]');
+        if (btn) {
+          btn.innerHTML = '<i class="fa-solid fa-satellite-dish"></i><span>Dispatch Architecture Request</span>';
+          btn.disabled = false;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

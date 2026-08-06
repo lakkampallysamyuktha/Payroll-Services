@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Ledger Not Found | Stackly Payroll</title>
+  <meta name="description" content="The enterprise resource you are looking for has been moved or deleted.">
+  <meta name="theme-color" content="#2F2A26">
+
+  <!-- Google Fonts: Inter & Outfit + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS & Swiper CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Core Design Tokens & Styles -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body class="page-404" style="background: var(--primary);">
+
+  <!-- Top Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <main>
+    <!-- ══════════════════════════════════════════════════════════════
+         404 ERROR SECTION (PREMIUM FULL HEIGHT)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding-top: 120px;">
+      
+      <!-- Abstract Glowing Background Orbs -->
+      <div style="position: absolute; top: 20%; left: 10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,162,39,0.05) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(60px); z-index: 1;"></div>
+      <div style="position: absolute; bottom: -10%; right: -5%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,162,39,0.08) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; filter: blur(50px); z-index: 1;"></div>
+
+      <div class="container" style="position: relative; z-index: 2; text-align: center; max-width: 800px;">
+        
+        <!-- Premium Glassmorphic 404 Display -->
+        <div data-aos="fade-down">
+          <div style="display: inline-block; position: relative; margin-bottom: 20px;">
+            <h1 style="font-family: var(--font-display); font-size: clamp(8rem, 15vw, 12rem); font-weight: 900; line-height: 1; margin: 0; background: linear-gradient(180deg, var(--secondary) 0%, rgba(252,250,246,0.1) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+              404
+            </h1>
+            <!-- Orbiting accent ring -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120%; height: 60%; border: 1px solid rgba(201,162,39,0.3); border-radius: 50%; box-shadow: inset 0 0 20px rgba(201,162,39,0.1), 0 0 20px rgba(201,162,39,0.1); transform-origin: center; animation: orbit-tilt 10s linear infinite;"></div>
+          </div>
+        </div>
+
+        <style>
+          @keyframes orbit-tilt {
+            0% { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(0deg); }
+            100% { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg); }
+          }
+        </style>
+
+        <div data-aos="fade-up" data-aos-delay="100">
+          <div class="section-tag-gold" style="margin-bottom: 24px;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>SYSTEM OVERRIDE</span>
+          </div>
+          
+          <h2 class="section-title" style="color: var(--secondary) !important; margin-bottom: 16px;">Ledger Not Found</h2>
+          
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.7) !important; max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem; line-height: 1.6;">
+            The enterprise architectural blueprint you are attempting to access has been moved, archived, or does not exist within our secure registry.
+          </p>
+
+          <div style="display: flex; justify-content: center; gap: 16px;">
+            <a href="index.html" class="btn btn-accent btn-lg btn-magnetic" style="box-shadow: 0 10px 30px rgba(201,162,39,0.2);">
+              <i class="fa-solid fa-house"></i>
+              <span>Go Home</span>
+            </a>
+            <button onclick="history.back()" class="btn btn-outline-gold btn-lg btn-magnetic">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span>Go Back</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="js/animations.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

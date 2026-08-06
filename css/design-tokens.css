@@ -1,0 +1,113 @@
+/* ══════════════════════════════════════════════════════════════
+   DESIGN TOKENS - LUXURY ENTERPRISE PAYROLL
+   Strict Palette: Primary (#2F2A26), Secondary (#FCFAF6), Accent (#C9A227)
+   ══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --header-height: 80px;
+
+  /* Strictly Enforced 3-Color Palette */
+  --primary: #2F2A26;       /* Rich Charcoal */
+  --secondary: #FCFAF6;     /* Soft Cream Background */
+  --accent: #C9A227;        /* Antique Gold */
+
+  /* RGB representations for variable alpha blending */
+  --primary-rgb: 47, 42, 38;
+  --secondary-rgb: 252, 250, 246;
+  --accent-rgb: 201, 162, 39;
+
+  /* Harmonious Tonal Variations strictly based on the 3 core tones */
+  --primary-dark: #1E1A18;
+  --primary-light: #423C37;
+  --primary-muted: rgba(47, 42, 38, 0.72);
+  --primary-subtle: rgba(47, 42, 38, 0.06);
+  --primary-border: rgba(47, 42, 38, 0.12);
+
+  --secondary-pure: #FFFFFF;
+  --secondary-tint: #F5EFE6;
+  --secondary-dark: #ECE4D8;
+  --secondary-card: rgba(252, 250, 246, 0.85);
+
+  --accent-hover: #b08d1f;
+  --accent-light: #e2be4b;
+  --accent-subtle: rgba(201, 162, 39, 0.12);
+  --accent-glow: rgba(201, 162, 39, 0.32);
+  --accent-border: rgba(201, 162, 39, 0.28);
+
+  /* Modern Glassmorphism Tokens */
+  --glass-bg-light: rgba(252, 250, 246, 0.82);
+  --glass-bg-dark: rgba(47, 42, 38, 0.92);
+  --glass-border: rgba(201, 162, 39, 0.24);
+  --glass-border-subtle: rgba(47, 42, 38, 0.08);
+  --glass-blur: blur(18px);
+  --glass-blur-sm: blur(10px);
+  --glass-shadow: 0 20px 40px -12px rgba(47, 42, 38, 0.08), 0 0 0 1px rgba(201, 162, 39, 0.14);
+  --glass-shadow-hover: 0 30px 60px -15px rgba(47, 42, 38, 0.16), 0 0 0 1.5px rgba(201, 162, 39, 0.35);
+  --glass-shadow-dark: 0 25px 50px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 162, 39, 0.2);
+
+  /* Typography System */
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Fluid Responsive Typography with Mobile-First Scaling */
+  --text-2xs: clamp(0.6875rem, 0.65rem + 0.2vw, 0.75rem);
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --text-md: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --text-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);
+  --text-2xl: clamp(1.75rem, 1.5rem + 1.1vw, 2.35rem);
+  --text-3xl: clamp(2.15rem, 1.85rem + 1.5vw, 3rem);
+  --text-4xl: clamp(2.65rem, 2.2rem + 2.2vw, 3.85rem);
+  --text-hero: clamp(2.85rem, 2.35rem + 2.8vw, 4.85rem);
+
+  /* Spacing Scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 14px;
+  --space-md: 22px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 128px;
+
+  /* Large Rounded Cards & Borders */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+  --radius-2xl: 48px;
+  --radius-pill: 9999px;
+
+  /* Elevation and Shadow Matrix */
+  --shadow-sm: 0 4px 12px rgba(47, 42, 38, 0.04);
+  --shadow-md: 0 10px 28px -6px rgba(47, 42, 38, 0.08);
+  --shadow-lg: 0 20px 48px -10px rgba(47, 42, 38, 0.12);
+  --shadow-gold: 0 12px 32px -4px rgba(201, 162, 39, 0.35);
+  --shadow-inner-gold: inset 0 0 16px rgba(201, 162, 39, 0.15);
+
+  /* Transitions and Micro-Animations */
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --trans-fast: 0.2s var(--ease-smooth);
+  --trans-base: 0.35s var(--ease-smooth);
+  --trans-slow: 0.65s var(--ease-smooth);
+
+  /* Z-Index Hierarchy */
+  --z-negative: -1;
+  --z-elevate: 1;
+  --z-card: 10;
+  --z-float: 20;
+  --z-sticky: 100;
+  --z-header: 1000;
+  --z-drawer: 2000;
+  --z-modal: 3000;
+  --z-tooltip: 4000;
+}

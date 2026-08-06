@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal | Stackly Payroll</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  
+  <style>
+    :root {
+      --primary: #2F2A26;
+      --accent: #C9A227;
+      --text: #FCFAF6;
+      --bg-dark: #221E1B;
+      --border: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.03);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .sidebar {
+      width: 260px; height: 100vh; position: fixed; left: 0; top: 0;
+      background: var(--primary); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; z-index: 100; transition: transform 0.3s ease;
+    }
+    .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+    .sidebar-header i { color: var(--accent); font-size: 24px; }
+    .sidebar-header span { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; }
+    .sidebar-header span .acc { color: var(--accent); }
+
+    .sidebar-nav { flex: 1; padding: 24px 16px; overflow-y: auto; }
+    .nav-item {
+      display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: rgba(252,250,246,0.7);
+      text-decoration: none; border-radius: 8px; margin-bottom: 8px; font-weight: 500; transition: all 0.3s ease; cursor: pointer;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.05); color: var(--text); transform: translateX(4px); }
+    .nav-item.active { background: rgba(201,162,39,0.15); color: var(--accent); border-left: 3px solid var(--accent); }
+    .nav-item i { font-size: 20px; }
+    .logout-item { margin-top: auto; color: #ff4d4f; }
+    .logout-item:hover { background: rgba(255,77,79,0.1); color: #ff4d4f; }
+
+    .user-profile { padding: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 12px; overflow: hidden; }
+    .user-avatar { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #000; }
+    .user-info { min-width: 0; flex: 1; }
+    .user-info h4 { font-size: 0.9rem; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .user-info p { 
+      font-size: 0.75rem; 
+      color: rgba(252,250,246,0.5); 
+      margin: 0; 
+      white-space: nowrap; 
+      overflow-x: auto; 
+      padding-bottom: 4px; /* Space for scrollbar */
+    }
+
+    /* Premium Custom Scrollbars */
+    .sidebar-nav::-webkit-scrollbar { width: 4px; }
+    .sidebar-nav::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+    .sidebar-nav::-webkit-scrollbar-thumb:hover { background: rgba(201,162,39,0.5); }
+
+    .user-info p::-webkit-scrollbar { height: 4px; }
+    .user-info p::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 4px; }
+    .user-info p::-webkit-scrollbar-thumb { background: rgba(201,162,39,0.4); border-radius: 4px; }
+    .user-info p::-webkit-scrollbar-thumb:hover { background: rgba(201,162,39,0.8); }
+
+    /* Global Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(201,162,39,0.5); }
+
+    .main-content { margin-left: 260px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; width: calc(100% - 260px); }
+
+    .topbar {
+      position: sticky; top: 0; background: rgba(47, 42, 38, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      padding: 16px 32px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 50;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 24px; cursor: pointer; }
+    .topbar-title { font-size: 1.25rem; font-weight: 600; }
+    .topbar-right { display: flex; align-items: center; gap: 20px; }
+    
+    .btn-run { background: var(--accent); color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
+    .btn-run:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(201,162,39,0.3); }
+    .icon-btn { background: var(--glass); border: 1px solid var(--border); color: var(--text); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+    .icon-btn:hover { background: var(--accent); color: #000; transform: translateY(-2px); }
+
+    .spa-section { display: none; padding: 32px; animation: fadeIn 0.4s ease forwards; }
+    .spa-section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Layout Grids */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 32px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-bottom: 32px; }
+    
+    .card { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: transform 0.3s ease; position: relative; overflow: hidden; }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity 0.3s; }
+    .card:hover { transform: translateY(-5px); }
+    .card:hover::before { opacity: 1; }
+    
+    .stat-title { font-size: 0.9rem; color: rgba(252,250,246,0.6); text-transform: uppercase; margin-bottom: 8px; }
+    .stat-value { font-size: 2.2rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .stat-change { font-size: 0.85rem; color: #52c41a; display: flex; align-items: center; gap: 4px; }
+    .stat-change.negative { color: #ff4d4f; }
+
+    /* Tables */
+    .table-container { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 32px; }
+    .table-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .table-header h3 { font-size: 1.1rem; font-weight: 600; margin: 0; }
+    .table-filter { background: rgba(0,0,0,0.2); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 6px; outline: none; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    th { color: rgba(252,250,246,0.5); font-size: 0.85rem; text-transform: uppercase; font-weight: 500; }
+    td { font-size: 0.95rem; }
+    tr:hover { background: rgba(255,255,255,0.02); }
+    
+    .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; }
+    .status-active { background: rgba(82, 196, 26, 0.2); color: #52c41a; }
+    .status-processing { background: rgba(24, 144, 255, 0.2); color: #1890ff; }
+    .status-pending { background: rgba(250, 173, 20, 0.2); color: #faad14; }
+    .status-error { background: rgba(255, 77, 79, 0.2); color: #ff4d4f; }
+
+    .avatar-sm { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #000; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; margin-right: 12px; vertical-align: middle; }
+    
+    /* Forms in Settings */
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: rgba(252,250,246,0.7); }
+    .form-control { width: 100%; padding: 14px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: inherit; font-size: 1rem; }
+    .form-control:focus { outline: none; border-color: var(--accent); }
+    
+    .btn-primary { background: var(--accent); color: #000; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+    .btn-primary:hover { box-shadow: 0 4px 15px rgba(201,162,39,0.3); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--accent); padding: 12px 24px; border: 1px solid var(--accent); border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+    .btn-outline:hover { background: var(--accent); color: #000; }
+
+    /* Integration Cards */
+    .integration-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; background: var(--glass); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; }
+    .integration-info { display: flex; align-items: center; gap: 16px; }
+    .integration-icon { width: 50px; height: 50px; background: rgba(201,162,39,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--accent); }
+    .integration-info h4 { margin: 0 0 4px 0; font-size: 1.1rem; }
+    .integration-info p { margin: 0; font-size: 0.85rem; color: rgba(252,250,246,0.5); }
+
+    /* Sidebar Close Button */
+    .sidebar-close-btn {
+      display: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .sidebar-close-btn:hover {
+      background: rgba(201, 162, 39, 0.2);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Mobile Overlay */
+    .sidebar-overlay { 
+      position: fixed; 
+      top: 0; left: 0; right: 0; bottom: 0; 
+      background: rgba(0,0,0,0.7); 
+      backdrop-filter: blur(6px); 
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 999; 
+      display: none; 
+      opacity: 0; 
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+
+    @media (max-width: 900px) {
+      /* Fixed Top Header on Mobile */
+      .topbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 64px !important;
+        padding: 10px 16px !important;
+        z-index: 500 !important;
+        box-sizing: border-box !important;
+        background: rgba(34, 30, 27, 0.96) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid var(--border) !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+      .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding-top: 64px !important; /* Offset for fixed header */
+        box-sizing: border-box !important;
+      }
+
+      /* Mobile Drawer Sidebar */
+      .sidebar {
+        width: 290px;
+        max-width: 86vw;
+        z-index: 1000;
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-close-btn {
+        display: flex;
+      }
+      .sidebar-header {
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Hamburger Button with Accent Glow */
+      .hamburger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: rgba(201, 162, 39, 0.1);
+        border: 1px solid rgba(201, 162, 39, 0.3);
+        color: var(--accent);
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+      .hamburger:hover {
+        background: var(--accent);
+        color: #000;
+      }
+
+      .topbar-left {
+        gap: 12px;
+        min-width: 0;
+      }
+      .topbar-title {
+        font-size: 1.1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
+      }
+      .topbar-right {
+        gap: 10px;
+      }
+      .btn-run {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+      }
+      .btn-run span {
+        display: none;
+      }
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+      }
+
+      /* Responsive SPA Sections & Grids */
+      .spa-section {
+        padding: 20px 16px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+      .grid-3, .grid-2 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 28px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .card {
+        padding: 20px 18px;
+        border-radius: 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .stat-title {
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: rgba(252, 250, 246, 0.6);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+      .stat-value {
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .stat-trend {
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Luxury Mobile Table Cards */
+      .table-container {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 24px;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: visible;
+      }
+      .table-header {
+        background: var(--glass);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px 18px;
+        margin-bottom: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .table-header h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+      }
+      .table-header > div {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .table-header .form-control {
+        width: 100% !important;
+        padding: 10px 14px;
+      }
+      .table-header .btn-primary, 
+      .table-header .btn-outline {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 12px 18px;
+      }
+      .table-filter {
+        width: 100%;
+      }
+
+      table, tbody, tr, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 16px;
+        background: var(--glass);
+        border-radius: 16px;
+        padding: 18px;
+        margin: 0 0 14px 0;
+        border: 1px solid var(--border);
+        width: 100%;
+        box-sizing: border-box;
+      }
+      td {
+        border-bottom: none;
+        padding: 4px 0;
+        min-width: 0;
+        font-size: 0.88rem;
+        box-sizing: border-box;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.72rem;
+        color: rgba(252, 250, 246, 0.5);
+        text-transform: uppercase;
+        margin-bottom: 3px;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+      }
+      td:last-child {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 8px;
+        padding-top: 10px;
+        text-align: right;
+      }
+
+      /* Integration Cards on Mobile */
+      .integration-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px;
+        border-radius: 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .integration-card .btn-outline,
+      .integration-card .status-badge {
+        align-self: flex-start;
+      }
+
+      /* iOS Auto-zoom Prevention & Form Polish */
+      .form-control {
+        font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .topbar {
+        padding: 10px 14px !important;
+      }
+      .topbar-title {
+        font-size: 1.05rem;
+        max-width: 120px;
+      }
+      .topbar-right {
+        gap: 8px;
+      }
+      .spa-section {
+        padding: 16px 12px;
+      }
+      .card {
+        padding: 16px 14px;
+      }
+      tr {
+        padding: 14px 12px;
+        gap: 10px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Left Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header" style="padding: 20px 24px;">
+      <a href="index.html" style="display: block; width: 205px; max-width: calc(100% - 40px);">
+        <div style="width: 100%; height: 58px; background-color: var(--accent); -webkit-mask: url('logo-removebg-preview.webp') left center/contain no-repeat; mask: url('logo-removebg-preview.webp') left center/contain no-repeat;"></div>
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation"><i class="material-icons">close</i></button>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <!-- Fixed span wrapper for the text so JS doesn't pick up the icon text -->
+      <a class="nav-item active" data-target="company-overview">
+        <i class="material-icons">business</i> <span class="nav-text">Overview</span>
+      </a>
+      <a class="nav-item" data-target="payroll-runs">
+        <i class="material-icons">payments</i> <span class="nav-text">Payroll Runs</span>
+      </a>
+      <a class="nav-item" data-target="directory">
+        <i class="material-icons">people</i> <span class="nav-text">Employee Directory</span>
+      </a>
+      <a class="nav-item" data-target="tax-filings">
+        <i class="material-icons">account_balance</i> <span class="nav-text">Tax Filings</span>
+      </a>
+      <a class="nav-item" data-target="benefits-admin">
+        <i class="material-icons">health_and_safety</i> <span class="nav-text">Benefits Admin</span>
+      </a>
+      <a class="nav-item" data-target="time-tracking">
+        <i class="material-icons">schedule</i> <span class="nav-text">Time Tracking</span>
+      </a>
+      <a class="nav-item" data-target="reports">
+        <i class="material-icons">insights</i> <span class="nav-text">Reports</span>
+      </a>
+      <a class="nav-item" data-target="integrations">
+        <i class="material-icons">extension</i> <span class="nav-text">Integrations</span>
+      </a>
+      <a class="nav-item" data-target="company-settings">
+        <i class="material-icons">settings</i> <span class="nav-text">Company Settings</span>
+      </a>
+      <a class="nav-item" data-target="billing-plans">
+        <i class="material-icons">credit_card</i> <span class="nav-text">Billing & Plans</span>
+      </a>
+      <a class="nav-item" data-target="support-center">
+        <i class="material-icons">help_outline</i> <span class="nav-text">Support Center</span>
+      </a>
+      
+      <a href="login.html" class="nav-item logout-item">
+        <i class="material-icons">logout</i> <span class="nav-text">Logout</span>
+      </a>
+    </nav>
+    
+    <div class="user-profile">
+      <div class="user-avatar" id="userAvatar">JD</div>
+      <div class="user-info">
+        <h4 id="userNameDisplay">Jane Doe</h4>
+        <p id="userEmailDisplay" title="jane@enterprise.com">jane@enterprise.com</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburgerBtn"><i class="material-icons">menu</i></button>
+        <div class="topbar-title" id="topbarTitle">Overview</div>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-run"><i class="material-icons">play_arrow</i> <span>Run Payroll</span></button>
+        <button class="icon-btn"><i class="material-icons">notifications_active</i></button>
+      </div>
+    </header>
+
+    <!-- 1. Overview Section -->
+    <section class="spa-section active" id="company-overview">
+      <div class="grid-3">
+        <div class="card" data-aos="fade-up">
+          <div class="stat-title">Total Payroll Cost (YTD)</div>
+          <div class="stat-value">$1.2M</div>
+          <div class="stat-change negative"><i class="material-icons">trending_up</i> +4.2% vs last year</div>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-title">Active Employees</div>
+          <div class="stat-value">245</div>
+          <div class="stat-change"><i class="material-icons">person_add</i> +12 new hires this quarter</div>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-title">Next Pay Date</div>
+          <div class="stat-value" style="color: var(--accent);">Oct 30</div>
+          <div class="stat-change"><i class="material-icons">schedule</i> Processing begins in 3 days</div>
+        </div>
+      </div>
+
+      <div class="table-container" data-aos="fade-up" data-aos-delay="300">
+        <div class="table-header">
+          <h3>Recent Payroll Runs</h3>
+          <select class="table-filter"><option>All Branches</option></select>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Run ID</th><th>Period</th><th>Total Gross</th><th>Taxes Withheld</th><th>Status</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="Run ID">#PR-2026-10A</td><td data-label="Period">Oct 01 - Oct 15</td><td data-label="Total Gross">$145,200.00</td><td data-label="Taxes Withheld">$42,100.50</td><td data-label="Status"><span class="status-badge status-active">Completed</span></td><td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View</a></td></tr>
+            <tr><td data-label="Run ID">#PR-2026-09B</td><td data-label="Period">Sep 16 - Sep 30</td><td data-label="Total Gross">$142,800.00</td><td data-label="Taxes Withheld">$41,300.00</td><td data-label="Status"><span class="status-badge status-active">Completed</span></td><td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View</a></td></tr>
+            <tr><td data-label="Run ID">#PR-2026-09A</td><td data-label="Period">Sep 01 - Sep 15</td><td data-label="Total Gross">$140,500.00</td><td data-label="Taxes Withheld">$40,150.00</td><td data-label="Status"><span class="status-badge status-active">Completed</span></td><td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View</a></td></tr>
+            <tr><td data-label="Run ID">#PR-2026-08B</td><td data-label="Period">Aug 16 - Aug 31</td><td data-label="Total Gross">$138,200.00</td><td data-label="Taxes Withheld">$39,400.00</td><td data-label="Status"><span class="status-badge status-active">Completed</span></td><td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View</a></td></tr>
+            <tr><td data-label="Run ID">#PR-2026-08A</td><td data-label="Period">Aug 01 - Aug 15</td><td data-label="Total Gross">$135,000.00</td><td data-label="Taxes Withheld">$38,200.00</td><td data-label="Status"><span class="status-badge status-active">Completed</span></td><td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View</a></td></tr>
+            <tr><td data-label="Run ID">#PR-2026-07B</td><td data-label="Period">Jul 16 - Jul 31</td><td data-label="Total Gross">$134,800.00</td><td data-label="Taxes Withheld">$38,100.00</td><td data-label="Status"><span class="status-badge status-active">Completed</span></td><td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View</a></td></tr>
+            <tr><td data-label="Run ID">#PR-2026-07A</td><td data-label="Period">Jul 01 - Jul 15</td><td data-label="Total Gross">$132,100.00</td><td data-label="Taxes Withheld">$37,500.00</td><td data-label="Status"><span class="status-badge status-active">Completed</span></td><td data-label="Action"><a href="#" style="color: var(--accent); text-decoration: none;">View</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 2. Payroll Runs -->
+    <section class="spa-section" id="payroll-runs">
+      <div class="table-header" style="border:none; padding: 0 0 20px 0;">
+        <h2>Payroll Engine</h2>
+        <button class="btn-primary">Initialize New Run</button>
+      </div>
+      
+      <div class="grid-3">
+        <div class="card" style="border-color: var(--accent);">
+          <div class="stat-title">Current Draft</div>
+          <div class="stat-value" style="font-size: 1.5rem;">Oct 16 - Oct 31</div>
+          <p style="font-size: 0.9rem; color: #faad14; margin-top: 10px;">Requires HR Approval (3 errors)</p>
+          <button class="btn-outline" style="margin-top: 16px; width: 100%;">Review Errors</button>
+        </div>
+        <div class="card">
+          <div class="stat-title">Upcoming Auto-Run</div>
+          <div class="stat-value" style="font-size: 1.5rem;">Nov 01 - Nov 15</div>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-top: 10px;">Scheduled for Nov 14, 08:00 AM</p>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="table-header"><h3>Historical Ledger</h3></div>
+        <table>
+          <thead><tr><th>Period</th><th>Execution Date</th><th>Employees</th><th>Total Output</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Period">Oct 01 - 15</td><td data-label="Exec Date">Oct 14, 2026</td><td data-label="Employees">245</td><td data-label="Total">$145,200.00</td><td data-label="Status"><span class="status-badge status-active">Settled</span></td></tr>
+            <tr><td data-label="Period">Sep 16 - 30</td><td data-label="Exec Date">Sep 29, 2026</td><td data-label="Employees">244</td><td data-label="Total">$142,800.00</td><td data-label="Status"><span class="status-badge status-active">Settled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Employee Directory -->
+    <section class="spa-section" id="directory">
+      <div class="table-header" style="border:none; padding: 0 0 20px 0;">
+        <h2>Employee Directory</h2>
+        <div style="display:flex; gap:12px;">
+          <input type="text" class="form-control" placeholder="Search name or ID..." style="width: 250px; padding: 10px;">
+          <button class="btn-primary">Add Employee</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead><tr><th>Name</th><th>Role</th><th>Department</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm">JD</div> <strong>Jane Doe</strong></td>
+              <td data-label="Role">Senior Engineer</td><td data-label="Dept">Engineering</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#555;">MS</div> <strong>Mike Smith</strong></td>
+              <td data-label="Role">Marketing Director</td><td data-label="Dept">Marketing</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#888;">AL</div> <strong>Alice Lee</strong></td>
+              <td data-label="Role">Contract Designer</td><td data-label="Dept">Creative</td>
+              <td data-label="Type">Contractor (1099)</td><td data-label="Status"><span class="status-badge status-pending">Onboarding</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#3b82f6;">RJ</div> <strong>Robert Johnson</strong></td>
+              <td data-label="Role">Product Manager</td><td data-label="Dept">Product</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#10b981;">EM</div> <strong>Emily Miller</strong></td>
+              <td data-label="Role">HR Specialist</td><td data-label="Dept">Human Resources</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#f59e0b;">DW</div> <strong>David Williams</strong></td>
+              <td data-label="Role">Sales Executive</td><td data-label="Dept">Sales</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#8b5cf6;">SJ</div> <strong>Sarah Jones</strong></td>
+              <td data-label="Role">Financial Analyst</td><td data-label="Dept">Finance</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#ef4444;">MB</div> <strong>Michael Brown</strong></td>
+              <td data-label="Role">Frontend Developer</td><td data-label="Dept">Engineering</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-error">Terminated</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#14b8a6;">KW</div> <strong>Kevin White</strong></td>
+              <td data-label="Role">Customer Support</td><td data-label="Dept">Support</td>
+              <td data-label="Type">Part-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#f43f5e;">LM</div> <strong>Lisa Martinez</strong></td>
+              <td data-label="Role">Legal Counsel</td><td data-label="Dept">Legal</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+            <tr>
+              <td data-label="Name"><div class="avatar-sm" style="background:#0ea5e9;">JC</div> <strong>James Clark</strong></td>
+              <td data-label="Role">DevOps Engineer</td><td data-label="Dept">Engineering</td>
+              <td data-label="Type">Full-Time</td><td data-label="Status"><span class="status-badge status-active">Active</span></td>
+              <td data-label="Actions"><a href="#" style="color:var(--accent);">Edit</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Tax Filings -->
+    <section class="spa-section" id="tax-filings">
+      <h2 style="margin-bottom: 24px;">Tax & Compliance Filings</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="stat-title">Federal Form 941 (Q3)</div>
+          <div class="stat-value" style="font-size: 1.5rem; color: #52c41a;">Filed Successfully</div>
+          <p style="margin-top: 10px; font-size: 0.9rem; color:rgba(255,255,255,0.6);">Receipt ID: TX-8492019</p>
+          <button class="btn-outline" style="margin-top: 16px; width: 100%;">Download Form</button>
+        </div>
+        <div class="card">
+          <div class="stat-title">State Unemployment (SUI)</div>
+          <div class="stat-value" style="font-size: 1.5rem; color: #faad14;">Pending Payment</div>
+          <p style="margin-top: 10px; font-size: 0.9rem; color:rgba(255,255,255,0.6);">Due by Oct 31, 2026</p>
+          <button class="btn-primary" style="margin-top: 16px; width: 100%;">Authorize Payment</button>
+        </div>
+        <div class="card">
+          <div class="stat-title">W-2 Readiness (Year-End)</div>
+          <div class="stat-value" style="font-size: 1.5rem;">98% Complete</div>
+          <p style="margin-top: 10px; font-size: 0.9rem; color:rgba(255,255,255,0.6);">4 employees missing SSN validation.</p>
+          <button class="btn-outline" style="margin-top: 16px; width: 100%;">Fix Errors</button>
+        </div>
+      </div>
+
+      <div class="table-container" style="margin-top: 32px;">
+        <div class="table-header">
+          <h3>Historical Tax Filings</h3>
+          <button class="btn-outline" style="padding: 6px 12px; font-size: 0.85rem;"><i class="material-icons" style="font-size: 16px;">download</i> Export All</button>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Filing Period</th><th>Form Type</th><th>Jurisdiction</th><th>Amount Paid</th><th>Date Filed</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Filing Period">Q2 2026</td><td data-label="Form Type">Form 941</td><td data-label="Jurisdiction">Federal (IRS)</td><td data-label="Amount Paid">$124,500.00</td><td data-label="Date Filed">Jul 12, 2026</td><td data-label="Status"><span class="status-badge status-active">Accepted</span></td>
+            </tr>
+            <tr>
+              <td data-label="Filing Period">Q2 2026</td><td data-label="Form Type">DE9/DE9C</td><td data-label="Jurisdiction">California (EDD)</td><td data-label="Amount Paid">$32,140.00</td><td data-label="Date Filed">Jul 15, 2026</td><td data-label="Status"><span class="status-badge status-active">Accepted</span></td>
+            </tr>
+            <tr>
+              <td data-label="Filing Period">Q1 2026</td><td data-label="Form Type">Form 941</td><td data-label="Jurisdiction">Federal (IRS)</td><td data-label="Amount Paid">$118,200.00</td><td data-label="Date Filed">Apr 10, 2026</td><td data-label="Status"><span class="status-badge status-active">Accepted</span></td>
+            </tr>
+            <tr>
+              <td data-label="Filing Period">Q1 2026</td><td data-label="Form Type">DE9/DE9C</td><td data-label="Jurisdiction">California (EDD)</td><td data-label="Amount Paid">$30,500.00</td><td data-label="Date Filed">Apr 14, 2026</td><td data-label="Status"><span class="status-badge status-active">Accepted</span></td>
+            </tr>
+            <tr>
+              <td data-label="Filing Period">2025 Annual</td><td data-label="Form Type">Form 940 (FUTA)</td><td data-label="Jurisdiction">Federal (IRS)</td><td data-label="Amount Paid">$8,450.00</td><td data-label="Date Filed">Jan 28, 2026</td><td data-label="Status"><span class="status-badge status-active">Accepted</span></td>
+            </tr>
+            <tr>
+              <td data-label="Filing Period">2025 Annual</td><td data-label="Form Type">W-2 / W-3</td><td data-label="Jurisdiction">Federal (SSA)</td><td data-label="Amount Paid">$0.00 (Filing Only)</td><td data-label="Date Filed">Jan 25, 2026</td><td data-label="Status"><span class="status-badge status-active">Accepted</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. Benefits Admin -->
+    <section class="spa-section" id="benefits-admin">
+      <div class="table-header" style="border:none; padding: 0 0 20px 0;">
+        <h2>Benefits Administration</h2>
+        <span class="status-badge status-active">Open Enrollment Active</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom: 16px;">Medical (BlueCross)</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Enrolled Employees</span> <strong>210 / 245</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Employer Contribution (Monthly)</span> <strong>$84,000.00</strong>
+          </div>
+          <button class="btn-outline" style="margin-top: 10px;">Manage Policy</button>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 16px;">401(k) Plan (Fidelity)</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Participation Rate</span> <strong>85%</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Match Liability (YTD)</span> <strong>$125,400.00</strong>
+          </div>
+          <button class="btn-outline" style="margin-top: 10px;">Sync Roster</button>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 16px;">Dental & Vision (Guardian)</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Enrolled Employees</span> <strong>195 / 245</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Employer Contribution (Monthly)</span> <strong>$14,200.00</strong>
+          </div>
+          <button class="btn-outline" style="margin-top: 10px;">Manage Policy</button>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 16px;">Commuter Benefits</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Active Participants</span> <strong>64</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Total Monthly Deduction</span> <strong>$8,450.00</strong>
+          </div>
+          <button class="btn-outline" style="margin-top: 10px;">Review Commuters</button>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 16px;">Flexible Spending (FSA)</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Active Accounts</span> <strong>82</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Total Pledged (Annual)</span> <strong>$164,000.00</strong>
+          </div>
+          <button class="btn-outline" style="margin-top: 10px;">Audit FSA</button>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 16px;">Life Insurance (MetLife)</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Covered Lives</span> <strong>245 / 245</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+            <span>Employer Premium</span> <strong>$2,200.00</strong>
+          </div>
+          <button class="btn-outline" style="margin-top: 10px;">Manage Policies</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Time Tracking -->
+    <section class="spa-section" id="time-tracking">
+      <h2 style="margin-bottom: 24px;">Time & Attendance Admin</h2>
+      <div class="table-container">
+        <div class="table-header"><h3>Timesheets Requiring Approval</h3></div>
+        <table>
+          <thead><tr><th>Employee</th><th>Period</th><th>Regular Hrs</th><th>OT Hrs</th><th>Total</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Employee">John Smith</td><td data-label="Period">Oct 16 - 22</td><td data-label="Regular">40.0</td><td data-label="OT">4.5</td><td data-label="Total">44.5</td><td data-label="Action"><button class="btn-primary" style="padding:6px 12px;">Approve</button></td></tr>
+            <tr><td data-label="Employee">Sarah Connor</td><td data-label="Period">Oct 16 - 22</td><td data-label="Regular">38.0</td><td data-label="OT">0.0</td><td data-label="Total">38.0</td><td data-label="Action"><button class="btn-primary" style="padding:6px 12px;">Approve</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-container">
+        <div class="table-header"><h3>Pending PTO Requests</h3></div>
+        <table>
+          <thead><tr><th>Employee</th><th>Dates</th><th>Type</th><th>Balance After</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Employee">Mike Smith</td><td data-label="Dates">Nov 20 - Nov 25 (40h)</td><td data-label="Type">Vacation</td><td data-label="Balance">80h</td><td data-label="Action"><button class="btn-outline" style="padding:6px 12px;">Review</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 7. Reports -->
+    <section class="spa-section" id="reports">
+      <div class="table-header" style="border:none; padding: 0 0 20px 0;">
+        <h2>Financial Reports</h2>
+        <button class="btn-primary">Generate Custom Report</button>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">receipt_long</i>
+          <h3>Payroll Summary</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Gross, Net, Taxes, and Deductions per run.</p>
+          <a href="#" style="color: var(--accent); font-weight: 500; text-decoration: none;">Download CSV</a>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">account_balance</i>
+          <h3>Tax Liability</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Accrued federal and state tax liabilities.</p>
+          <a href="#" style="color: var(--accent); font-weight: 500; text-decoration: none;">Download CSV</a>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">pie_chart</i>
+          <h3>Labor Distribution</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Costs broken down by department & location.</p>
+          <a href="#" style="color: var(--accent); font-weight: 500; text-decoration: none;">Download CSV</a>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">health_and_safety</i>
+          <h3>Benefits Cost Analysis</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Employer vs employee contributions mapped.</p>
+          <a href="#" style="color: var(--accent); font-weight: 500; text-decoration: none;">Download CSV</a>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">people</i>
+          <h3>Headcount & Turnover</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Track new hires, terminations, and growth rate.</p>
+          <a href="#" style="color: var(--accent); font-weight: 500; text-decoration: none;">Download PDF</a>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">gavel</i>
+          <h3>Compliance & Audit Log</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">System changes and approval history logs.</p>
+          <a href="#" style="color: var(--accent); font-weight: 500; text-decoration: none;">Download CSV</a>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">event_available</i>
+          <h3>PTO & Leave Balances</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Accrued vacation, sick leave, and uncompensated time.</p>
+          <a href="#" style="color: var(--accent); font-weight: 500; text-decoration: none;">Download CSV</a>
+        </div>
+        <div class="card">
+          <i class="material-icons" style="font-size: 32px; color: var(--accent); margin-bottom: 16px;">assignment_ind</i>
+          <h3>Contractor Payments</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 10px 0;">Summary of 1099 contractor payouts and invoices.</p>
+          <a href="#" style="color: var(--accent); font-weight: 500; text-decoration: none;">Download PDF</a>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 32px;">
+        <h3 style="margin-bottom: 20px;">Monthly Payroll Expense Trend (YTD)</h3>
+        <div style="height: 350px; position: relative;">
+          <canvas id="payrollChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Integrations -->
+    <section class="spa-section" id="integrations">
+      <h2 style="margin-bottom: 24px;">System Integrations</h2>
+      <div class="integration-card">
+        <div class="integration-info">
+          <div class="integration-icon"><i class="material-icons">cloud</i></div>
+          <div>
+            <h4>Workday HCM</h4>
+            <p>Sync employee roster, org charts, and time-off automatically.</p>
+          </div>
+        </div>
+        <span class="status-badge status-active">Connected</span>
+      </div>
+      <div class="integration-card">
+        <div class="integration-info">
+          <div class="integration-icon"><i class="material-icons">storage</i></div>
+          <div>
+            <h4>Oracle NetSuite</h4>
+            <p>Push General Ledger (GL) journals after every payroll run.</p>
+          </div>
+        </div>
+        <span class="status-badge status-active">Connected</span>
+      </div>
+      <div class="integration-card">
+        <div class="integration-info">
+          <div class="integration-icon"><i class="material-icons">receipt</i></div>
+          <div>
+            <h4>QuickBooks Online</h4>
+            <p>Sync expenses and simplified GL data for smaller subsidiaries.</p>
+          </div>
+        </div>
+        <button class="btn-outline">Connect</button>
+      </div>
+      <div class="integration-card">
+        <div class="integration-info">
+          <div class="integration-icon"><i class="material-icons">forum</i></div>
+          <div>
+            <h4>Slack Notification Bot</h4>
+            <p>Receive payroll approval requests directly in Slack channels.</p>
+          </div>
+        </div>
+        <span class="status-badge status-active">Connected</span>
+      </div>
+      <div class="integration-card">
+        <div class="integration-info">
+          <div class="integration-icon"><i class="material-icons">hub</i></div>
+          <div>
+            <h4>BambooHR</h4>
+            <p>Sync employee onboarding, time-off balances, and compensation records seamlessly.</p>
+          </div>
+        </div>
+        <button class="btn-outline">Connect</button>
+      </div>
+      <div class="integration-card">
+        <div class="integration-info">
+          <div class="integration-icon"><i class="material-icons">bolt</i></div>
+          <div>
+            <h4>Zapier Webhooks</h4>
+            <p>Create custom workflows and trigger actions on over 3000 apps.</p>
+          </div>
+        </div>
+        <button class="btn-outline">Connect</button>
+      </div>
+    </section>
+
+    <!-- 9. Company Settings -->
+    <section class="spa-section" id="company-settings">
+      <h2 style="margin-bottom: 24px;">Company Settings</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom: 20px;">Legal Entity Info</h3>
+          <div class="form-group">
+            <label>Legal Business Name</label>
+            <input type="text" class="form-control" value="Aurelia Global Inc.">
+          </div>
+          <div class="form-group">
+            <label>Federal EIN</label>
+            <input type="text" class="form-control" value="12-3456789">
+          </div>
+          <div class="form-group">
+            <label>Headquarters Address</label>
+            <input type="text" class="form-control" value="100 Silicon Ave, San Francisco, CA">
+          </div>
+          <button class="btn-primary">Save Changes</button>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 20px;">Payroll Funding Account</h3>
+          <div class="form-group">
+            <label>Bank Name</label>
+            <input type="text" class="form-control" value="Chase Corporate" disabled>
+          </div>
+          <div class="form-group">
+            <label>Account Ending In</label>
+            <input type="text" class="form-control" value="**** 4592" disabled>
+          </div>
+          <button class="btn-outline">Change Funding Account</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Billing & Plans -->
+    <section class="spa-section" id="billing-plans">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+        <h2 style="margin: 0;">Billing & Subscriptions</h2>
+        <button class="btn-primary" style="padding: 8px 16px;"><i class="material-icons" style="font-size: 18px;">upgrade</i> Upgrade Plan</button>
+      </div>
+      <div class="grid-2">
+        <div class="card" style="border-color: var(--accent);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 20px;">
+            <div>
+              <h3 style="margin-bottom: 4px;">Premium Enterprise Plan</h3>
+              <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">Billed Annually. Next charge: Jan 1, 2027.</p>
+            </div>
+            <span class="status-badge status-active">Active</span>
+          </div>
+          <div class="stat-value" style="font-size: 2.5rem;">$12,450<span style="font-size: 1rem; color: rgba(255,255,255,0.5);">/yr</span></div>
+          <div style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px;">
+            <p style="font-size: 0.9rem; margin-bottom: 8px;"><i class="material-icons" style="font-size:16px; vertical-align:middle; color:var(--accent);">check_circle</i> Unlimited Payroll Runs</p>
+            <p style="font-size: 0.9rem; margin-bottom: 8px;"><i class="material-icons" style="font-size:16px; vertical-align:middle; color:var(--accent);">check_circle</i> Dedicated Account Manager</p>
+            <p style="font-size: 0.9rem; margin-bottom: 8px;"><i class="material-icons" style="font-size:16px; vertical-align:middle; color:var(--accent);">check_circle</i> Custom API Access</p>
+          </div>
+        </div>
+        
+        <div>
+          <div class="card" style="margin-bottom: 24px;">
+            <h3 style="margin-bottom: 16px;">Payment Method</h3>
+            <div style="display:flex; align-items:center; gap: 16px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; border: 1px solid var(--border);">
+              <i class="material-icons" style="font-size: 32px; color: #fff;">credit_card</i>
+              <div style="flex: 1;">
+                <h4 style="margin: 0; font-size: 1rem;">Corporate Visa</h4>
+                <p style="margin: 0; font-size: 0.85rem; color: rgba(255,255,255,0.5);">Ending in 4242 • Expires 12/28</p>
+              </div>
+              <button class="btn-outline" style="padding: 6px 12px; font-size: 0.85rem;">Update</button>
+            </div>
+          </div>
+          <div class="table-container" style="margin-bottom: 0;">
+            <div class="table-header" style="padding: 16px;"><h3>Recent Invoices</h3></div>
+            <table style="font-size: 0.9rem;">
+              <tbody>
+                <tr><td>Jan 1, 2026</td><td>Annual Subscription</td><td>$12,450.00</td><td><a href="#" style="color:var(--accent);">PDF</a></td></tr>
+                <tr><td>Jan 1, 2025</td><td>Annual Subscription</td><td>$11,800.00</td><td><a href="#" style="color:var(--accent);">PDF</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Support Center -->
+    <section class="spa-section" id="support-center">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 2rem; margin-bottom: 12px;">How can we help you today?</h2>
+        <p style="color: rgba(255,255,255,0.6); margin-bottom: 24px;">Search our knowledge base or open a ticket with your dedicated account manager.</p>
+        <div style="position: relative; max-width: 500px; margin: 0 auto;">
+          <i class="material-icons" style="position: absolute; left: 16px; top: 14px; color: rgba(255,255,255,0.5);">search</i>
+          <input type="text" class="form-control" placeholder="Search articles, tutorials, and FAQs..." style="padding-left: 48px; border-radius: 30px;">
+        </div>
+      </div>
+      
+      <div class="grid-3">
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div style="width: 64px; height: 64px; background: rgba(201,162,39,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <i class="material-icons" style="font-size: 32px; color: var(--accent);">menu_book</i>
+          </div>
+          <h3 style="margin-bottom: 8px;">Documentation</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 24px;">Detailed guides on payroll configuration and tax mapping.</p>
+          <button class="btn-outline" style="width: 100%;">Browse Docs</button>
+        </div>
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div style="width: 64px; height: 64px; background: rgba(201,162,39,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <i class="material-icons" style="font-size: 32px; color: var(--accent);">forum</i>
+          </div>
+          <h3 style="margin-bottom: 8px;">Community Forum</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 24px;">Connect with other HR professionals and share best practices.</p>
+          <button class="btn-outline" style="width: 100%;">Join Discussion</button>
+        </div>
+        <div class="card" style="text-align: center; padding-top: 32px;">
+          <div style="width: 64px; height: 64px; background: rgba(201,162,39,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <i class="material-icons" style="font-size: 32px; color: var(--accent);">support_agent</i>
+          </div>
+          <h3 style="margin-bottom: 8px;">Premium Support</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 24px;">Open a high-priority ticket with your dedicated manager.</p>
+          <button class="btn-primary" style="width: 100%; justify-content: center;">Open Ticket</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // SPA Navigation Logic
+    const navItems = document.querySelectorAll('.nav-item[data-target]');
+    const sections = document.querySelectorAll('.spa-section');
+    const titleElement = document.getElementById('topbarTitle');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(n => n.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        
+        item.classList.add('active');
+        const target = item.getAttribute('data-target');
+        const targetSection = document.getElementById(target);
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
+        
+        // Correctly fetch only the text part, excluding the icon
+        const navText = item.querySelector('.nav-text').textContent;
+        titleElement.textContent = navText.trim();
+        
+        closeSidebar();
+
+        // Always reset scroll to the top of the page when opening a new section
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) mainContent.scrollTop = 0;
+      });
+    });
+
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
+
+    function openSidebar() { 
+      sidebar.classList.add('open'); 
+      overlay.classList.add('active'); 
+      document.body.style.overflow = 'hidden';
+      if (hamburgerBtn) hamburgerBtn.innerHTML = '<i class="material-icons">close</i>';
+    }
+    function closeSidebar() { 
+      sidebar.classList.remove('open'); 
+      overlay.classList.remove('active'); 
+      document.body.style.overflow = '';
+      if (hamburgerBtn) hamburgerBtn.innerHTML = '<i class="material-icons">menu</i>';
+    }
+    function toggleSidebar() {
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    }
+
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleSidebar);
+    if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+
+    // Load User Email and Name from Login
+    const savedEmail = localStorage.getItem('userEmail');
+    const savedName = localStorage.getItem('userName');
+    
+    if (savedEmail) {
+      document.getElementById('userEmailDisplay').textContent = savedEmail;
+      document.getElementById('userEmailDisplay').title = savedEmail;
+    }
+    
+    if (savedName) {
+      document.getElementById('userNameDisplay').textContent = savedName;
+      // Generate initials from name (up to 2 letters)
+      const names = savedName.trim().split(' ');
+      let initials = names[0][0].toUpperCase();
+      if (names.length > 1) {
+        initials += names[names.length - 1][0].toUpperCase();
+      }
+      document.getElementById('userAvatar').textContent = initials;
+    } else if (savedEmail) {
+      // Fallback to email initials
+      const initials = savedEmail.substring(0, 2).toUpperCase();
+      document.getElementById('userAvatar').textContent = initials;
+    }
+    document.getElementById('userAvatar').style.backgroundColor = '#C9A227';
+
+    // Render Chart.js
+    const ctx = document.getElementById('payrollChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        datasets: [{
+          label: 'Total Gross Payroll',
+          data: [120000, 122000, 125000, 124500, 128000, 130000, 132100, 135000, 140500, 145200],
+          borderColor: '#C9A227',
+          backgroundColor: 'rgba(201, 162, 39, 0.1)',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            ticks: { color: 'rgba(255,255,255,0.5)', callback: function(value) { return '$' + value/1000 + 'k'; } }
+          },
+          x: {
+            grid: { display: false },
+            ticks: { color: 'rgba(255,255,255,0.5)' }
+          }
+        }
+      }
+    });
+
+    // Route all CTA buttons to 404.html
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-outline, .icon-btn, .btn-run, a[href="#"]');
+    ctaElements.forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = '404.html';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,2687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>STACKLY PAYROLL | World-Class Enterprise Payroll & Workforce Finance</title>
+  <meta name="description" content="Award-winning enterprise payroll services, automated salary disbursements, global tax compliance, and intelligent workforce finance.">
+
+  <!-- External Library CDNs (Strictly Vanilla + GSAP, ScrollTrigger, AOS, Swiper, FontAwesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Modular Design System & Stylesheets -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+
+  <!-- Fixed Top Scroll Progress Bar --> 
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Ambient Floating Background Shapes -->
+  <div class="floating-shape shape-gold-ring" style="top: 12%; left: -60px;"></div>
+  <div class="floating-shape shape-glow-orb" style="top: 28%; right: -100px;"></div>
+  <div class="floating-shape shape-gold-square" style="top: 55%; left: 4%;"></div>
+  <div class="floating-shape shape-gold-ring" style="top: 75%; right: -40px;"></div>
+  <div class="floating-shape shape-glow-orb" style="top: 88%; left: 10%;"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STICKY HEADER & NAVIGATION
+       ══════════════════════════════════════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      <!-- Luxury Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="Stackly Payroll Home">
+        <div class="brand-icon-mark">
+          <div class="brand-logo-img"></div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (5 Items Only) -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="platform.html" class="nav-link">Platform</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Action & Mobile Hamburger -->
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-accent btn-md btn-magnetic header-cta-btn">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Login</span>
+        </a>
+
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Drawer" aria-expanded="false">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+
+  <!-- Animated Luxury Mobile Navigation Drawer -->
+  <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <!-- Drawer Header -->
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="brand-logo" aria-label="Stackly Payroll Home">
+        <div class="brand-icon-mark">
+          <div class="brand-logo-img"></div>
+        </div>
+      </a>
+      <button class="mobile-drawer-close-btn" id="mobileDrawerClose" aria-label="Close Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Navigation Links (5 Items) -->
+    <div class="mobile-nav-scroll-area">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-card active">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">01</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-house"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Home</span>
+              <span class="mobile-nav-subtitle">Enterprise Overview</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="services.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">02</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-cubes"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Services</span>
+              <span class="mobile-nav-subtitle">Architectural Workbench</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="platform.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">03</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Platform</span>
+              <span class="mobile-nav-subtitle">Smart Features & Pipeline</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="pricing.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">04</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-calculator"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Pricing</span>
+              <span class="mobile-nav-subtitle">Comparative Matrix & ROI</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="contact.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">05</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-headset"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Contact</span>
+              <span class="mobile-nav-subtitle">VIP Consultation & 24/7 SLA</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+      </div>
+
+      <!-- Drawer Footer Action -->
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="btn btn-primary btn-md" style="width: 100%; justify-content: center;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Login</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ══════════════════════════════════════════════════════════════
+         1. HERO SECTION (Sovereign Runway & Live Disbursal River)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid" data-aos="fade-up">
+        
+        <!-- Left: Creative Typography & CTAs -->
+        <div class="hero-content">
+          <div class="section-tag hero-badge">
+            <i class="fa-solid fa-award"></i>
+            <span>Next-Generation Enterprise Payroll</span>
+          </div>
+
+          <h1 class="hero-title">
+            Payroll Made <br>
+            <span class="gold-gradient-text">Effortless</span>
+          </h1>
+
+          <p class="hero-description">
+            Experience autonomous multi-currency salary disbursements, automated tax compliance, and seamless HR integration engineered for modern global enterprises.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="404.html" class="btn btn-accent btn-lg btn-magnetic">
+              <span>Start Free Trial</span>
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </a>
+            <a href="404.html" class="btn btn-outline btn-lg btn-magnetic">
+              <span>Explore Workflow</span>
+              <i class="fa-solid fa-circle-play"></i>
+            </a>
+          </div>
+
+          <div class="hero-trust-proof">
+            <div class="avatar-stack">
+              <img src="Images/photo-1534528741775-53994a69daeb.webp" alt="Enterprise Client Avatar" width="38" height="38" loading="lazy">
+              <img src="Images/photo-1507003211169-0a1dd7228f2d.webp" alt="Enterprise Client Avatar" width="38" height="38" loading="lazy">
+              <img src="Images/photo-1573496359142-b8d87734a5a2.webp" alt="Enterprise Client Avatar" width="38" height="38" loading="lazy">
+              <img src="Images/photo-1500648767791-00dcc994a43e.webp" alt="Enterprise Client Avatar" width="38" height="38" loading="lazy">
+            </div>
+            <div class="trust-proof-text">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span>Trusted by 1,000+ Enterprises Worldwide</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Open Live Financial Disbursal Stream (Non-Card Layout) -->
+        <div class="hero-visual">
+          <div class="hero-river-deck">
+            
+            <!-- River Top Header Bar -->
+            <div class="hrd-topbar">
+              <div class="hrd-meta">
+                <span class="hrd-pulse"></span>
+                <span class="hrd-tag">LIVE LEDGER STREAM // FEDLINE ACH ACTIVE</span>
+              </div>
+              <span class="hrd-cycle-pill"><i class="fa-solid fa-bolt text-accent"></i> 14ms Cycle</span>
+            </div>
+
+            <!-- Big Stat Ribbon -->
+            <div class="hrd-headline-row">
+              <div class="hrd-col">
+                <span class="hrd-label">Total Monthly Payroll Disbursed</span>
+                <div class="hrd-amount">$2,485,600.00</div>
+              </div>
+              <div class="hrd-sub-col">
+                <span class="hrd-kpi text-accent">1,248 Staff</span>
+                <span class="hrd-kpi-sub">99.8% Cleared</span>
+              </div>
+            </div>
+
+            <!-- Live Progress Runway -->
+            <div class="hrd-runway-track">
+              <div class="hrd-runway-fill" style="width: 98%;"></div>
+            </div>
+
+            <!-- Live Stream Ledger Stream Items -->
+            <div class="hrd-stream-list">
+              <div class="hrd-stream-item">
+                <div class="hsi-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="hsi-info">
+                  <strong>Sarah Jenkins</strong>
+                  <span>VP of Engineering &bull; San Francisco</span>
+                </div>
+                <div class="hsi-right">
+                  <div class="hsi-amount">$16,250.00</div>
+                  <span class="hsi-status"><i class="fa-solid fa-check"></i> Disbursed</span>
+                </div>
+              </div>
+
+              <div class="hrd-stream-item">
+                <div class="hsi-avatar"><i class="fa-solid fa-user-gear"></i></div>
+                <div class="hsi-info">
+                  <strong>Marcus Vance</strong>
+                  <span>Principal Architect &bull; New York</span>
+                </div>
+                <div class="hsi-right">
+                  <div class="hsi-amount">$14,800.00</div>
+                  <span class="hsi-status"><i class="fa-solid fa-check"></i> Disbursed</span>
+                </div>
+              </div>
+
+              <div class="hrd-stream-item">
+                <div class="hsi-avatar"><i class="fa-solid fa-user-shield"></i></div>
+                <div class="hsi-info">
+                  <strong>Elena Rostova</strong>
+                  <span>Compliance Officer &bull; Austin</span>
+                </div>
+                <div class="hsi-right">
+                  <div class="hsi-amount">$12,400.00</div>
+                  <span class="hsi-status"><i class="fa-solid fa-check"></i> Disbursed</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- River Foot Trust Proof -->
+            <div class="hrd-foot-strip">
+              <span><i class="fa-solid fa-shield-check text-accent"></i> 99.999% IRS Accuracy Guarantee</span>
+              <span><i class="fa-solid fa-lock text-accent"></i> AES-256 Encrypted</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         2. TRUSTED BY BUSINESSES & FULL-BLEED METRIC RUNWAY
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="trust-section" id="trust">
+      <div class="container" data-aos="fade-up">
+        <p class="trust-heading-label">Trusted by high-growth leaders and global enterprise teams</p>
+
+        <!-- Forward Infinite Marquee -->
+        <div class="marquee-container">
+          <div class="marquee-track reverse">
+            <div class="marquee-logo-badge"><i class="fa-solid fa-building-columns"></i> Apex Global Capital</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-microchip"></i> Veloce Technologies</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-hospital"></i> Lumina Healthcare</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-plane-departure"></i> Nexus Aerospace</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-gem"></i> Sovereign Wealth Partners</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-chart-pie"></i> Quantix Financial</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-layer-group"></i> Crestview Energy</div>
+          </div>
+          <div class="marquee-track reverse" aria-hidden="true">
+            <div class="marquee-logo-badge"><i class="fa-solid fa-building-columns"></i> Apex Global Capital</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-microchip"></i> Veloce Technologies</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-hospital"></i> Lumina Healthcare</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-plane-departure"></i> Nexus Aerospace</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-gem"></i> Sovereign Wealth Partners</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-chart-pie"></i> Quantix Financial</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-layer-group"></i> Crestview Energy</div>
+          </div>
+        </div>
+
+        <!-- Reverse Infinite Marquee -->
+        <div class="marquee-container" style="margin-top: var(--space-xs);">
+          <div class="marquee-track">
+            <div class="marquee-logo-badge"><i class="fa-solid fa-network-wired"></i> Omniverse Media</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-shield-virus"></i> BioMatrix Labs</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-cubes"></i> BlockEdge Systems</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-satellite"></i> Orbitron Dynamics</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-landmark"></i> Horizon Banking</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-atom"></i> Quantum Logistics</div>
+          </div>
+          <div class="marquee-track" aria-hidden="true">
+            <div class="marquee-logo-badge"><i class="fa-solid fa-network-wired"></i> Omniverse Media</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-shield-virus"></i> BioMatrix Labs</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-cubes"></i> BlockEdge Systems</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-satellite"></i> Orbitron Dynamics</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-landmark"></i> Horizon Banking</div>
+            <div class="marquee-logo-badge"><i class="fa-solid fa-atom"></i> Quantum Logistics</div>
+          </div>
+        </div>
+
+        <!-- Luxury Institutional Metric Cards Grid -->
+        <div class="metric-showcase-header" data-aos="fade-up">
+          <div class="section-tag metric-badge">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Institutional Benchmark Matrix</span>
+          </div>
+          <h2 class="metric-section-title">Built for Uncompromising <span class="gold-gradient-text">Precision & Scale</span></h2>
+          <p class="metric-section-desc">Mission-critical financial infrastructure trusted by the world's most demanding enterprise workforces.</p>
+        </div>
+
+        <div class="unified-matrix-board">
+          
+          <!-- Cell 1: SCALE -->
+          <div class="matrix-cell" data-aos="fade-up" data-aos-delay="100">
+            <div class="mc-header">
+              <i class="fa-solid fa-city mc-icon"></i>
+              <span class="mc-tag"><span class="live-pulse-dot"></span>SCALE</span>
+            </div>
+            <div class="mc-body">
+              <span class="mc-val stat-number" data-target="1000" data-suffix="+">1,000+</span>
+              <h3 class="mc-label">Enterprise Companies</h3>
+              <p class="mc-desc">From Series B scaleups to Fortune 500 multinationals operating across all 50 states.</p>
+            </div>
+            <div class="mc-footer">
+              <i class="fa-solid fa-circle-check text-accent"></i> <span>50-State Multi-Entity</span>
+            </div>
+          </div>
+
+          <!-- Cell 2: WORKFORCE -->
+          <div class="matrix-cell" data-aos="fade-up" data-aos-delay="200">
+            <div class="mc-header">
+              <i class="fa-solid fa-users-gear mc-icon"></i>
+              <span class="mc-tag">WORKFORCE</span>
+            </div>
+            <div class="mc-body">
+              <span class="mc-val stat-number" data-target="250" data-suffix="K+">250K+</span>
+              <h3 class="mc-label">Active Employees</h3>
+              <p class="mc-desc">Receiving timely, mathematically perfect direct ACH and multi-currency payroll deposits.</p>
+            </div>
+            <div class="mc-footer">
+              <i class="fa-solid fa-money-bill-transfer text-accent"></i> <span>Instant ACH & Wire</span>
+            </div>
+          </div>
+
+          <!-- Cell 3: STATUTORY -->
+          <div class="matrix-cell mc-featured" data-aos="fade-up" data-aos-delay="300">
+            <div class="mc-header">
+              <i class="fa-solid fa-shield-halved mc-icon glow"></i>
+              <span class="mc-tag gold">STATUTORY</span>
+            </div>
+            <div class="mc-body">
+              <span class="mc-val gold-gradient-text stat-number" data-target="99.99" data-decimal="true" data-decimals="2" data-suffix="%">99.99%</span>
+              <h3 class="mc-label text-white">Payroll Accuracy Rate</h3>
+              <p class="mc-desc">Triple-redundant gross-to-net tax calculation backed by 100% legal indemnity.</p>
+            </div>
+            <div class="mc-footer">
+              <i class="fa-solid fa-scale-balanced text-accent"></i> <span>100% Legal Indemnity</span>
+            </div>
+          </div>
+
+          <!-- Cell 4: TRUST -->
+          <div class="matrix-cell" data-aos="fade-up" data-aos-delay="400">
+            <div class="mc-header">
+              <i class="fa-solid fa-award mc-icon"></i>
+              <span class="mc-tag">TRUST</span>
+            </div>
+            <div class="mc-body">
+              <span class="mc-val stat-number" data-target="15" data-suffix="+ Yrs">15+ Yrs</span>
+              <h3 class="mc-label">Industry Leadership</h3>
+              <p class="mc-desc">Certified SOC-2 Type II, ISO 27001, NACHA, and APA benchmark compliance standards.</p>
+            </div>
+            <div class="mc-footer">
+              <i class="fa-solid fa-certificate text-accent"></i> <span>SOC-2 & ISO 27001</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         3. PAYROLL SERVICES (Architectural Workbench & Spec Ledger)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag">
+            <i class="fa-solid fa-cubes-stacked"></i>
+            <span>Complete Suite</span>
+          </div>
+          <h2 class="section-title">Engineered For <span class="highlight">Precision</span> & Scale</h2>
+          <p class="section-subtitle">Every module built to work independently or synchronize seamlessly into an autonomous payroll powerhouse.</p>
+        </div>
+
+        <!-- Interactive Architectural Workbench & Module Inspector (Non-Card Design) -->
+        <div class="workbench-inspector-layout">
+          
+          <!-- Left: Interactive Module Navigator Stepper -->
+          <div class="workbench-nav-col" data-aos="fade-right" data-aos-delay="150">
+            <div class="workbench-nav-header">
+              <span class="wnav-tag"><i class="fa-solid fa-layer-group"></i> MODULE SELECTOR</span>
+              <span class="wnav-counter">4 MODULES ACTIVE</span>
+            </div>
+
+            <div class="workbench-module-list">
+              
+              <!-- Module 1 -->
+              <button type="button" class="wb-module-item active" data-module="01">
+                <div class="wb-module-num">01</div>
+                <div class="wb-module-meta">
+                  <div class="wb-module-tag">CORE DISBURSEMENT</div>
+                  <h3 class="wb-module-title">Automated Multi-State Pay Runs</h3>
+                  <span class="wb-module-sub">Gross-to-net withholdings across all 50 states with zero human intervention</span>
+                </div>
+                <div class="wb-module-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+              </button>
+
+              <!-- Module 2 -->
+              <button type="button" class="wb-module-item" data-module="02">
+                <div class="wb-module-num">02</div>
+                <div class="wb-module-meta">
+                  <div class="wb-module-tag">STATUTORY SHIELD</div>
+                  <h3 class="wb-module-title">Statutory Tax Filing & Guarantee</h3>
+                  <span class="wb-module-sub">Guaranteed IRS 941, W-2, 1099 e-filing with full legal indemnity</span>
+                </div>
+                <div class="wb-module-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+              </button>
+
+              <!-- Module 3 -->
+              <button type="button" class="wb-module-item" data-module="03">
+                <div class="wb-module-num">03</div>
+                <div class="wb-module-meta">
+                  <div class="wb-module-tag">HARDWARE INTEGRATION</div>
+                  <h3 class="wb-module-title">Biometric & GPS Time-Tracking</h3>
+                  <span class="wb-module-sub">ZKTeco/Suprema turnstile sync with geofenced mobile clock-ins</span>
+                </div>
+                <div class="wb-module-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+              </button>
+
+              <!-- Module 4 -->
+              <button type="button" class="wb-module-item" data-module="04">
+                <div class="wb-module-num">04</div>
+                <div class="wb-module-meta">
+                  <div class="wb-module-tag">CROSS-BORDER FX</div>
+                  <h3 class="wb-module-title">Global Multi-Currency Disbursals</h3>
+                  <span class="wb-module-sub">Pay international contractors and staff in 40+ currencies at mid-market rates</span>
+                </div>
+                <div class="wb-module-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Right: Live High-Tech Architectural Inspection Console -->
+          <div class="workbench-inspector-col" data-aos="fade-left" data-aos-delay="300">
+            <div class="inspector-terminal-window">
+              
+              <!-- Console Bar -->
+              <div class="inspector-bar">
+                <div class="inspector-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="inspector-title" id="inspectorHeaderTitle">
+                  <i class="fa-solid fa-terminal text-accent"></i>
+                  <span>ARCHITECTURAL_INSPECTOR // MODULE_01.PAYRUNS</span>
+                </div>
+                <div class="inspector-status-badge">
+                  <span class="live-pulse-dot"></span>
+                  <span id="inspectorStatusText">ACTIVE &bull; 256-BIT TLS</span>
+                </div>
+              </div>
+
+              <!-- Inspector Body Viewport -->
+              <div class="inspector-content-pane">
+                
+                <div class="inspector-banner-row">
+                  <div>
+                    <span class="inspector-category-pill" id="inspectorCategory">CORE DISBURSEMENT ENGINE</span>
+                    <h3 class="inspector-heading" id="inspectorTitle">Automated Multi-State Pay Runs</h3>
+                    <p class="inspector-lead" id="inspectorLead">Calculate gross-to-net withholdings across all 50 states with zero human intervention. Real-time direct deposit and instant ledger synchronisation.</p>
+                  </div>
+                </div>
+
+                <!-- Live Architectural Telemetry Matrix -->
+                <div class="inspector-metrics-grid">
+                  <div class="inspector-metric-box">
+                    <div class="im-lbl" id="inspectorM1Lbl">ACCURACY</div>
+                    <div class="im-val text-accent" id="inspectorM1Val">100%</div>
+                    <div class="im-desc" id="inspectorM1Desc">Statutory calculations</div>
+                  </div>
+                  <div class="inspector-metric-box">
+                    <div class="im-lbl" id="inspectorM2Lbl">EXECUTION</div>
+                    <div class="im-val" id="inspectorM2Val">2-Min</div>
+                    <div class="im-desc" id="inspectorM2Desc">Per 500 headcount</div>
+                  </div>
+                  <div class="inspector-metric-box">
+                    <div class="im-lbl" id="inspectorM3Lbl">STATES</div>
+                    <div class="im-val" id="inspectorM3Val">50</div>
+                    <div class="im-desc" id="inspectorM3Desc">Multi-jurisdictional</div>
+                  </div>
+                </div>
+
+                <!-- Interactive Protocol Spec Accordion -->
+                <div class="inspector-spec-box">
+                  <div class="spec-box-header">
+                    <span class="spec-tab-title"><i class="fa-solid fa-code text-accent"></i> LIVE PROTOCOL & ENGINE ARCHITECTURE</span>
+                    <span class="spec-badge" id="inspectorSpecBadge">v4.8 ACTIVE</span>
+                  </div>
+                  <ul class="spec-feature-list" id="inspectorSpecList">
+                    <li><i class="fa-solid fa-shield-check text-accent"></i> <span>Automated gross-to-net payroll engine with customizable deduction matrices</span></li>
+                    <li><i class="fa-solid fa-shield-check text-accent"></i> <span>Direct integration with major banking protocols for Same-Day & Next-Day ACH</span></li>
+                    <li><i class="fa-solid fa-shield-check text-accent"></i> <span>Automatic wage garnishment disbursement and court order compliance</span></li>
+                  </ul>
+                </div>
+
+                <!-- Footer Console Action -->
+                <div class="inspector-footer-action">
+                  <div class="ifa-left">
+                    <i class="fa-solid fa-circle-check text-accent"></i>
+                    <span>Ready for standalone deployment or ERP synchronization</span>
+                  </div>
+                  <a href="404.html" class="btn btn-accent btn-sm btn-magnetic">
+                    <span>Simulate Module Run</span>
+                    <i class="fa-solid fa-play"></i>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         4. WHY CHOOSE US (Sovereign Assurance Bento Matrix)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section why-us-section" id="why-us">
+      <div class="container">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>The Stackly Assurance Architecture</span>
+          </div>
+          <h2 class="section-title">Built For Zero-Error <span class="highlight">Enterprise Peace of Mind</span></h2>
+          <p class="section-subtitle">A multi-layered cryptographic infrastructure designed from the ground up for mathematical accuracy, bank-grade encryption, and 24/7 reliability.</p>
+        </div>
+
+        <!-- Sovereign Assurance Bento Matrix Layout (Bespoke Non-Repetitive Design) -->
+        <div class="assurance-matrix-container" data-aos="fade-up">
+          
+          <!-- TOP FEATURED HERO CARD: Pillar 01 (100% Tax Indemnity Guarantee) -->
+          <div class="assurance-hero-card glass-card-dark">
+            <div class="ahc-left">
+              <div class="ahc-pill-tag">
+                <span class="ahc-tag-num">PILLAR 01</span>
+                <span class="ahc-tag-name"><i class="fa-solid fa-scale-balanced text-accent"></i> FINANCIAL INDEMNITY SHIELD</span>
+              </div>
+              <h3 class="ahc-title">100% Payroll Accuracy & Full IRS Tax Indemnity</h3>
+              <p class="ahc-desc">Our triple-redundant computation engine recalculates gross-to-net withholdings across 11,000+ federal, state, and local US tax jurisdictions prior to disbursal. Stackly assumes 100% legal and financial responsibility for statutory accuracy.</p>
+              
+              <div class="ahc-guarantee-seal">
+                <div class="seal-icon-box">
+                  <i class="fa-solid fa-award"></i>
+                </div>
+                <div class="seal-text-meta">
+                  <span class="seal-title">ZERO-PENALTY GUARANTEE</span>
+                  <span class="seal-sub">100% Legal Indemnification Against IRS & State Fines</span>
+                </div>
+                <span class="seal-status-dot"><span class="pulse-indicator"></span> ACTIVE SLA</span>
+              </div>
+            </div>
+
+            <div class="ahc-right">
+              <div class="ahc-telemetry-deck">
+                <div class="ahc-kpi-row">
+                  <div class="ahc-kpi-item">
+                    <span class="ahc-kpi-label">CALCULATION ERROR RATE</span>
+                    <span class="ahc-kpi-val gold-gradient-text">0.00%</span>
+                    <span class="ahc-kpi-note">Triple-redundancy audited</span>
+                  </div>
+                  <div class="ahc-kpi-item">
+                    <span class="ahc-kpi-label">IRS PENALTY LIABILITY</span>
+                    <span class="ahc-kpi-val">$0.00</span>
+                    <span class="ahc-kpi-note">Full financial indemnity</span>
+                  </div>
+                  <div class="ahc-kpi-item">
+                    <span class="ahc-kpi-label">US JURISDICTIONS</span>
+                    <span class="ahc-kpi-val">11,000+</span>
+                    <span class="ahc-kpi-note">Federal, State & Municipal</span>
+                  </div>
+                </div>
+
+                <div class="ahc-spec-chips">
+                  <span class="ahc-chip"><i class="fa-solid fa-shield-check text-accent"></i> IRS Forms 941, 940, W-2 Auto-Remit</span>
+                  <span class="ahc-chip"><i class="fa-solid fa-shield-check text-accent"></i> 50-State Multi-Nexus Rules</span>
+                  <span class="ahc-chip"><i class="fa-solid fa-shield-check text-accent"></i> FLSA & Tip Credit Compliance</span>
+                  <span class="ahc-chip"><i class="fa-solid fa-shield-check text-accent"></i> 1-Click Executive Tax Sign-Off</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6-CARD ASSURANCE BENTO GRID: Pillars 02 to 07 -->
+          <div class="assurance-bento-grid">
+            
+            <!-- Pillar 02: Data Encryption -->
+            <div class="assurance-bento-card" data-aos="fade-up" data-aos-delay="50">
+              <div class="abc-header">
+                <div class="abc-icon-wrap">
+                  <i class="fa-solid fa-key"></i>
+                </div>
+                <div class="abc-meta">
+                  <span class="abc-pillar-num">PILLAR 02</span>
+                  <span class="abc-pillar-tag">DATA VAULT</span>
+                </div>
+                <span class="abc-badge">AES-256</span>
+              </div>
+              <h3 class="abc-title">Bank-Grade 256-Bit HSM Tokenization</h3>
+              <p class="abc-desc">Zero-knowledge encrypted vaults at rest and in transit with continuous automated hardware security key rotation.</p>
+              <div class="abc-specs">
+                <span class="abc-spec-pill"><i class="fa-solid fa-lock"></i> FIPS 140-2 Level 3</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-shield-virus"></i> Zero PII Exposure</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-certificate"></i> SOC-2 Type II</span>
+              </div>
+              <div class="abc-footer">
+                <a href="404.html" class="abc-live-status" style="text-decoration: none; cursor: pointer;"><span class="pulse-indicator"></span> Continuous Key Rotation</a>
+              </div>
+            </div>
+
+            <!-- Pillar 03: Cloud Infrastructure -->
+            <div class="assurance-bento-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="abc-header">
+                <div class="abc-icon-wrap">
+                  <i class="fa-solid fa-server"></i>
+                </div>
+                <div class="abc-meta">
+                  <span class="abc-pillar-num">PILLAR 03</span>
+                  <span class="abc-pillar-tag">CLOUD UPTIME</span>
+                </div>
+                <span class="abc-badge">99.999% SLA</span>
+              </div>
+              <h3 class="abc-title">Geo-Redundant Multi-Region Cloud</h3>
+              <p class="abc-desc">Active-active multi-region deployment ensures pay runs execute on schedule with sub-second DNS failover routing.</p>
+              <div class="abc-specs">
+                <span class="abc-spec-pill"><i class="fa-solid fa-cloud"></i> 3 Cloud Regions</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-bolt"></i> &lt;150ms Failover</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-database"></i> Raft Quorum Sync</span>
+              </div>
+              <div class="abc-footer">
+                <a href="404.html" class="abc-live-status" style="text-decoration: none; cursor: pointer;"><span class="pulse-indicator"></span> 3 Regional Nodes Synced</a>
+              </div>
+            </div>
+
+            <!-- Pillar 04: Autonomous Engine -->
+            <div class="assurance-bento-card" data-aos="fade-up" data-aos-delay="150">
+              <div class="abc-header">
+                <div class="abc-icon-wrap">
+                  <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div class="abc-meta">
+                  <span class="abc-pillar-num">PILLAR 04</span>
+                  <span class="abc-pillar-tag">AUTONOMOUS ENGINE</span>
+                </div>
+                <span class="abc-badge">0-TOUCH</span>
+              </div>
+              <h3 class="abc-title">Touchless Pre-Flight Pay-Run Execution</h3>
+              <p class="abc-desc">Autonomous anomaly scanning and deduction verification catch double-payouts and ghost hours before fund release.</p>
+              <div class="abc-specs">
+                <span class="abc-spec-pill"><i class="fa-solid fa-brain"></i> 42 Pre-Flight Checks</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-clock-rotate-left"></i> 1-Click Rollback</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-fingerprint"></i> Biometric Sign-Off</span>
+              </div>
+              <div class="abc-footer">
+                <a href="404.html" class="abc-live-status" style="text-decoration: none; cursor: pointer;"><span class="pulse-indicator"></span> Pre-Flight Scanner Active</a>
+              </div>
+            </div>
+
+            <!-- Pillar 05: Banking Rails -->
+            <div class="assurance-bento-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="abc-header">
+                <div class="abc-icon-wrap">
+                  <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <div class="abc-meta">
+                  <span class="abc-pillar-num">PILLAR 05</span>
+                  <span class="abc-pillar-tag">BANKING RAILS</span>
+                </div>
+                <span class="abc-badge">&lt; 4HR ACH</span>
+              </div>
+              <h3 class="abc-title">Federal Reserve Same-Day ACH Rails</h3>
+              <p class="abc-desc">Direct FedLine clearing network integration for instant employee deposits and same-day direct disbursement.</p>
+              <div class="abc-specs">
+                <span class="abc-spec-pill"><i class="fa-solid fa-shield-check"></i> NACHA Certified</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-building"></i> 9,000+ US Banks</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-money-bill-transfer"></i> FedNow & RTP</span>
+              </div>
+              <div class="abc-footer">
+                <a href="404.html" class="abc-live-status" style="text-decoration: none; cursor: pointer;"><span class="pulse-indicator"></span> FedLine Direct Cleared</a>
+              </div>
+            </div>
+
+            <!-- Pillar 06: General Ledger -->
+            <div class="assurance-bento-card" data-aos="fade-up" data-aos-delay="250">
+              <div class="abc-header">
+                <div class="abc-icon-wrap">
+                  <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div class="abc-meta">
+                  <span class="abc-pillar-num">PILLAR 06</span>
+                  <span class="abc-pillar-tag">ERP INTEGRATION</span>
+                </div>
+                <span class="abc-badge">0.00s POST</span>
+              </div>
+              <h3 class="abc-title">Automated Double-Entry ERP Posting</h3>
+              <p class="abc-desc">Real-time journal balance mapping to NetSuite, SAP, Workday, and QuickBooks with instant debit/credit balance match.</p>
+              <div class="abc-specs">
+                <span class="abc-spec-pill"><i class="fa-solid fa-link"></i> 15+ Major ERPs</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-scale-balanced"></i> 100% Balanced GL</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-file-invoice"></i> GAAP/IFRS Audit</span>
+              </div>
+              <div class="abc-footer">
+                <a href="404.html" class="abc-live-status" style="text-decoration: none; cursor: pointer;"><span class="pulse-indicator"></span> Real-Time Ledger Sync</a>
+              </div>
+            </div>
+
+            <!-- Pillar 07: White-Glove Support -->
+            <div class="assurance-bento-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="abc-header">
+                <div class="abc-icon-wrap">
+                  <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="abc-meta">
+                  <span class="abc-pillar-num">PILLAR 07</span>
+                  <span class="abc-pillar-tag">WHITE-GLOVE</span>
+                </div>
+                <span class="abc-badge">15-MIN SLA</span>
+              </div>
+              <h3 class="abc-title">Dedicated CPA Lead & 15-Minute SLA</h3>
+              <p class="abc-desc">Assigned named US-certified CPA lead and direct private Slack/Teams connect for instant executive resolution.</p>
+              <div class="abc-specs">
+                <span class="abc-spec-pill"><i class="fa-solid fa-user-check"></i> Dedicated CPA Lead</span>
+                <span class="abc-spec-pill"><i class="fa-brands fa-slack"></i> Direct Slack / Teams</span>
+                <span class="abc-spec-pill"><i class="fa-solid fa-clock"></i> 24/7/365 On-Call</span>
+              </div>
+              <div class="abc-footer">
+                <a href="404.html" class="abc-live-status" style="text-decoration: none; cursor: pointer;"><span class="pulse-indicator"></span> Concierge Desk Active</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Assurance Trust Action Strip -->
+          <div class="assurance-trust-strip">
+            <div class="ats-left">
+              <i class="fa-solid fa-circle-check text-accent"></i>
+              <span>All 7 architectural pillars are backed by legally binding, enforceable Enterprise Service Level Agreements (SLAs).</span>
+            </div>
+            <div class="ats-right">
+              <a href="404.html" class="btn btn-accent btn-sm btn-magnetic">
+                <span>Test Live ROI Engine</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         5. SMART FEATURES (Full-Bleed Panoramic Telemetry Spread)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section smart-features-section" id="features">
+      <div class="container">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag" style="background: rgba(201, 162, 39, 0.15); border-color: rgba(201, 162, 39, 0.3);">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span style="color: var(--secondary);">Innovative Capabilities</span>
+          </div>
+          <h2 class="section-title">Smart Features Built For <span class="highlight">Modern Scale</span></h2>
+          <p class="section-subtitle">Interact with our intelligent workforce orchestration and compliance telemetry modules.</p>
+        </div>
+
+        <!-- Interactive Panoramic Feature Telemetry Matrix (Non-Card Design) -->
+        <div class="feature-telemetry-container" data-aos="fade-up">
+          
+          <!-- Segmented Feature Controller Tabs -->
+          <div class="feature-tab-controller">
+            <button type="button" class="ft-tab-btn active" data-tab="hris">
+              <span class="ft-num">01</span>
+              <span class="ft-label"><i class="fa-solid fa-table-columns"></i> Unified HRIS Command</span>
+            </button>
+            <button type="button" class="ft-tab-btn" data-tab="geofence">
+              <span class="ft-num">02</span>
+              <span class="ft-label"><i class="fa-solid fa-satellite-dish"></i> Geofence Radar Sync</span>
+            </button>
+            <button type="button" class="ft-tab-btn" data-tab="predictive">
+              <span class="ft-num">03</span>
+              <span class="ft-label"><i class="fa-solid fa-brain"></i> Predictive Labor AI</span>
+            </button>
+            <button type="button" class="ft-tab-btn" data-tab="governance">
+              <span class="ft-num">04</span>
+              <span class="ft-label"><i class="fa-solid fa-diagram-project"></i> Multi-Tier Approval</span>
+            </button>
+          </div>
+
+          <!-- Feature Display Showcase (Split Screen Visualizer) -->
+          <div class="feature-showcase-panel glass-card-dark">
+            
+            <!-- Left: Deep Feature Narrative & Live Parameters -->
+            <div class="fsp-narrative-col">
+              <div class="fsp-badge" id="fspBadge"><i class="fa-solid fa-shield-halved"></i> ENTERPRISE MASTER DIRECTORY</div>
+              <h3 class="fsp-title" id="fspTitle">Unified Workforce Command & Real-Time Master Ledger</h3>
+              <p class="fsp-desc" id="fspDesc">Centralize all employee master records, dynamic salary tiers, multi-state tax forms, and departmental hierarchy trees into one cohesive, single-sign-on operational headquarters.</p>
+              
+              <!-- Live System Parameters -->
+              <div class="fsp-params-grid">
+                <div class="fsp-param-item">
+                  <div class="param-label" id="fspP1Lbl">INGESTION LATENCY</div>
+                  <div class="param-val" id="fspP1Val">&lt;120ms</div>
+                  <div class="param-sub" id="fspP1Sub">Zero replication lag</div>
+                </div>
+                <div class="fsp-param-item">
+                  <div class="param-label" id="fspP2Lbl">SECURITY PROTOCOL</div>
+                  <div class="param-val" id="fspP2Val">SSO / SAML 2.0</div>
+                  <div class="param-sub" id="fspP2Sub">Okta & Azure AD verified</div>
+                </div>
+                <div class="fsp-param-item">
+                  <div class="param-label" id="fspP3Lbl">RECORD CAPACITY</div>
+                  <div class="param-val" id="fspP3Val">100K+ Seats</div>
+                  <div class="param-sub" id="fspP3Sub">Elastic cloud scale</div>
+                </div>
+              </div>
+
+              <!-- Interactive Feature Checklist -->
+              <ul class="fsp-highlights" id="fspHighlights">
+                <li><i class="fa-solid fa-circle-check text-accent"></i> <span>Instant historical compensation audits across all past fiscal years</span></li>
+                <li><i class="fa-solid fa-circle-check text-accent"></i> <span>Custom role-based access control (RBAC) down to granular field level</span></li>
+                <li><i class="fa-solid fa-circle-check text-accent"></i> <span>Automated sync with Okta, Microsoft Entra ID, and Google Workspace</span></li>
+              </ul>
+
+              <div class="fsp-action-row">
+                <a href="404.html" class="btn btn-accent btn-sm btn-magnetic">
+                  <span>Explore Interactive Visualizer</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Live Simulation Screen -->
+            <div class="fsp-visualizer-col">
+              <div class="fsp-screen-terminal">
+                
+                <!-- Terminal Header -->
+                <div class="screen-term-header">
+                  <div class="term-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="term-meta-title" id="fspTerminalMeta">LIVE_TELEMETRY // HRIS_COMMAND_V3.9</div>
+                  <div class="term-status-live"><span class="live-pulse-dot"></span> STREAMING</div>
+                </div>
+
+                <!-- Terminal Body (Interactive Dynamic Visualizer View) -->
+                <div class="screen-term-body" id="ftTermBody">
+                  
+                  <!-- Dynamic Content for Tab 1 (Default HRIS) -->
+                  <div class="ft-live-view active" id="ftViewHris">
+                    <div class="tv-hud-stats">
+                      <div class="tv-hud-stat"><span class="th-lbl" id="fspStat1Lbl">SYNCED ENTITIES</span><span class="th-val" id="fspStat1">1,420 Active</span></div>
+                      <div class="tv-hud-stat"><span class="th-lbl" id="fspStat2Lbl">PAYROLL CYCLE</span><span class="th-val" id="fspStat2">Bi-Weekly 15/30</span></div>
+                      <div class="tv-hud-stat"><span class="th-lbl" id="fspStat3Lbl">API STATUS</span><span class="th-val text-success" id="fspStat3">Healthy (99.99%)</span></div>
+                    </div>
+                    
+                    <div class="tv-ledger-feed" id="fspLedgerFeed">
+                      <div class="tv-ledger-row">
+                        <div class="tl-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                        <div class="tl-info">
+                          <strong>Elena Rostova</strong>
+                          <span>Principal Architect &bull; Engineering (San Francisco)</span>
+                        </div>
+                        <div class="tl-amount text-accent">$8,450.00</div>
+                        <div class="tl-badge"><i class="fa-solid fa-check"></i> W-4 Ready</div>
+                      </div>
+                      <div class="tv-ledger-row">
+                        <div class="tl-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                        <div class="tl-info">
+                          <strong>Dr. Marcus Chen</strong>
+                          <span>Director of Clinical Research (Boston HQ)</span>
+                        </div>
+                        <div class="tl-amount text-accent">$11,200.00</div>
+                        <div class="tl-badge"><i class="fa-solid fa-check"></i> Verified</div>
+                      </div>
+                      <div class="tv-ledger-row">
+                        <div class="tl-avatar"><i class="fa-solid fa-user-gear"></i></div>
+                        <div class="tl-info">
+                          <strong>Sarah Jenkins</strong>
+                          <span>VP Global Operations (London Branch)</span>
+                        </div>
+                        <div class="tl-amount text-accent">£6,780.00</div>
+                        <div class="tl-badge"><i class="fa-solid fa-check"></i> Multi-Currency</div>
+                      </div>
+                    </div>
+
+                    <div class="tv-graph-bar">
+                      <div class="tgb-label">REAL-TIME INGESTION PIPELINE</div>
+                      <div class="tgb-progress-line"><div class="tgb-progress-fill" style="width: 88%;"></div></div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         6. HOW IT WORKS (Continuous Transit Circuit Runway)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section how-it-works-section" id="workflow">
+      <div class="container" data-aos="fade-down">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag">
+            <i class="fa-solid fa-diagram-project"></i>
+            <span>Continuous Automation Pipeline</span>
+          </div>
+          <h2 class="section-title">From Data Ingestion to <span class="highlight">Bank Disbursement</span></h2>
+          <p class="section-subtitle">Our 7-stage automated pipeline turns complex multi-tier payroll runs into an effortless, auditable 3-minute workflow.</p>
+        </div>
+
+        <!-- Continuous Transit Map & Circuit Pipeline (Non-Card Layout) -->
+        <div class="transit-pipeline-runway">
+          
+          <!-- Central Laser Guide Wire -->
+          <div class="transit-laser-wire">
+            <div class="transit-laser-beacon"></div>
+          </div>
+
+          <!-- Stage 01 -->
+          <div class="transit-station-row" data-aos="fade-up">
+            <div class="ts-node-anchor">
+              <div class="ts-node-ring">
+                <span class="ts-node-num">01</span>
+                <span class="ts-node-glow"></span>
+              </div>
+            </div>
+            <div class="ts-body-deck">
+              <div class="ts-mast-row">
+                <span class="ts-stage-pill"><i class="fa-solid fa-cloud-arrow-down text-accent"></i> STAGE 01 &bull; INGESTION</span>
+                <span class="ts-timing-chip"><i class="fa-solid fa-bolt"></i> 450ms Latency</span>
+              </div>
+              <h3 class="ts-title">Employee Data & HRIS Synchronization</h3>
+              <p class="ts-desc">Master personnel records, tax elections (W-4), direct deposit coordinates, and compensation updates are synced securely from your HRIS or ERP with bi-directional encryption.</p>
+              <div class="ts-tag-strip">
+                <span class="ts-chip"><i class="fa-solid fa-link"></i> Workday</span>
+                <span class="ts-chip"><i class="fa-solid fa-link"></i> BambooHR</span>
+                <span class="ts-chip"><i class="fa-solid fa-shield"></i> 256-Bit TLS</span>
+                <span class="ts-chip text-accent">10,000+ Profiles/min</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 02 -->
+          <div class="transit-station-row" data-aos="fade-up">
+            <div class="ts-node-anchor">
+              <div class="ts-node-ring">
+                <span class="ts-node-num">02</span>
+                <span class="ts-node-glow"></span>
+              </div>
+            </div>
+            <div class="ts-body-deck">
+              <div class="ts-mast-row">
+                <span class="ts-stage-pill"><i class="fa-solid fa-fingerprint text-accent"></i> STAGE 02 &bull; ATTENDANCE</span>
+                <span class="ts-timing-chip"><i class="fa-solid fa-clock"></i> Real-Time Punch</span>
+              </div>
+              <h3 class="ts-title">Smart Attendance & Timesheet Capture</h3>
+              <p class="ts-desc">Biometric hardware clocks and geofenced mobile app check-ins feed raw shift logs into the system with automated meal break and overtime logic applied.</p>
+              <div class="ts-tag-strip">
+                <span class="ts-chip"><i class="fa-solid fa-fingerprint"></i> Biometric Terminal</span>
+                <span class="ts-chip"><i class="fa-solid fa-location-dot"></i> GPS Geofence</span>
+                <span class="ts-chip"><i class="fa-solid fa-scale-balanced"></i> FLSA Rules</span>
+                <span class="ts-chip text-accent">&plusmn;10m Precision</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 03 -->
+          <div class="transit-station-row" data-aos="fade-up">
+            <div class="ts-node-anchor">
+              <div class="ts-node-ring">
+                <span class="ts-node-num">03</span>
+                <span class="ts-node-glow"></span>
+              </div>
+            </div>
+            <div class="ts-body-deck">
+              <div class="ts-mast-row">
+                <span class="ts-stage-pill"><i class="fa-solid fa-calculator text-accent"></i> STAGE 03 &bull; COMPUTATION</span>
+                <span class="ts-timing-chip"><i class="fa-solid fa-microchip"></i> 2.4s Full Batch</span>
+              </div>
+              <h3 class="ts-title">Autonomous Gross-to-Net Engine</h3>
+              <p class="ts-desc">Gross-to-net equations calculate gross wages, pre-tax benefits (401k, health), mandatory tax withholdings, and net salary in under 3 seconds with guaranteed zero-error accuracy.</p>
+              <div class="ts-tag-strip">
+                <span class="ts-chip"><i class="fa-solid fa-landmark"></i> 50-State Tax</span>
+                <span class="ts-chip"><i class="fa-solid fa-heart-pulse"></i> Pre-Tax Benefits</span>
+                <span class="ts-chip"><i class="fa-solid fa-certificate"></i> 0% Error SLA</span>
+                <span class="ts-chip text-accent">11,000+ Jurisdictions</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 04 -->
+          <div class="transit-station-row" data-aos="fade-up">
+            <div class="ts-node-anchor">
+              <div class="ts-node-ring">
+                <span class="ts-node-num">04</span>
+                <span class="ts-node-glow"></span>
+              </div>
+            </div>
+            <div class="ts-body-deck">
+              <div class="ts-mast-row">
+                <span class="ts-stage-pill"><i class="fa-solid fa-signature text-accent"></i> STAGE 04 &bull; GOVERNANCE</span>
+                <span class="ts-timing-chip"><i class="fa-solid fa-shield-halved"></i> 1-Click Biometric</span>
+              </div>
+              <h3 class="ts-title">Executive Review & Anomaly Scan</h3>
+              <p class="ts-desc">AI audit flags highlight gross anomalies or unusual variance. Authorized finance leaders execute approvals with biometric or 2FA verification from desktop or mobile.</p>
+              <div class="ts-tag-strip">
+                <span class="ts-chip"><i class="fa-solid fa-brain"></i> AI Anomaly Scan</span>
+                <span class="ts-chip"><i class="fa-solid fa-key"></i> WebAuthn 2FA</span>
+                <span class="ts-chip"><i class="fa-solid fa-lock"></i> Dual Control</span>
+                <span class="ts-chip text-accent">Zero False Flags</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 05 -->
+          <div class="transit-station-row" data-aos="fade-up">
+            <div class="ts-node-anchor">
+              <div class="ts-node-ring">
+                <span class="ts-node-num">05</span>
+                <span class="ts-node-glow"></span>
+              </div>
+            </div>
+            <div class="ts-body-deck">
+              <div class="ts-mast-row">
+                <span class="ts-stage-pill"><i class="fa-solid fa-file-invoice-dollar text-accent"></i> STAGE 05 &bull; ENCRYPTED DISPATCH</span>
+                <span class="ts-timing-chip"><i class="fa-solid fa-mobile-screen"></i> Instant Push</span>
+              </div>
+              <h3 class="ts-title">Tamper-Proof Payslip Generation</h3>
+              <p class="ts-desc">Tamper-proof digital payslips are formatted with your corporate branding and delivered to employee portals alongside instant mobile push notifications and encrypted PDF archives.</p>
+              <div class="ts-tag-strip">
+                <span class="ts-chip"><i class="fa-solid fa-file-pdf"></i> ISO PDF/A</span>
+                <span class="ts-chip"><i class="fa-solid fa-bell"></i> Mobile Push</span>
+                <span class="ts-chip"><i class="fa-solid fa-shield-virus"></i> AES-256 Vault</span>
+                <span class="ts-chip text-accent">7-Yr Retention</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 06 -->
+          <div class="transit-station-row" data-aos="fade-up">
+            <div class="ts-node-anchor">
+              <div class="ts-node-ring">
+                <span class="ts-node-num">06</span>
+                <span class="ts-node-glow"></span>
+              </div>
+            </div>
+            <div class="ts-body-deck">
+              <div class="ts-mast-row">
+                <span class="ts-stage-pill"><i class="fa-solid fa-building-columns text-accent"></i> STAGE 06 &bull; CLEARING RAILS</span>
+                <span class="ts-timing-chip"><i class="fa-solid fa-money-bill-transfer"></i> Same-Day Direct</span>
+              </div>
+              <h3 class="ts-title">Direct Federal Reserve ACH Disbursement</h3>
+              <p class="ts-desc">Automated tax withholding filings (IRS 941, W-2, state UI) and direct Federal Reserve ACH wire transfers disburse salaries directly to thousands of employee bank accounts.</p>
+              <div class="ts-tag-strip">
+                <span class="ts-chip"><i class="fa-solid fa-shield-check"></i> Nacha Certified</span>
+                <span class="ts-chip"><i class="fa-solid fa-clock-rotate-left"></i> Fed ACH Same-Day</span>
+                <span class="ts-chip"><i class="fa-solid fa-earth-americas"></i> SWIFT / SEPA</span>
+                <span class="ts-chip text-accent">9,000+ Banks</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 07 Finale -->
+          <div class="transit-station-row ts-finale-row" data-aos="fade-up">
+            <div class="ts-node-anchor">
+              <div class="ts-node-ring ts-gold-crown">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+            </div>
+            <div class="ts-body-deck ts-finale-deck">
+              <div class="ts-mast-row">
+                <span class="ts-stage-pill"><i class="fa-solid fa-check-double text-accent"></i> STAGE 07 FINALE &bull; GENERAL LEDGER</span>
+                <span class="ts-timing-chip"><i class="fa-solid fa-circle-check"></i> 100% Reconciled</span>
+              </div>
+              <h3 class="ts-title">Audited Double-Entry ERP Reconciliation</h3>
+              <p class="ts-desc">Balanced double-entry debit/credit journal entries are automatically mapped and posted to your accounting ERP (NetSuite, QuickBooks, SAP, Xero) with complete audit trails.</p>
+              
+              <div class="ts-finale-grid">
+                <div class="tfg-item">
+                  <span class="tfg-num text-accent">0.00s</span>
+                  <span class="tfg-lbl">Reconciliation Delay</span>
+                </div>
+                <div class="tfg-item">
+                  <span class="tfg-num text-accent">100%</span>
+                  <span class="tfg-lbl">GL Balance Match</span>
+                </div>
+                <div class="tfg-item">
+                  <span class="tfg-num text-accent">0</span>
+                  <span class="tfg-lbl">Manual Entries</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         7. INTERACTIVE DASHBOARD & ROI CALCULATOR
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section dashboard-section" id="dashboard">
+      <div class="container" data-aos="fade-right">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag">
+            <i class="fa-solid fa-gauge-high"></i>
+            <span>Live Financial Simulation</span>
+          </div>
+          <h2 class="section-title">Experience The <span class="highlight">Financial Command Center</span></h2>
+          <p class="section-subtitle">Test our live dashboard modules and calculate your enterprise cost and time savings in real time.</p>
+        </div>
+
+        <div class="dashboard-interactive-wrapper">
+          
+          <!-- Left: Live Interactive Mockup with Switchable Tabs -->
+          <div class="mockup-main-panel glass-card" data-aos="fade-right">
+            
+            <!-- Dashboard Console Header Bar -->
+            <div class="dash-console-topbar">
+              <div class="dash-window-dots">
+                <span class="dash-dot"></span>
+                <span class="dash-dot"></span>
+                <span class="dash-dot"></span>
+              </div>
+              <div class="dash-topbar-title">
+                <i class="fa-solid fa-terminal" style="color: var(--accent); font-size: 0.75rem;"></i>
+                <span>STACKLY CORE FINANCE ENGINE v4.8</span>
+              </div>
+              <div class="dash-topbar-badge">
+                <span class="pulse-indicator"></span>
+                <span>SYSTEM LIVE</span>
+              </div>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="dashboard-nav-tabs">
+              <button type="button" class="dash-tab-btn active" data-tab="tab-overview">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>Overview</span>
+              </button>
+              <button type="button" class="dash-tab-btn" data-tab="tab-salary">
+                <i class="fa-solid fa-coins"></i>
+                <span>Salaries</span>
+              </button>
+              <button type="button" class="dash-tab-btn" data-tab="tab-tax">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>Taxes</span>
+              </button>
+              <button type="button" class="dash-tab-btn" data-tab="tab-audit">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Audits</span>
+              </button>
+            </div>
+
+            <!-- Tab 1: Overview Pane -->
+            <div class="tab-pane active" id="tab-overview">
+              <div class="dash-chart-header">
+                <div>
+                  <h4 class="dash-panel-title">Monthly Payroll Volume (Q3 - Q4)</h4>
+                  <p class="dash-panel-sub">Automated ledger reconciliation vs historical budget</p>
+                </div>
+                <div class="dash-chart-actions">
+                  <span class="badge-growth"><i class="fa-solid fa-arrow-trend-up"></i> +14.2% MoM</span>
+                  <span class="dash-period-badge">USD ($)</span>
+                </div>
+              </div>
+
+              <!-- High-Fidelity Interactive Bar Chart with Tracks & Tooltips -->
+              <div class="chart-bar-group">
+                <div class="chart-bar-col" data-tooltip="$1,250,000">
+                  <div class="chart-bar-track">
+                    <div class="chart-bar" data-height="45%" style="height: 45%;">
+                      <span class="chart-bar-tooltip">$1.25M</span>
+                    </div>
+                  </div>
+                  <span class="chart-label">Jun</span>
+                </div>
+                <div class="chart-bar-col" data-tooltip="$1,480,000">
+                  <div class="chart-bar-track">
+                    <div class="chart-bar" data-height="58%" style="height: 58%;">
+                      <span class="chart-bar-tooltip">$1.48M</span>
+                    </div>
+                  </div>
+                  <span class="chart-label">Jul</span>
+                </div>
+                <div class="chart-bar-col" data-tooltip="$1,820,000">
+                  <div class="chart-bar-track">
+                    <div class="chart-bar" data-height="72%" style="height: 72%;">
+                      <span class="chart-bar-tooltip">$1.82M</span>
+                    </div>
+                  </div>
+                  <span class="chart-label">Aug</span>
+                </div>
+                <div class="chart-bar-col" data-tooltip="$2,150,000">
+                  <div class="chart-bar-track">
+                    <div class="chart-bar" data-height="84%" style="height: 84%;">
+                      <span class="chart-bar-tooltip">$2.15M</span>
+                    </div>
+                  </div>
+                  <span class="chart-label">Sep</span>
+                </div>
+                <div class="chart-bar-col" data-tooltip="$2,480,000">
+                  <div class="chart-bar-track">
+                    <div class="chart-bar" data-height="92%" style="height: 92%;">
+                      <span class="chart-bar-tooltip">$2.48M</span>
+                    </div>
+                  </div>
+                  <span class="chart-label">Oct</span>
+                </div>
+                <div class="chart-bar-col active-month" data-tooltip="$2,854,200">
+                  <div class="chart-bar-track">
+                    <div class="chart-bar highlight-bar" data-height="100%" style="height: 100%;">
+                      <span class="chart-bar-tooltip">$2.85M</span>
+                    </div>
+                  </div>
+                  <span class="chart-label highlight-label">Nov (Est)</span>
+                </div>
+              </div>
+
+              <!-- 4-Grid Dashboard KPIs -->
+              <div class="dash-kpi-grid">
+                <div class="dash-kpi-card">
+                  <div class="dash-kpi-header">
+                    <span class="kpi-label">Average Cycle Duration</span>
+                    <i class="fa-solid fa-stopwatch kpi-icon"></i>
+                  </div>
+                  <div class="kpi-value">2.4 Minutes</div>
+                  <div class="kpi-trend trend-positive">
+                    <i class="fa-solid fa-arrow-trend-down"></i> 88% faster than manual
+                  </div>
+                </div>
+
+                <div class="dash-kpi-card">
+                  <div class="dash-kpi-header">
+                    <span class="kpi-label">Reconciliation Status</span>
+                    <i class="fa-solid fa-shield-check kpi-icon text-accent"></i>
+                  </div>
+                  <div class="kpi-value text-accent">100% Balanced</div>
+                  <div class="kpi-trend trend-positive">
+                    <i class="fa-solid fa-check"></i> Zero ledger variance
+                  </div>
+                </div>
+
+                <div class="dash-kpi-card">
+                  <div class="dash-kpi-header">
+                    <span class="kpi-label">Active Disbursed Run</span>
+                    <i class="fa-solid fa-bolt kpi-icon"></i>
+                  </div>
+                  <div class="kpi-value">$2,854,200</div>
+                  <div class="kpi-trend">
+                    <i class="fa-solid fa-building-columns"></i> Same-day ACH settled
+                  </div>
+                </div>
+
+                <div class="dash-kpi-card">
+                  <div class="dash-kpi-header">
+                    <span class="kpi-label">Tax Escrow Reserves</span>
+                    <i class="fa-solid fa-vault kpi-icon"></i>
+                  </div>
+                  <div class="kpi-value">$756,332</div>
+                  <div class="kpi-trend trend-positive">
+                    <i class="fa-solid fa-circle-check"></i> Auto-Nexus certified
+                  </div>
+                </div>
+
+                <div class="dash-kpi-card">
+                  <div class="dash-kpi-header">
+                    <span class="kpi-label">Contractor Compliance</span>
+                    <i class="fa-solid fa-file-contract kpi-icon"></i>
+                  </div>
+                  <div class="kpi-value">100% Verified</div>
+                  <div class="kpi-trend trend-positive">
+                    <i class="fa-solid fa-check-double"></i> W-8BEN & W-9 Active
+                  </div>
+                </div>
+
+                <div class="dash-kpi-card">
+                  <div class="dash-kpi-header">
+                    <span class="kpi-label">AI Anomaly Detection</span>
+                    <i class="fa-solid fa-brain kpi-icon"></i>
+                  </div>
+                  <div class="kpi-value">12 Prevented</div>
+                  <div class="kpi-trend trend-positive">
+                    <i class="fa-solid fa-arrow-trend-down"></i> -$4,200 errors stopped
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Salary Pane -->
+            <div class="tab-pane" id="tab-salary">
+              <div class="dash-chart-header">
+                <div>
+                  <h4 class="dash-panel-title">Workforce Compensation Rollup</h4>
+                  <p class="dash-panel-sub">Categorized wage distribution across 1,248 active employees.</p>
+                </div>
+                <span class="badge-growth">1,248 Staff Active</span>
+              </div>
+              
+              <div class="salary-breakdown-list">
+                <div class="salary-row">
+                  <div class="salary-row-header">
+                    <div class="dept-info">
+                      <span class="dept-dot" style="background: var(--accent);"></span>
+                      <span class="dept-name">Engineering & AI Product</span>
+                      <span class="dept-count">598 Staff (48%)</span>
+                    </div>
+                    <span class="dept-amount">$1,368,016.00</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-bar-fill" style="width: 48%; background: linear-gradient(90deg, var(--accent), #e5be49);"></div>
+                  </div>
+                </div>
+
+                <div class="salary-row">
+                  <div class="salary-row-header">
+                    <div class="dept-info">
+                      <span class="dept-dot" style="background: #3b82f6;"></span>
+                      <span class="dept-name">Sales & Global Growth</span>
+                      <span class="dept-count">399 Staff (32%)</span>
+                    </div>
+                    <span class="dept-amount">$913,344.00</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-bar-fill" style="width: 32%; background: linear-gradient(90deg, #3b82f6, #60a5fa);"></div>
+                  </div>
+                </div>
+
+                <div class="salary-row">
+                  <div class="salary-row-header">
+                    <div class="dept-info">
+                      <span class="dept-dot" style="background: #10b981;"></span>
+                      <span class="dept-name">Operations, Legal & Executive</span>
+                      <span class="dept-count">251 Staff (20%)</span>
+                    </div>
+                    <span class="dept-amount">$572,840.00</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-bar-fill" style="width: 20%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="salary-footer-stats">
+                <div class="salary-stat-chip">
+                  <span class="stat-lbl">Median Base Salary:</span>
+                  <span class="stat-val">$114,500 / yr</span>
+                </div>
+                <div class="salary-stat-chip">
+                  <span class="stat-lbl">Gender Pay Equity:</span>
+                  <span class="stat-val text-accent">100.0% Audited</span>
+                </div>
+                <div class="salary-stat-chip">
+                  <span class="stat-lbl">Benefits Multiplier:</span>
+                  <span class="stat-val">1.28x Base</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3: Tax Pane -->
+            <div class="tab-pane" id="tab-tax">
+              <div class="dash-chart-header">
+                <div>
+                  <h4 class="dash-panel-title">Automated Statutory Tax Reserves</h4>
+                  <p class="dash-panel-sub">Auto-remitted to federal and state tax authorities via secure EFTPS protocols.</p>
+                </div>
+                <span class="badge-growth" style="background: rgba(16, 185, 129, 0.12); color: #10b981;"><i class="fa-solid fa-lock"></i> 100% Escrowed</span>
+              </div>
+              
+              <div class="tax-cards-grid">
+                <div class="tax-card">
+                  <div class="tax-card-top">
+                    <span class="tax-card-label">Federal Withholding (FIT)</span>
+                    <span class="tax-status-pill status-success"><i class="fa-solid fa-check-circle"></i> E-Filed 941</span>
+                  </div>
+                  <div class="tax-card-amount">$412,850.00</div>
+                  <div class="tax-card-sub">Form 941 Quarterly auto-submitted to IRS gateway</div>
+                </div>
+
+                <div class="tax-card">
+                  <div class="tax-card-top">
+                    <span class="tax-card-label">FICA (Social Security & Med)</span>
+                    <span class="tax-status-pill status-success"><i class="fa-solid fa-check-circle"></i> Remitted</span>
+                  </div>
+                  <div class="tax-card-amount">$190,148.40</div>
+                  <div class="tax-card-sub">Employer (6.2% + 1.45%) matching deposited</div>
+                </div>
+
+                <div class="tax-card">
+                  <div class="tax-card-top">
+                    <span class="tax-card-label">State & Local (50 States)</span>
+                    <span class="tax-status-pill status-accent"><i class="fa-solid fa-shield"></i> Multi-Nexus</span>
+                  </div>
+                  <div class="tax-card-amount">$138,420.00</div>
+                  <div class="tax-card-sub">Apportioned across 24 state revenue departments</div>
+                </div>
+
+                <div class="tax-card">
+                  <div class="tax-card-top">
+                    <span class="tax-card-label">FUTA Federal Unemployment</span>
+                    <span class="tax-status-pill status-info"><i class="fa-solid fa-clock"></i> EFTPS Queued</span>
+                  </div>
+                  <div class="tax-card-amount">$14,913.60</div>
+                  <div class="tax-card-sub">Form 940 statutory reserve deposited</div>
+                </div>
+              </div>
+
+              <div class="tax-guarantee-banner">
+                <i class="fa-solid fa-stamp text-accent" style="font-size: 1.25rem;"></i>
+                <div>
+                  <strong>Zero-Penalty Tax Guarantee:</strong>
+                  <span>Stackly CPAs assume 100% liability for automated calculations & filing timeliness.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4: Audit Pane -->
+            <div class="tab-pane" id="tab-audit">
+              <div class="dash-chart-header">
+                <div>
+                  <h4 class="dash-panel-title">Cryptographic Compliance Audit Trail</h4>
+                  <p class="dash-panel-sub">Immutable SHA-256 ledger tracking every operator action & disbursement key.</p>
+                </div>
+                <span class="badge-growth" style="background: rgba(201, 162, 39, 0.12); color: var(--accent);"><i class="fa-solid fa-fingerprint"></i> SOC2 Type II</span>
+              </div>
+
+              <div class="audit-log-list">
+                <div class="audit-row">
+                  <div class="audit-time">10:45:12 AM</div>
+                  <div class="audit-icon-wrap"><i class="fa-solid fa-fingerprint text-accent"></i></div>
+                  <div class="audit-content">
+                    <div class="audit-title">Disbursement Key Authorization (CFO Arthur Pendelton)</div>
+                    <div class="audit-hash">SHA-256: 0x9f8b21c49a024e8...38fa • Verified via Hardware FIDO2 2FA</div>
+                  </div>
+                  <span class="audit-status-badge">AUTHORIZED</span>
+                </div>
+
+                <div class="audit-row">
+                  <div class="audit-time">10:44:50 AM</div>
+                  <div class="audit-icon-wrap"><i class="fa-solid fa-microchip text-accent"></i></div>
+                  <div class="audit-content">
+                    <div class="audit-title">Batch Gross-to-Net Computation Finalized</div>
+                    <div class="audit-hash">1,248 Employee records calculated in 2.40s • 0 Variance detected</div>
+                  </div>
+                  <span class="audit-status-badge">COMPUTED</span>
+                </div>
+
+                <div class="audit-row">
+                  <div class="audit-time">09:30:15 AM</div>
+                  <div class="audit-icon-wrap"><i class="fa-solid fa-cloud-arrow-down text-accent"></i></div>
+                  <div class="audit-content">
+                    <div class="audit-title">Workday HRIS Timesheet Stream Ingestion</div>
+                    <div class="audit-hash">API Gateway TLS 1.3 • 49,920 Hours ingested with biometric verification</div>
+                  </div>
+                  <span class="audit-status-badge">SYNCED</span>
+                </div>
+
+                <div class="audit-row">
+                  <div class="audit-time">08:15:00 AM</div>
+                  <div class="audit-icon-wrap"><i class="fa-solid fa-landmark text-accent"></i></div>
+                  <div class="audit-content">
+                    <div class="audit-title">IRS Circular E & State Table Synchronization</div>
+                    <div class="audit-hash">Updated 2026 Federal & State withholding formulas • 50 States Validated</div>
+                  </div>
+                  <span class="audit-status-badge">UPDATED</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right: Interactive ROI & Cost-Savings Calculator -->
+          <div class="calculator-card" data-aos="fade-left">
+            <div class="calc-top-badge">
+              <i class="fa-solid fa-calculator text-accent"></i>
+              <span>ENTERPRISE ROI SIMULATOR</span>
+            </div>
+
+            <h3 class="calc-title">Calculate Your Savings</h3>
+            <p class="calc-desc">Slide the parameters to estimate your annual financial and administrative savings.</p>
+
+            <!-- Slider 1: Employee Count -->
+            <div class="calc-slider-group">
+              <div class="calc-slider-header">
+                <span class="calc-slider-title"><i class="fa-solid fa-users" style="color: var(--accent); margin-right: 6px;"></i> Workforce Size</span>
+                <span class="calc-slider-val" id="calc-employees-val">150 Staff</span>
+              </div>
+              <input type="range" class="calc-range-input" id="calc-employees-slider" min="10" max="600" value="150" step="5">
+              <div class="slider-ticks">
+                <span>10</span>
+                <span>150</span>
+                <span>300</span>
+                <span>450</span>
+                <span>600+</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Hours Spent -->
+            <div class="calc-slider-group">
+              <div class="calc-slider-header">
+                <span class="calc-slider-title"><i class="fa-solid fa-clock" style="color: var(--accent); margin-right: 6px;"></i> Monthly Payroll Admin Hours</span>
+                <span class="calc-slider-val" id="calc-hours-val">30 Hrs/Mo</span>
+              </div>
+              <input type="range" class="calc-range-input" id="calc-hours-slider" min="5" max="90" value="30" step="1">
+              <div class="slider-ticks">
+                <span>5 hrs</span>
+                <span>25 hrs</span>
+                <span>50 hrs</span>
+                <span>75 hrs</span>
+                <span>90 hrs</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: Hourly Admin Cost Rate -->
+            <div class="calc-slider-group" style="margin-bottom: var(--space-md);">
+              <div class="calc-slider-header">
+                <span class="calc-slider-title"><i class="fa-solid fa-dollar-sign" style="color: var(--accent); margin-right: 6px;"></i> Blended Hourly Admin Rate</span>
+                <span class="calc-slider-val" id="calc-rate-val">$55 / Hr</span>
+              </div>
+              <input type="range" class="calc-range-input" id="calc-rate-slider" min="30" max="120" value="55" step="5">
+              <div class="slider-ticks">
+                <span>$30/hr</span>
+                <span>$55/hr</span>
+                <span>$85/hr</span>
+                <span>$120/hr</span>
+              </div>
+            </div>
+
+            <!-- Calculated Results -->
+            <div class="calc-result-box">
+              <div class="calc-result-label">ESTIMATED ANNUAL FINANCIAL SAVINGS</div>
+              <div class="calc-result-amount" id="calc-savings-amount">$36,360</div>
+              <div class="calc-result-subtext" id="calc-hours-saved">280 Admin Hours Reclaimed / Year</div>
+
+              <!-- 3-Item Savings Breakdown Grid -->
+              <div class="calc-breakdown-grid">
+                <div class="calc-breakdown-item">
+                  <span class="cb-label">Labor Savings</span>
+                  <span class="cb-val" id="calc-labor-val">$15,444</span>
+                </div>
+                <div class="calc-breakdown-item">
+                  <span class="cb-label">Tax Risk Shield</span>
+                  <span class="cb-val" id="calc-tax-val">$13,500</span>
+                </div>
+                <div class="calc-breakdown-item">
+                  <span class="cb-label">Software ROI</span>
+                  <span class="cb-val" id="calc-software-val">$7,416</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: var(--space-md); text-align: center;">
+              <a href="404.html" class="btn btn-accent btn-sm btn-magnetic" style="width: 100%;">
+                <span>Claim Custom ROI Breakdown Report</span>
+                <i class="fa-solid fa-file-invoice"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         8. SUCCESS STORIES (Executive Impact & Case Studies)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section trust-section" id="trust">
+      <div class="container" data-aos="fade-down">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>PROVEN ENTERPRISE ROI</span>
+          </div>
+          <h2 class="section-title">Enterprise Case Studies & <span class="highlight">Impact Reports</span></h2>
+          <p class="section-subtitle">Read how market-leading CFOs and finance leaders eliminated payroll processing bottlenecks, automated 50-state compliance, and recovered hundreds of accounting hours.</p>
+        </div>
+
+        <!-- Filter / Industry Switcher & Verified Audit Bar -->
+        <div class="case-studies-filter-bar" data-aos="fade-up">
+          <div class="cs-filter-group" id="caseStudyFilters">
+            <button type="button" class="cs-filter-btn active" data-category="all">All Sectors</button>
+            <button type="button" class="cs-filter-btn" data-category="logistics">Logistics & Fleet</button>
+            <button type="button" class="cs-filter-btn" data-category="fintech">Fintech & Global</button>
+            <button type="button" class="cs-filter-btn" data-category="healthcare">Healthcare Systems</button>
+          </div>
+          <div class="cs-verified-badge">
+            <i class="fa-solid fa-award text-accent"></i>
+            <span>Verified 2026 APA Audit Benchmark</span>
+          </div>
+        </div>
+
+        <!-- 3-Column Luxury Case Studies Grid -->
+        <div class="case-studies-grid" data-aos="fade-up">
+          
+          <!-- Card 1: Global Logistics -->
+          <div class="case-study-card" data-category="logistics">
+            <div>
+              <div class="cs-card-header">
+                <span class="cs-industry-tag"><i class="fa-solid fa-truck-ramp-box"></i> GLOBAL SUPPLY CHAIN</span>
+                <span class="cs-read-time"><i class="fa-solid fa-clock"></i> 3 Min Read</span>
+              </div>
+              
+              <h3 class="cs-card-headline">How Global Logistics Corp Cut Multi-State Payroll Processing Time by 78%</h3>
+
+              <!-- Hero Metric Highlight -->
+              <div class="cs-metric-hero">
+                <div class="cs-hero-val">78% Faster</div>
+                <div class="cs-hero-lbl">Pay Run Speed (32h &rarr; 45m)</div>
+              </div>
+
+              <!-- 2x2 Impact Stats -->
+              <div class="cs-stats-grid">
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num">1,400+</span>
+                  <span class="cs-stat-lbl">Drivers & Staff</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num text-accent">$0.00</span>
+                  <span class="cs-stat-lbl">Tax Penalties</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num">1 Click</span>
+                  <span class="cs-stat-lbl">Biometric Sign</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num text-accent">$185k+</span>
+                  <span class="cs-stat-lbl">Year 1 Net Savings</span>
+                </div>
+              </div>
+
+              <!-- Quote -->
+              <blockquote class="cs-quote-box">
+                "Stackly eliminated our 32-hour reconciliation marathon. The entire 1,400-employee run executes in 45 minutes with 100% tax precision."
+              </blockquote>
+            </div>
+
+            <div>
+              <!-- Author -->
+              <div class="cs-author-row">
+                <img src="Images/photo-1507003211169-0a1dd7228f2d.webp" alt="Marcus Vance" class="cs-author-avatar" loading="lazy">
+                <div class="cs-author-meta">
+                  <span class="cs-author-name">Marcus Vance, CPA</span>
+                  <span class="cs-author-role">Chief Financial Officer &bull; Global Logistics</span>
+                </div>
+              </div>
+
+              <div class="cs-card-footer">
+                <a href="404.html" class="cs-action-link">
+                  <span>Read Full Audit Report</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Veloce Technologies -->
+          <div class="case-study-card" data-category="fintech">
+            <div>
+              <div class="cs-card-header">
+                <span class="cs-industry-tag"><i class="fa-solid fa-microchip"></i> FINTECH SCALEUP</span>
+                <span class="cs-read-time"><i class="fa-solid fa-clock"></i> 2 Min Read</span>
+              </div>
+              
+              <h3 class="cs-card-headline">Veloce Technologies: 48-Hour Global Rollout Across 14 Countries</h3>
+
+              <!-- Hero Metric Highlight -->
+              <div class="cs-metric-hero">
+                <div class="cs-hero-val">48 Hours</div>
+                <div class="cs-hero-lbl">Global Cross-Border Deploy</div>
+              </div>
+
+              <!-- 2x2 Impact Stats -->
+              <div class="cs-stats-grid">
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num">80/mo</span>
+                  <span class="cs-stat-lbl">Engineers Onboarded</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num text-accent">14</span>
+                  <span class="cs-stat-lbl">Global Countries</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num">99.4%</span>
+                  <span class="cs-stat-lbl">Contractor CSAT</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num text-accent">0 Added</span>
+                  <span class="cs-stat-lbl">HR Admin Headcount</span>
+                </div>
+              </div>
+
+              <!-- Quote -->
+              <blockquote class="cs-quote-box">
+                "International engineer payouts that used to take days of bank wire approvals now settle instantly in local currencies on payday."
+              </blockquote>
+            </div>
+
+            <div>
+              <!-- Author -->
+              <div class="cs-author-row">
+                <img src="Images/photo-1534528741775-53994a69daeb.webp" alt="David Thorne" class="cs-author-avatar" loading="lazy">
+                <div class="cs-author-meta">
+                  <span class="cs-author-name">David Thorne</span>
+                  <span class="cs-author-role">VP of People &bull; Veloce Tech</span>
+                </div>
+              </div>
+
+              <div class="cs-card-footer">
+                <a href="404.html" class="cs-action-link">
+                  <span>Read Full Audit Report</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Lumina Healthcare -->
+          <div class="case-study-card" data-category="healthcare">
+            <div>
+              <div class="cs-card-header">
+                <span class="cs-industry-tag"><i class="fa-solid fa-hospital"></i> HEALTHCARE SYSTEM</span>
+                <span class="cs-read-time"><i class="fa-solid fa-clock"></i> 3 Min Read</span>
+              </div>
+              
+              <h3 class="cs-card-headline">Lumina Health: Eradicating $420k in Overtime & Multi-Facility Wage Gaps</h3>
+
+              <!-- Hero Metric Highlight -->
+              <div class="cs-metric-hero">
+                <div class="cs-hero-val">$420k Saved</div>
+                <div class="cs-hero-lbl">Annual Shift & Overtime Cost</div>
+              </div>
+
+              <!-- 2x2 Impact Stats -->
+              <div class="cs-stats-grid">
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num">2,200</span>
+                  <span class="cs-stat-lbl">Nurses & Doctors</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num text-accent">100.0%</span>
+                  <span class="cs-stat-lbl">Shift Calculation</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num">6 Sites</span>
+                  <span class="cs-stat-lbl">Hospital Networks</span>
+                </div>
+                <div class="cs-stat-box">
+                  <span class="cs-stat-num text-accent">SOC 2</span>
+                  <span class="cs-stat-lbl">HIPAA Compliant</span>
+                </div>
+              </div>
+
+              <!-- Quote -->
+              <blockquote class="cs-quote-box">
+                "The geofenced mobile clock-in completely eliminated wage calculation discrepancies across our hospital networks."
+              </blockquote>
+            </div>
+
+            <div>
+              <!-- Author -->
+              <div class="cs-author-row">
+                <img src="Images/photo-1573496359142-b8d87734a5a2.webp" alt="Helena Vance" class="cs-author-avatar" loading="lazy">
+                <div class="cs-author-meta">
+                  <span class="cs-author-name">Helena Vance</span>
+                  <span class="cs-author-role">Head of Global Payroll &bull; Lumina Health</span>
+                </div>
+              </div>
+
+              <div class="cs-card-footer">
+                <a href="404.html" class="cs-action-link">
+                  <span>Read Full Audit Report</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Enterprise Efficiency Benchmark Runway -->
+        <div class="case-studies-runway" data-aos="fade-up">
+          <div class="cs-runway-top">
+            <div class="cs-runway-title">
+              <i class="fa-solid fa-chart-pie text-accent"></i>
+              <span>Aggregate Enterprise Efficiency Benchmark</span>
+            </div>
+            <span class="cs-runway-tag">AUDITED ACROSS 450+ ENTERPRISE DEPLOYMENTS</span>
+          </div>
+
+          <div class="cs-runway-grid">
+            <div class="cs-runway-stat">
+              <span class="cs-runway-num">98.4%</span>
+              <span class="cs-runway-lbl">Gross-to-Net Processing Speed Gain</span>
+            </div>
+            <div class="cs-runway-stat">
+              <span class="cs-runway-num">100%</span>
+              <span class="cs-runway-lbl">Statutory Tax Liability Indemnity</span>
+            </div>
+            <div class="cs-runway-stat">
+              <span class="cs-runway-num">94.2%</span>
+              <span class="cs-runway-lbl">Monthly Active Employee App Adoption</span>
+            </div>
+            <div class="cs-runway-stat">
+              <span class="cs-runway-num">$2.4M+</span>
+              <span class="cs-runway-lbl">Total Audit Penalties Prevented (2025)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         8.5. PRICING TIERS & SPECIFICATION MATRIX
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section pricing-section" id="pricing">
+      <div class="container">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag">
+            <i class="fa-solid fa-tags"></i>
+            <span>Transparent Enterprise Pricing</span>
+          </div>
+          <h2 class="section-title">Predictable Value, <span class="highlight">Uncompromising Scale</span></h2>
+          <p class="section-subtitle">No hidden add-ons, implementation traps, or calculation penalties. Choose the architecture that accelerates your workforce.</p>
+          
+          <!-- Pricing Billing Cycle Switcher -->
+          <div class="pricing-toggle-wrapper">
+            <span class="billing-label active" id="billing-monthly">Monthly</span>
+            <label class="switch-toggle-label">
+              <input type="checkbox" id="pricing-toggle-checkbox" aria-label="Toggle annual or monthly pricing billing cycle">
+              <span class="slider-toggle-ball"></span>
+            </label>
+            <span class="billing-label" id="billing-annual">
+              Annual <span class="save-badge">SAVE 20%</span>
+            </span>
+          </div>
+
+          <!-- Interactive Team Size Estimator Bar -->
+          <div class="pricing-calculator-bar">
+            <div class="pcb-top">
+              <div class="pcb-label">
+                <i class="fa-solid fa-calculator text-accent"></i>
+                <span>ESTIMATE YOUR MONTHLY INVESTMENT:</span>
+              </div>
+              <div class="pcb-count-badge">
+                <span class="calc-val" id="calc-team-size-display">25</span>
+                <span>Employees</span>
+              </div>
+            </div>
+            <div class="pcb-slider-wrapper">
+              <input type="range" min="5" max="250" value="25" step="5" class="pcb-range-slider" id="calc-team-slider" aria-label="Employee count slider">
+              <div class="pcb-ticks">
+                <span>5 Seats</span>
+                <span>50 Seats</span>
+                <span>100 Seats</span>
+                <span>150 Seats</span>
+                <span>200 Seats</span>
+                <span>250+ Enterprise</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-scroll-hint">
+          <i class="fa-solid fa-arrows-left-right text-accent"></i>
+          <span>Swipe horizontally to view all plan specifications</span>
+        </div>
+
+        <!-- Sleek Unified Specification Plan Comparison Matrix -->
+        <div class="pricing-matrix-container" data-aos="fade-up">
+          <table class="pricing-matrix-table">
+            <thead>
+              <tr>
+                <th class="matrix-feature-col">
+                  <div class="mfc-header-card">
+                    <span class="mfc-tag">SPECIFICATION</span>
+                    <h3 class="mfc-title">Plan Comparison</h3>
+                    <p class="mfc-desc">Transparent architecture with zero hidden fees.</p>
+                    <div class="mfc-badge-box">
+                      <div class="mfc-assurance-item">
+                        <i class="fa-solid fa-shield-check"></i>
+                        <span>100% Tax Indemnity Shield</span>
+                      </div>
+                      <div class="mfc-assurance-item">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span>Direct NACHA Banking Rails</span>
+                      </div>
+                      <div class="mfc-assurance-item">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>SOC 2 Type II Audited</span>
+                      </div>
+                    </div>
+                    <a href="404.html" class="btn btn-outline btn-sm btn-magnetic mpc-cta-btn mfc-help-btn">
+                      <i class="fa-solid fa-circle-question"></i>
+                      <span>Compare All Features</span>
+                    </a>
+                  </div>
+                </th>
+                
+                <!-- Startup Tier (Growth) -->
+                <th class="matrix-plan-col">
+                  <div class="mpc-header-card">
+                    <span class="mpc-tier-tag">STARTUP</span>
+                    <h4 class="mpc-tier-name">Growth Tier</h4>
+                    <p class="mpc-tier-summary">Automated payroll & mobile app for expanding teams.</p>
+                    
+                    <div class="mpc-price-box">
+                      <div class="mpc-price-row">
+                        <span class="mpc-currency">$</span>
+                        <span class="price-amount" data-monthly="49" data-annual="39">49</span>
+                        <span class="mpc-period">/mo base</span>
+                      </div>
+                      <div class="mpc-per-emp">+ $6 / emp / mo</div>
+                      <div class="mpc-estimated-live" id="live-est-growth">Est: $199/mo</div>
+                    </div>
+
+                    <a href="404.html" class="btn btn-outline btn-sm btn-magnetic mpc-cta-btn">
+                      <span>Choose Growth</span>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </th>
+
+                <!-- Enterprise Scale (Scale Tier - RECOMMENDED) -->
+                <th class="matrix-plan-col th-featured">
+                  <div class="th-popular-pill">
+                    <i class="fa-solid fa-crown"></i> RECOMMENDED BY CFOS
+                  </div>
+                  <div class="mpc-header-card">
+                    <span class="mpc-tier-tag mpc-tag-gold">ENTERPRISE</span>
+                    <h4 class="mpc-tier-name" style="color: var(--primary);">Scale Tier</h4>
+                    <p class="mpc-tier-summary">50-state tax indemnity, same-day ACH & CPA lead.</p>
+                    
+                    <div class="mpc-price-box">
+                      <div class="mpc-price-row">
+                        <span class="mpc-currency" style="color: var(--accent);">$</span>
+                        <span class="price-amount" data-monthly="149" data-annual="119" style="color: var(--primary);">149</span>
+                        <span class="mpc-period">/mo base</span>
+                      </div>
+                      <div class="mpc-per-emp" style="color: var(--accent); font-weight: 800;">+ $9 / emp / mo</div>
+                      <div class="mpc-estimated-live" id="live-est-enterprise" style="background: rgba(201, 162, 39, 0.25); border: 1px solid var(--accent);">Est: $374/mo</div>
+                    </div>
+
+                    <a href="404.html" class="btn btn-accent btn-sm btn-magnetic mpc-cta-btn">
+                      <span>Choose Enterprise</span>
+                      <i class="fa-solid fa-bolt"></i>
+                    </a>
+                  </div>
+                </th>
+
+                <!-- Global Multinational (Flagship) -->
+                <th class="matrix-plan-col">
+                  <div class="mpc-header-card">
+                    <span class="mpc-tier-tag">GLOBAL</span>
+                    <h4 class="mpc-tier-name">Flagship Tier</h4>
+                    <p class="mpc-tier-summary">Cross-border treasury across 40+ currencies & 15m SLA.</p>
+                    
+                    <div class="mpc-price-box">
+                      <div class="mpc-price-row">
+                        <span class="price-amount-custom">Custom</span>
+                      </div>
+                      <div class="mpc-per-emp">Volume discounts & SLA</div>
+                      <div class="mpc-estimated-live">Tailored Cluster</div>
+                    </div>
+
+                    <a href="404.html" class="btn btn-outline btn-sm btn-magnetic mpc-cta-btn">
+                      <span>Contact Sales</span>
+                      <i class="fa-solid fa-headset"></i>
+                    </a>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <!-- Category 1: Payroll Processing & Disbursement -->
+              <tr class="matrix-cat-row">
+                <td colspan="4"><i class="fa-solid fa-bolt text-accent"></i> PAYROLL PROCESSING & DISBURSEMENT</td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>Unlimited Automated Pay Runs</span>
+                  <span class="feature-info-tip" data-tooltip="Run off-cycle, bonus, and recurring pay schedules with zero per-run fees."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td><i class="fa-solid fa-circle-check text-accent"></i> Included</td>
+                <td class="col-featured"><i class="fa-solid fa-circle-check text-accent"></i> <strong>Included</strong></td>
+                <td><i class="fa-solid fa-circle-check text-accent"></i> Included</td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>ACH Settlement Window</span>
+                  <span class="feature-info-tip" data-tooltip="Direct clearing window from funding approval to employee account settlement."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td>2-Day Standard</td>
+                <td class="col-featured"><span class="table-pill-highlight"><i class="fa-solid fa-bolt-lightning text-accent"></i> Same-Day Direct ACH</span></td>
+                <td><strong>Instant Real-Time Payouts</strong></td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>Multi-Currency Global Disbursals</span>
+                  <span class="feature-info-tip" data-tooltip="Automated foreign exchange execution directly to local bank accounts across 180+ countries."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td><span class="cell-dash">—</span></td>
+                <td class="col-featured">5 Major Currencies</td>
+                <td><strong>40+ Global Currencies</strong></td>
+              </tr>
+
+              <!-- Category 2: Statutory Tax Compliance & Guarantees -->
+              <tr class="matrix-cat-row">
+                <td colspan="4"><i class="fa-solid fa-scale-balanced text-accent"></i> STATUTORY TAX COMPLIANCE & GUARANTEES</td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>100% Tax Accuracy Guarantee & Shield</span>
+                  <span class="feature-info-tip" data-tooltip="Aurelia assumes full legal liability and pays 100% of any statutory fines, penalties, or interest."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td><span class="cell-dash">—</span></td>
+                <td class="col-featured"><span class="table-shield-badge"><i class="fa-solid fa-shield-check text-accent"></i> 100% CPA Protected</span></td>
+                <td><span class="table-shield-badge"><i class="fa-solid fa-shield-check text-accent"></i> 100% CPA Protected</span></td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>50-State Multi-Nexus Automatic Filing</span>
+                  <span class="feature-info-tip" data-tooltip="Dynamic multi-state tax withholding calculation and automated e-filing across all state departments."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td>1 State Included</td>
+                <td class="col-featured"><strong>All 50 US States</strong></td>
+                <td><strong>50 US States + Global</strong></td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>Automated Year-End W-2 & 1099 e-Filing</span>
+                  <span class="feature-info-tip" data-tooltip="Automatic generation, SSA submission, and digital employee delivery of annual tax forms."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td><i class="fa-solid fa-circle-check text-accent"></i> Included</td>
+                <td class="col-featured"><i class="fa-solid fa-circle-check text-accent"></i> <strong>Included</strong></td>
+                <td><i class="fa-solid fa-circle-check text-accent"></i> Included</td>
+              </tr>
+
+              <!-- Category 3: Hardware, Time & Expense Suite -->
+              <tr class="matrix-cat-row">
+                <td colspan="4"><i class="fa-solid fa-users-gear text-accent"></i> HARDWARE, TIME & EXPENSE SUITE</td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>Biometric Terminal Sync (ZKTeco/Suprema)</span>
+                  <span class="feature-info-tip" data-tooltip="Direct hardware integration pulling biometric clock-in timestamps into payroll runs."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td><span class="cell-dash">—</span></td>
+                <td class="col-featured"><i class="fa-solid fa-circle-check text-accent"></i> <strong>Included</strong></td>
+                <td><i class="fa-solid fa-circle-check text-accent"></i> Included</td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>AI Vision OCR Expense Auto-Auditing</span>
+                  <span class="feature-info-tip" data-tooltip="Receipt photo OCR categorizes General Ledger lines and validates policy compliance instantly."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td><span class="cell-dash">—</span></td>
+                <td class="col-featured"><i class="fa-solid fa-circle-check text-accent"></i> <strong>Included</strong></td>
+                <td><i class="fa-solid fa-circle-check text-accent"></i> Included</td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>Employee iOS & Android Self-Service App</span>
+                  <span class="feature-info-tip" data-tooltip="Native mobile apps for employees to access pay stubs, W-2s, time tracking, and benefits."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td><i class="fa-solid fa-circle-check text-accent"></i> Included</td>
+                <td class="col-featured"><i class="fa-solid fa-circle-check text-accent"></i> <strong>Included</strong></td>
+                <td><i class="table-pill-highlight"><i class="fa-solid fa-crown text-accent"></i> Included (Custom Branded)</i></td>
+              </tr>
+
+              <!-- Category 4: Enterprise Architecture & Support -->
+              <tr class="matrix-cat-row">
+                <td colspan="4"><i class="fa-solid fa-crown text-accent"></i> ENTERPRISE ARCHITECTURE & SUPPORT</td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>Dedicated CPA & Payroll Architect</span>
+                  <span class="feature-info-tip" data-tooltip="A named licensed CPA managing your account configuration, tax exemptions, and audits."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td>Shared Support Queue</td>
+                <td class="col-featured"><strong>Dedicated CPA Lead</strong></td>
+                <td><strong>Bespoke 24/7 Solution Team</strong></td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>Guaranteed Emergency Response SLA</span>
+                  <span class="feature-info-tip" data-tooltip="Contractual response time commitment backed by service credits."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td>24 Hours</td>
+                <td class="col-featured"><strong>1 Hour</strong></td>
+                <td><span class="table-shield-badge" style="background: rgba(16, 185, 129, 0.12); color: #059669; border-color: rgba(16, 185, 129, 0.3);"><i class="fa-solid fa-bolt"></i> 15 Minutes (24/7/365)</span></td>
+              </tr>
+              <tr>
+                <td class="mf-name">
+                  <i class="fa-regular fa-circle-dot text-accent"></i>
+                  <span>White-Glove Historical Migration</span>
+                  <span class="feature-info-tip" data-tooltip="We import your historical pay records, YTD tax withholdings, and custom deductions."><i class="fa-solid fa-circle-info"></i></span>
+                </td>
+                <td>Standard Guides</td>
+                <td class="col-featured"><strong>Included (72-Hr)</strong></td>
+                <td><strong>Included (48-Hr Dedicated)</strong></td>
+              </tr>
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <td class="tfoot-label-col">
+                  <div class="tfoot-info">
+                    <strong>Need a custom enterprise rollout?</strong>
+                    <span>Talk directly with an enterprise payroll architect.</span>
+                  </div>
+                </td>
+                <td>
+                  <a href="404.html" class="btn btn-outline btn-sm btn-magnetic w-full">
+                    <span>Choose Growth</span>
+                  </a>
+                </td>
+                <td class="col-featured">
+                  <a href="404.html" class="btn btn-accent btn-sm btn-magnetic w-full">
+                    <span>Choose Enterprise</span>
+                  </a>
+                </td>
+                <td>
+                  <a href="404.html" class="btn btn-outline btn-sm btn-magnetic w-full">
+                    <span>Contact Sales</span>
+                  </a>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <!-- Bottom Assurance Trust Strip -->
+        <div class="pricing-assurance-bar" data-aos="fade-up">
+          <div class="pab-item">
+            <div class="pab-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="pab-text">
+              <span class="pab-title">100% Tax Accuracy Shield</span>
+              <span class="pab-desc">We assume full legal & financial liability for calculations.</span>
+            </div>
+          </div>
+          <div class="pab-item">
+            <div class="pab-icon">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div class="pab-text">
+              <span class="pab-title">Federal Reserve Rails</span>
+              <span class="pab-desc">Direct NACHA Same-Day settlement with zero intermediary holding.</span>
+            </div>
+          </div>
+          <div class="pab-item">
+            <div class="pab-icon">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </div>
+            <div class="pab-text">
+              <span class="pab-title">Zero-Downtime Migration</span>
+              <span class="pab-desc">Parallel pay runs ensure 100% parity before live switchover.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         9. TESTIMONIALS (Interactive Executive Spotlight Wall)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section testimonials-section" id="testimonials">
+      <div class="container" data-aos="fade-down">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag">
+            <i class="fa-solid fa-comments"></i>
+            <span>Executive Dialogue</span>
+          </div>
+          <h2 class="section-title">Trusted By <span class="highlight">CFOs & People Leaders</span></h2>
+          <p class="section-subtitle">Real executive testimonials from organizations operating at global scale.</p>
+        </div>
+
+        <!-- Interactive Executive Spotlight Wall (Non-Card UI Pattern) -->
+        <div class="executive-spotlight-layout" data-aos="fade-up">
+          
+          <!-- Left: Big Editorial Spotlight Pane -->
+          <div class="spotlight-quote-pane glass-card-dark">
+            <div class="sq-top-row">
+              <div class="sq-company-badge" id="spotlightCompanyBadge">
+                <i class="fa-solid fa-cube text-accent"></i>
+                <span id="spotlightCompanyName">APEX GLOBAL CAPITAL</span>
+              </div>
+              <div class="sq-audio-wave">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span class="sq-audio-label">VERIFIED TRANSCRIPT</span>
+              </div>
+            </div>
+
+            <blockquote class="spotlight-quote-text" id="spotlightQuoteText">
+              "Stackly completely transformed our bi-weekly payrun. The multi-state tax compliance engine alone has saved us countless hours of CPA auditing."
+            </blockquote>
+
+            <div class="sq-footer-row">
+              <div class="sq-author-card">
+                <img src="Images/photo-1534528741775-53994a69daeb.webp" alt="Victoria Sterling" class="sq-author-img" id="spotlightAuthorImg">
+                <div class="sq-author-info">
+                  <h4 id="spotlightAuthorName">Victoria Sterling</h4>
+                  <span id="spotlightAuthorTitle">Chief Financial Officer</span>
+                </div>
+              </div>
+              <div class="sq-metric-chip" id="spotlightMetricChip">
+                <div class="sm-chip-val" id="spotlightMetricVal">88% Faster</div>
+                <div class="sm-chip-lbl" id="spotlightMetricLbl">Pay Run Acceleration</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Leader Selector Stack -->
+          <div class="leader-selector-stack">
+            <div class="lss-header">
+              <span>SELECT EXECUTIVE DIALOGUE</span>
+              <span class="lss-count">4 SPOTLIGHTS</span>
+            </div>
+
+            <!-- Leader 1 -->
+            <button type="button" class="leader-item active" data-quote="Stackly completely transformed our bi-weekly payrun. The multi-state tax compliance engine alone has saved us countless hours of CPA auditing." data-author="Victoria Sterling" data-role="Chief Financial Officer" data-company="APEX GLOBAL CAPITAL" data-icon="fa-cube" data-img="Images/photo-1534528741775-53994a69daeb.webp" data-metric="88% Faster" data-metriclbl="Pay Run Acceleration">
+              <img src="Images/photo-1534528741775-53994a69daeb.webp" alt="Victoria Sterling" class="leader-avatar">
+              <div class="leader-meta">
+                <strong>Victoria Sterling</strong>
+                <span>CFO &bull; Apex Global Capital</span>
+              </div>
+              <div class="leader-badge"><i class="fa-solid fa-shield-check text-accent"></i> 1.4k Seats</div>
+            </button>
+
+            <!-- Leader 2 -->
+            <button type="button" class="leader-item" data-quote="The employee self-service mobile app is magnificent. Our team members download their tax filings and submit reimbursements with zero HR tickets." data-author="David Thorne" data-role="VP of People & Culture" data-company="VELOCE TECHNOLOGIES" data-icon="fa-bolt" data-img="Images/photo-1507003211169-0a1dd7228f2d.webp" data-metric="-82% Tickets" data-metriclbl="HR Support Inquiries">
+              <img src="Images/photo-1507003211169-0a1dd7228f2d.webp" alt="David Thorne" class="leader-avatar">
+              <div class="leader-meta">
+                <strong>David Thorne</strong>
+                <span>VP People &bull; Veloce Tech</span>
+              </div>
+              <div class="leader-badge"><i class="fa-solid fa-shield-check text-accent"></i> 600+ Seats</div>
+            </button>
+
+            <!-- Leader 3 -->
+            <button type="button" class="leader-item" data-quote="Transitioning from our legacy payroll provider took only 48 hours with their white-glove team. Flawless execution and a 100% tax accuracy guarantee." data-author="Helena Vance" data-role="Head of Global Payroll" data-company="LUMINA HEALTHCARE" data-icon="fa-hospital" data-img="Images/photo-1573496359142-b8d87734a5a2.webp" data-metric="48-Hr" data-metriclbl="Turnkey Migration">
+              <img src="Images/photo-1573496359142-b8d87734a5a2.webp" alt="Helena Vance" class="leader-avatar">
+              <div class="leader-meta">
+                <strong>Helena Vance</strong>
+                <span>Head of Payroll &bull; Lumina Health</span>
+              </div>
+              <div class="leader-badge"><i class="fa-solid fa-shield-check text-accent"></i> 2.2k Staff</div>
+            </button>
+
+            <!-- Leader 4 -->
+            <button type="button" class="leader-item" data-quote="The real-time executive dashboard gives us unmatched visibility into labor cost forecasts and department payroll variances." data-author="Jonathan Cross" data-role="Managing Director" data-company="QUANTIX FINANCIAL" data-icon="fa-chart-line" data-img="Images/photo-1500648767791-00dcc994a43e.webp" data-metric="$240k" data-metriclbl="Annual Labor Saved">
+              <img src="Images/photo-1500648767791-00dcc994a43e.webp" alt="Jonathan Cross" class="leader-avatar">
+              <div class="leader-meta">
+                <strong>Jonathan Cross</strong>
+                <span>Managing Director &bull; Quantix Fund</span>
+              </div>
+              <div class="leader-badge"><i class="fa-solid fa-shield-check text-accent"></i> Multi-Fund</div>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         10. FINAL CTA + FAQ & ENTERPRISE CONCIERGE TERMINAL
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section cta-faq-section" id="faq">
+      <div class="container" data-aos="fade-right">
+        
+        <!-- Section Header -->
+        <div class="section-header" style="margin-bottom: var(--space-xl);">
+          <div class="section-tag">
+            <i class="fa-solid fa-circle-nodes"></i>
+            <span>EXECUTIVE KNOWLEDGE & ONBOARDING</span>
+          </div>
+          <h2 class="section-title">Statutory Clarity & <span class="highlight">Direct Onboarding</span></h2>
+          <p class="section-subtitle">Zero ambiguity. Explore how Stackly protects your corporate treasury, automates multi-state disbursements, and guarantees 100% tax liability accuracy.</p>
+        </div>
+
+        <div class="cta-faq-grid">
+          
+          <!-- Left: Editorial Knowledge Index (FAQ) -->
+          <div class="faq-knowledge-column">
+            
+            <div class="faq-filter-bar">
+              <span class="faq-filter-label"><i class="fa-solid fa-filter text-accent"></i> TOPICS:</span>
+              <div class="faq-pill active" data-target="all">All Inquiries</div>
+              <div class="faq-pill" data-target="1">Tax Shield</div>
+              <div class="faq-pill" data-target="0">48-Hr Migration</div>
+              <div class="faq-pill" data-target="3">ERP Sync</div>
+            </div>
+
+            <div class="glass-accordion">
+              
+              <!-- Item 1 -->
+              <div class="accordion-item active">
+                <button class="accordion-header" type="button" aria-expanded="true">
+                  <div class="accordion-title-wrap">
+                    <span class="accordion-num text-accent">01</span>
+                    <span>How rapidly can our enterprise migrate historical payroll data?</span>
+                  </div>
+                  <span class="icon-toggle"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="accordion-body">
+                  <p>Our dedicated CPA squad migrates your historical payroll records, employee master profiles, YTD tax accumulations, and custom benefit deduction matrices in as few as <strong>48 to 72 hours</strong>. We run parallel audits against your legacy provider to guarantee 100% pixel-perfect gross-to-net parity before going live.</p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button" aria-expanded="false">
+                  <div class="accordion-title-wrap">
+                    <span class="accordion-num text-accent">02</span>
+                    <span>How does your 100% Statutory Tax Accuracy Guarantee protect our treasury?</span>
+                  </div>
+                  <span class="icon-toggle"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="accordion-body">
+                  <p>Stackly assumes <strong>100% legal and financial indemnity</strong> for all federal, state, county, and municipal tax withholdings and filings. If any calculation error or filing notice ever occurs due to our platform, Stackly covers 100% of penalties and interest while our certified CPAs handle all IRS and state communications directly.</p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button" aria-expanded="false">
+                  <div class="accordion-title-wrap">
+                    <span class="accordion-num text-accent">03</span>
+                    <span>How does Stackly manage multi-state nexus and remote workforce compliance?</span>
+                  </div>
+                  <span class="icon-toggle"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="accordion-body">
+                  <p>Our autonomous tax engine dynamically tracks employee physical work locations and automatically applies the statutory withholding, local wage taxes, paid family leave (PFL), and state unemployment insurance (SUI) rules across all 50 states and over 10,000 local taxing authorities in real time.</p>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button" aria-expanded="false">
+                  <div class="accordion-title-wrap">
+                    <span class="accordion-num text-accent">04</span>
+                    <span>Does Stackly synchronize bi-directionally with our ERP and general ledger?</span>
+                  </div>
+                  <span class="icon-toggle"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="accordion-body">
+                  <p>Yes. We provide certified bi-directional connectors for <strong>Oracle NetSuite, SAP ERP, Workday, QuickBooks Enterprise, Sage Intacct, and Microsoft Dynamics</strong>. Balanced double-entry journal entries automatically post to your exact chart of accounts by department, project code, and class the instant payroll clears.</p>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button" aria-expanded="false">
+                  <div class="accordion-title-wrap">
+                    <span class="accordion-num text-accent">05</span>
+                    <span>What cybersecurity certifications and encryption standards safeguard our payroll?</span>
+                  </div>
+                  <span class="icon-toggle"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="accordion-body">
+                  <p>Stackly maintains continuous <strong>SOC-2 Type II certification, ISO 27001 compliance, GDPR adherence, and HIPAA readiness</strong>. All sensitive employee PII, SSNs, and bank routing numbers are stored using FIPS 140-2 Level 3 Hardware Security Modules (HSM) with continuous automated AES-256 key rotation.</p>
+                </div>
+              </div>
+
+              <!-- Item 6 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button" aria-expanded="false">
+                  <div class="accordion-title-wrap">
+                    <span class="accordion-num text-accent">06</span>
+                    <span>Can we disburse off-cycle bonuses, equity distributions, and contractor payouts?</span>
+                  </div>
+                  <span class="icon-toggle"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="accordion-body">
+                  <p>Yes. You can execute unlimited off-cycle pay runs, executive bonus distributions, stock option withholding adjustments, or international contractor payouts across 40+ currencies at any time with zero transaction penalties or hidden fees.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="faq-concierge-note">
+              <i class="fa-solid fa-headset text-accent"></i>
+              <span>Need custom statutory compliance advice? <a href="404.html">Connect with our Senior CPA Squad <i class="fa-solid fa-up-right-from-square" style="margin-left: 4px; font-size: 0.85em;"></i></a></span>
+            </div>
+
+          </div>
+
+          <!-- Right: Sovereign Enterprise Booking Terminal (Non-Card Console) -->
+          <div class="enterprise-dispatch-terminal">
+            
+            <div class="terminal-dispatch-header">
+              <div class="terminal-sys-title">
+                <i class="fa-solid fa-terminal text-accent"></i>
+                <span>STACKLY_ENTERPRISE // ONBOARDING_DESK</span>
+              </div>
+              <div class="terminal-ping-status">
+                <span class="live-ping-dot"></span>
+                <span>DIRECT DISPATCH ACTIVE</span>
+              </div>
+            </div>
+
+            <div class="terminal-dispatch-content">
+              <div class="terminal-badge-tag">
+                <i class="fa-solid fa-sparkles"></i>
+                <span>WHITE-GLOVE SOVEREIGN BRIEFING</span>
+              </div>
+
+              <h3 class="terminal-title">Schedule Your 1-on-1 <br><span class="gold-gradient-text">CPA Solutions Briefing</span></h3>
+              
+              <p class="terminal-desc">
+                Receive a confidential gross-to-net liability audit, live ledger sync simulation, and guaranteed 48-hour migration plan tailored to your entity structure.
+              </p>
+
+              <!-- Interactive Time Slot Quick-Select -->
+              <div class="terminal-slot-picker">
+                <div class="slot-picker-label"><i class="fa-solid fa-clock text-accent"></i> SELECT EARLIEST CONCIERGE WINDOW:</div>
+                <div class="slot-chips-grid">
+                  <button type="button" class="slot-chip active">
+                    <span class="slot-time">Tomorrow 10:00 AM EST</span>
+                    <span class="slot-lead">Arthur Vance, CPA</span>
+                  </button>
+                  <button type="button" class="slot-chip">
+                    <span class="slot-time">Tomorrow 2:00 PM EST</span>
+                    <span class="slot-lead">Marcus Sterling, Lead</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="terminal-action-group">
+                <a href="404.html" class="btn btn-accent btn-lg btn-magnetic" style="width: 100%;">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Reserve Executive Briefing</span>
+                </a>
+                <a href="404.html" class="btn btn-outline-gold btn-md btn-magnetic" style="width: 100%;">
+                  <i class="fa-solid fa-bolt"></i>
+                  <span>Launch Instant 14-Day Sandbox</span>
+                </a>
+              </div>
+
+              <!-- Direct Hotline Contacts -->
+              <div class="terminal-hotlines">
+                <div class="hotline-item">
+                  <i class="fa-solid fa-phone-volume text-accent"></i>
+                  <span>Direct Line: <strong>+1 (800) 584-PAYROLL</strong></span>
+                </div>
+                <div class="hotline-item">
+                  <i class="fa-solid fa-envelope text-accent"></i>
+                  <span>Concierge Email: <strong>enterprise@stacklypayroll.com</strong></span>
+                </div>
+              </div>
+
+              <!-- Verification Guarantees -->
+              <div class="terminal-guarantee-strip">
+                <span><i class="fa-solid fa-shield-check text-accent"></i> Zero Credit Card Required</span>
+                <span><i class="fa-solid fa-bolt text-accent"></i> 48-Hour Setup</span>
+                <span><i class="fa-solid fa-award text-accent"></i> SOC-2 Certified</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       FOOTER: SOVEREIGN ENTERPRISE MASTER LEDGER
+       ══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <!-- Col 1: Brand & Compliance Architecture -->
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo" style="color: var(--secondary);">
+            <div class="brand-icon-mark">
+              <div class="brand-logo-img"></div>
+            </div>
+          </a>
+          <p>
+            Award-winning enterprise payroll automation, multi-jurisdiction tax defense, and sovereign workforce treasury infrastructure engineered for finance leaders.
+          </p>
+
+          <div class="compliance-badges">
+            <div class="compliance-badge"><i class="fa-solid fa-shield-halved"></i> SOC-2 Type II</div>
+            <div class="compliance-badge"><i class="fa-solid fa-lock"></i> ISO 27001</div>
+            <div class="compliance-badge"><i class="fa-solid fa-globe"></i> GDPR Compliant</div>
+            <div class="compliance-badge"><i class="fa-solid fa-building-columns"></i> IRS Registered</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-nav-list">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+            <li><a href="platform.html"><i class="fa-solid fa-chevron-right"></i> Platform</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Pricing</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Architecture & Trust -->
+        <div>
+          <div class="footer-col-title">Architecture & Trust</div>
+          <ul class="footer-nav-list">
+            <li><a href="platform.html"><i class="fa-solid fa-chevron-right"></i> 7-Pillar Defense System</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Continuous Transit Pipeline</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Real-Time ROI Engine</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Transparent Pricing Matrix</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Statutory Knowledge & FAQ</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> VIP Priority Scheduling</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Executive Briefing & Live System Telemetry -->
+        <div class="footer-intel-column">
+          <div class="footer-col-title">Executive Briefing</div>
+          <p style="font-size: var(--text-xs); color: rgba(252, 250, 246, 0.75); line-height: 1.5; margin-bottom: var(--space-xs);">
+            Subscribe to quarterly CFO payroll analysis, tax law amendments, and workforce treasury reports.
+          </p>
+
+          <form class="footer-newsletter-form" id="newsletter-form">
+            <div class="newsletter-input-wrap">
+              <input type="email" class="newsletter-input" placeholder="cfo@enterprise.com" required aria-label="Corporate Email Address">
+              <button type="submit" class="newsletter-submit-btn">Subscribe</button>
+            </div>
+          </form>
+
+          <!-- Live Network Node Status Indicator -->
+          <div class="footer-network-status">
+            <div class="status-node-indicator">
+              <span class="status-live-beacon"></span>
+              <span class="status-node-text">FedLine ACH Gateway: <strong>Operational (99.999% SLA)</strong></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; 2026 Stackly Payroll Services Inc. All rights reserved.
+        </div>
+
+        <div class="footer-legal-links" style="position: relative; z-index: 1000; pointer-events: auto;">
+          <a href="404.html">Privacy Shield</a>
+          <span>&bull;</span>
+          <a href="404.html">Terms of Service</a>
+          <span>&bull;</span>
+          <a href="404.html">Security Disclosure</a>
+          <span>&bull;</span>
+          <a href="404.html">IRS Indemnity Policy</a>
+        </div>
+
+        <div class="footer-social-links">
+          <a href="#" class="social-icon-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-icon-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts (GSAP 3, ScrollTrigger, AOS, Swiper & Core Logic) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="js/animations.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

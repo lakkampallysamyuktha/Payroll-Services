@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparent Enterprise Pricing & ROI Calculator | Stackly Payroll</title>
+  <meta name="description" content="Transparent, scalable pricing for enterprise payroll. Compare features, calculate ROI, and see how Stackly Payroll delivers immediate financial impact.">
+
+  <!-- Google Fonts: Inter & Outfit + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS & Swiper CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Core Design Tokens & Styles -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body class="page-pricing">
+
+  <!-- Top Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STICKY LUXURY GLASS HEADER
+       ══════════════════════════════════════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      
+      <a href="index.html" class="brand-logo" aria-label="Stackly Payroll Home">
+        <div class="brand-icon-mark">
+          <div class="brand-logo-img"></div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (5 Items Only) -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="platform.html" class="nav-link">Platform</a></li>
+          <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-accent btn-md btn-magnetic header-cta-btn">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Login</span>
+        </a>
+
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Drawer" aria-expanded="false">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="brand-logo" aria-label="Stackly Payroll Home">
+        <div class="brand-icon-mark">
+          <div class="brand-logo-img"></div>
+        </div>
+      </a>
+      <button class="mobile-drawer-close-btn" id="mobileDrawerClose" aria-label="Close Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-nav-scroll-area">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">01</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-house"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Home</span>
+              <span class="mobile-nav-subtitle">Enterprise Overview</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="services.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">02</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-cubes"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Services</span>
+              <span class="mobile-nav-subtitle">Architectural Workbench</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="platform.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">03</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Platform</span>
+              <span class="mobile-nav-subtitle">Smart Features & Pipeline</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="pricing.html" class="mobile-nav-card active">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">04</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-calculator"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Pricing</span>
+              <span class="mobile-nav-subtitle">Comparative Matrix & ROI</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="contact.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">05</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-headset"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Contact</span>
+              <span class="mobile-nav-subtitle">VIP Consultation & 24/7 SLA</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+      </div>
+
+      <!-- Drawer Footer Action -->
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="btn btn-primary btn-md" style="width: 100%; justify-content: center;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Login</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ══════════════════════════════════════════════════════════════
+         ① PRICING HERO: TRANSPARENT ARCHITECTURE + BILLING SWITCHER
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="page-hero" id="pricing-hero">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="page-hero-tag">
+            <i class="fa-solid fa-scale-balanced text-accent"></i>
+            <span>TRANSPARENT ARCHITECTURE &bull; ZERO HIDDEN CHARGES</span>
+          </div>
+          <h1 class="page-hero-title" style="max-width: 850px; margin-left: auto; margin-right: auto;">
+            Clear Institutional Pricing for <span class="text-accent">Every Scale</span>.
+          </h1>
+          <p class="page-hero-desc" style="margin-left: auto; margin-right: auto;">
+            Zero setup fees, zero off-cycle run surcharges, and complete statutory tax indemnification included with every tier.
+          </p>
+
+          <!-- Billing Switcher Toggle -->
+          <style>
+            .hero-billing-label {
+              font-size: 14px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: color 0.3s ease;
+              user-select: none;
+            }
+            .hero-billing-label.active {
+              color: var(--secondary);
+            }
+            .hero-billing-label:not(.active) {
+              color: rgba(252, 250, 246, 0.6);
+            }
+            .hero-toggle-label {
+              position: relative;
+              display: inline-block;
+              width: 52px;
+              height: 28px;
+              margin: 0;
+              cursor: pointer;
+            }
+            .hero-toggle-label input {
+              opacity: 0;
+              width: 0;
+              height: 0;
+              position: absolute;
+            }
+            .hero-slider {
+              position: absolute;
+              top: 0; left: 0; right: 0; bottom: 0;
+              background-color: var(--accent);
+              border-radius: 34px;
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            }
+            .hero-knob {
+              position: absolute;
+              height: 20px;
+              width: 20px;
+              left: 4px;
+              bottom: 4px;
+              background-color: var(--primary);
+              border-radius: 50%;
+              transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            }
+            .hero-toggle-label input:checked ~ .hero-slider .hero-knob {
+              transform: translateX(24px);
+            }
+          </style>
+          <div class="pricing-billing-switch" style="display: inline-flex; align-items: center; gap: 16px; background: rgba(0,0,0,0.35); padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(201,162,39,0.3); margin-top: var(--space-lg);">
+            <span id="billing-monthly" class="hero-billing-label active">Monthly Billing</span>
+            
+            <label class="hero-toggle-label">
+              <input type="checkbox" id="pricing-toggle-checkbox">
+              <span class="hero-slider">
+                <span class="hero-knob"></span>
+              </span>
+            </label>
+            
+            <span id="billing-annual" class="hero-billing-label">
+              Annual Treasury <span class="badge badge-gold" style="font-size: 10px; margin-left: 4px; vertical-align: middle;">Save 20%</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ② TIER PRESENTATION: LUXURY ARCHITECTURAL COLUMNS
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="pricing-tiers" style="background: var(--bg-light); padding: var(--space-3xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">FLEXIBLE SCALING</div>
+          <h2 class="section-title">Transparent Institutional Pricing</h2>
+          <p class="section-subtitle">
+            Choose the enterprise configuration that aligns with your workforce expansion and treasury needs.
+          </p>
+        </div>
+
+        <style>
+          .pricing-row-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1040px;
+            margin: 0 auto;
+          }
+          .pricing-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: center;
+            background: var(--primary);
+            color: var(--secondary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl) var(--space-2xl);
+            border: 1px solid rgba(201,162,39,0.15);
+            transition: all 0.3s ease;
+            gap: 32px;
+          }
+          .pricing-row:hover {
+            border-color: var(--accent);
+            transform: scale(1.01);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+          }
+          .pricing-row.featured {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #3d3732 100%);
+            border: 2px solid var(--accent);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            position: relative;
+            transform: scale(1.02);
+            z-index: 2;
+          }
+          .pricing-row.featured:hover {
+            transform: scale(1.03);
+          }
+          .pricing-row-title-col h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+          }
+          .pricing-row-title-col p {
+            font-size: 13px;
+            color: rgba(252,250,246,0.6);
+            margin-bottom: 0;
+            line-height: 1.5;
+          }
+          .row-feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 20px;
+          }
+          .row-feature-list li {
+            font-size: 13px;
+            color: rgba(252,250,246,0.85);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          .pricing-action-col {
+            text-align: right;
+            border-left: 1px solid rgba(252,250,246,0.1);
+            padding-left: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .pricing-action-col .price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            font-family: var(--font-heading);
+            color: var(--secondary);
+            line-height: 1;
+            margin-bottom: 4px;
+          }
+          .pricing-action-col .price span {
+            font-size: 14px;
+            color: rgba(252,250,246,0.5);
+            font-weight: 400;
+          }
+          .pricing-action-col .sub-price {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 20px;
+          }
+          .featured-badge-top {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--primary);
+            padding: 4px 20px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+          }
+          @media (max-width: 992px) {
+            .pricing-row {
+              grid-template-columns: 1fr;
+              text-align: center;
+              padding: var(--space-xl);
+            }
+            .pricing-row.featured {
+              transform: scale(1);
+            }
+            .pricing-row.featured:hover {
+              transform: scale(1.01);
+            }
+            .row-feature-list {
+              grid-template-columns: 1fr;
+              text-align: left;
+              justify-content: center;
+              max-width: 400px;
+              margin: 0 auto;
+            }
+            .pricing-action-col {
+              border-left: none;
+              border-top: 1px solid rgba(252,250,246,0.1);
+              padding-left: 0;
+              padding-top: 24px;
+              text-align: center;
+            }
+          }
+          .btn-enterprise {
+            background: linear-gradient(135deg, var(--accent) 0%, #F5D565 100%);
+            color: var(--primary);
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 15px 30px rgba(201,162,39,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+          }
+          .btn-enterprise:hover {
+            background: linear-gradient(135deg, #F5D565 0%, var(--accent) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(201,162,39,0.6);
+            color: var(--primary);
+          }
+        </style>
+
+        <div class="pricing-row-container">
+          
+          <!-- Tier 1: Growth -->
+          <div class="pricing-row" data-aos="fade-up" data-aos-delay="50">
+            <div class="pricing-row-title-col">
+              <span class="badge badge-gold" style="margin-bottom: 12px; background: rgba(201,162,39,0.15); border: 1px solid rgba(201,162,39,0.4); color: #E2C050 !important; font-weight: 800;">STARTUP & SCALE</span>
+              <h3>Growth Tier</h3>
+              <p>Automated multi-state payroll & mobile self-service for fast-expanding organizations.</p>
+            </div>
+            
+            <ul class="row-feature-list">
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Unlimited Automated Pay Runs</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> 2-Day Standard ACH Deposit</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> 50-State Automated Tax Filing</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Standard GL CSV & Sync</li>
+            </ul>
+
+            <div class="pricing-action-col">
+              <div class="price">$49 <span>/mo</span></div>
+              <div class="sub-price">+ $6 / employee / mo</div>
+              <a href="404.html" class="btn btn-outline-gold btn-md btn-block btn-magnetic">
+                <span>Choose Growth</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Tier 2: Enterprise Scale (Featured) -->
+          <div class="pricing-row featured" data-aos="fade-up" data-aos-delay="100">
+            <div class="featured-badge-top">RECOMMENDED BY CFOS</div>
+            
+            <div class="pricing-row-title-col">
+              <span class="badge badge-gold" style="margin-bottom: 12px; background: rgba(201,162,39,0.15); border: 1px solid rgba(201,162,39,0.4); color: #E2C050 !important; font-weight: 800;">ENTERPRISE SCALE</span>
+              <h3>Enterprise Scale</h3>
+              <p>Complete 50-state tax indemnity, same-day ACH & dedicated licensed CPA lead.</p>
+            </div>
+            
+            <ul class="row-feature-list">
+              <li><i class="fa-solid fa-circle-check text-accent"></i> <strong>100% Tax Accuracy Guarantee</strong></li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> <strong>Same-Day Direct FedLine ACH</strong></li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Biometric Hardware Sync</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Real-Time Oracle & SAP GL Sync</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Dedicated CPA Account Architect</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Custom Union CBA Rules</li>
+            </ul>
+
+            <div class="pricing-action-col">
+              <div class="price">$149 <span>/mo</span></div>
+              <div class="sub-price">+ $9 / employee / mo</div>
+              <a href="404.html" class="btn btn-md btn-block btn-magnetic btn-enterprise">
+                <span>Choose Enterprise</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Tier 3: Flagship -->
+          <div class="pricing-row" data-aos="fade-up" data-aos-delay="150">
+            <div class="pricing-row-title-col">
+              <span class="badge badge-gold" style="margin-bottom: 12px; background: rgba(201,162,39,0.15); border: 1px solid rgba(201,162,39,0.4); color: #E2C050 !important; font-weight: 800;">MULTINATIONAL TREASURY</span>
+              <h3>Flagship Tier</h3>
+              <p>Bespoke cross-border treasury across 40+ currencies with 15-min enterprise SLA.</p>
+            </div>
+            
+            <ul class="row-feature-list">
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Global FX Treasury in 40+ Currencies</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Real-Time Instant RTP Settlement</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Dedicated Private Cloud Instance</li>
+              <li><i class="fa-solid fa-circle-check text-accent"></i> Custom API Webhook Pipelines</li>
+            </ul>
+
+            <div class="pricing-action-col">
+              <div class="price">Custom</div>
+              <div class="sub-price">Tailored Volume & SLA</div>
+              <a href="404.html" class="btn btn-outline-gold btn-md btn-block btn-magnetic">
+                <span>Contact Treasury</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ③ COMPREHENSIVE FEATURE MATRIX TABLE
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="matrix-table-section" id="pricing-matrix">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">FULL SPECIFICATION</div>
+          <h2 class="section-title" style="color: var(--secondary) !important;">Granular Feature Comparison</h2>
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.8) !important;">
+            Explore complete technical specifications across every subscription tier.
+          </p>
+        </div>
+
+        <!-- Mobile Horizontal Swipe Indicator -->
+        <div class="table-scroll-hint" data-aos="fade-up">
+          <i class="fa-solid fa-arrows-left-right text-accent"></i>
+          <span>Swipe Table Horizontally to Compare All Tiers</span>
+        </div>
+
+        <div class="matrix-table-container" data-aos="fade-up">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th style="width: 38%;">Feature & Capability</th>
+                <th style="width: 20%;">Growth</th>
+                <th class="col-highlight" style="width: 22%;">Enterprise</th>
+                <th style="width: 20%;">Flagship</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Group 1: Processing -->
+              <tr class="group-header-row">
+                <td colspan="4">
+                  <span class="group-title-sticky">1. Payroll Processing & Disbursement</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Unlimited Automated Pay Runs</td>
+                <td>Included</td>
+                <td class="col-highlight">Included</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <td>ACH Settlement Window</td>
+                <td>2-Day Standard</td>
+                <td class="col-highlight"><strong class="text-accent">Same-Day Direct ACH</strong></td>
+                <td>Instant Real-Time Payouts</td>
+              </tr>
+              <tr>
+                <td>Multi-Currency Global Disbursals</td>
+                <td>—</td>
+                <td class="col-highlight">5 Major Currencies</td>
+                <td>40+ Global Currencies</td>
+              </tr>
+
+              <!-- Group 2: Tax & Compliance -->
+              <tr class="group-header-row">
+                <td colspan="4">
+                  <span class="group-title-sticky">2. Statutory Tax Compliance & Guarantee</span>
+                </td>
+              </tr>
+              <tr>
+                <td>50-State Multi-Nexus Filing</td>
+                <td>Included</td>
+                <td class="col-highlight">Included</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <td>100% Tax Accuracy Penalty Indemnity</td>
+                <td>—</td>
+                <td class="col-highlight"><strong class="text-accent"><i class="fa-solid fa-shield-halved"></i> 100% Indemnity</strong></td>
+                <td>100% Indemnity + Custom Bond</td>
+              </tr>
+              <tr>
+                <td>Dedicated CPA Power of Attorney Representation</td>
+                <td>—</td>
+                <td class="col-highlight">Included</td>
+                <td>Executive Team Assigned</td>
+              </tr>
+
+              <!-- Group 3: Integrations & Ledger -->
+              <tr class="group-header-row">
+                <td colspan="4">
+                  <span class="group-title-sticky">3. Integrations & General Ledger</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Oracle NetSuite / SAP Dual-Entry Sync</td>
+                <td>CSV Export</td>
+                <td class="col-highlight">Real-Time API Sync</td>
+                <td>Custom Enterprise Pipe</td>
+              </tr>
+              <tr>
+                <td>Biometric Turnstile Hardware Edge Sync</td>
+                <td>—</td>
+                <td class="col-highlight">Included</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <td>Dedicated Account Manager & SLA</td>
+                <td>Standard Queue</td>
+                <td class="col-highlight">1-Hour SLA</td>
+                <td><strong>15-Min Guaranteed SLA</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ④ INTERACTIVE ROI CALCULATOR: LIVE SLIDERS + FINANCIAL VISUALS
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="roi-calc-section" id="pricing-roi" style="background: var(--primary) !important; padding: var(--space-4xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">QUANTIFIABLE VALUE</div>
+          <h2 class="section-title" style="color: var(--secondary) !important;">Simulate Your Annual Enterprise ROI</h2>
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.8) !important;">
+            See exactly how much your organization saves in manual labor hours, audit risk, and error remediation.
+          </p>
+        </div>
+
+        <style>
+          .roi-premium-dashboard {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(201,162,39,0.2);
+            border-radius: var(--radius-2xl);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            backdrop-filter: blur(20px);
+            margin-top: var(--space-2xl);
+            box-sizing: border-box;
+            width: 100%;
+          }
+          
+          .roi-slider-group { margin-bottom: 32px; }
+          .roi-slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            font-size: 15px;
+            color: rgba(252,250,246,0.95);
+            font-weight: 600;
+          }
+          .roi-val-badge {
+            background: rgba(201,162,39,0.15);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid rgba(201,162,39,0.3);
+            font-family: monospace;
+            font-weight: 700;
+          }
+          
+          /* Premium Custom Sliders */
+          .roi-range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+          }
+          .roi-range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(201,162,39,0.8);
+            border: 3px solid var(--primary);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
+          .roi-range-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+          }
+
+          .roi-output-col {
+            background: linear-gradient(135deg, rgba(201,162,39,0.08) 0%, rgba(201,162,39,0.02) 100%);
+            border: 1px solid rgba(201,162,39,0.25);
+            border-radius: var(--radius-xl);
+            padding: 36px 28px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            width: 100%;
+          }
+          
+          .roi-output-col::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+          }
+
+          .roi-output-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(252,250,246,0.65);
+            margin-bottom: 8px;
+            font-weight: 600;
+          }
+          .roi-output-number {
+            font-size: clamp(2rem, 8vw, 3.8rem);
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-shadow: 0 0 30px rgba(201,162,39,0.35);
+            font-feature-settings: "tnum";
+            word-break: normal;
+          }
+
+          .roi-submetrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          .roi-submetric-box {
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.07);
+            padding: 14px 12px;
+            border-radius: var(--radius-md);
+            box-sizing: border-box;
+            min-width: 0;
+          }
+
+          .roi-submetric-box.highlight {
+            border-color: rgba(201,162,39,0.25);
+          }
+
+          .roi-submetric-box span {
+            font-size: 11px;
+            color: rgba(252,250,246,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            display: block;
+            white-space: normal;
+            line-height: 1.3;
+          }
+
+          .roi-submetric-box strong {
+            color: var(--secondary);
+            font-size: 1.15rem;
+            display: block;
+            margin-top: 4px;
+            font-family: var(--font-heading);
+          }
+
+          .roi-submetric-box strong.text-accent {
+            color: var(--accent);
+          }
+          
+          @media (max-width: 991px) {
+            .roi-premium-dashboard {
+              grid-template-columns: 1fr;
+              gap: 28px;
+              padding: 24px 16px;
+              border-radius: var(--radius-lg);
+            }
+            .roi-output-col {
+              padding: 24px 16px;
+              border-radius: var(--radius-md);
+            }
+            .roi-output-number {
+              font-size: clamp(2rem, 8vw, 3rem);
+              margin-bottom: 20px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .roi-premium-dashboard {
+              padding: 16px 12px;
+              gap: 20px;
+            }
+            .roi-output-col {
+              padding: 20px 12px;
+            }
+            .roi-output-label {
+              font-size: 11px;
+            }
+            .roi-output-number {
+              font-size: 2.2rem;
+              margin-bottom: 16px;
+            }
+            .roi-submetrics-grid {
+              grid-template-columns: 1fr;
+              gap: 8px;
+            }
+            .roi-submetric-box {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 14px;
+            }
+            .roi-submetric-box strong {
+              margin-top: 0;
+              font-size: 1.1rem;
+            }
+            .roi-slider-group {
+              margin-bottom: 20px;
+            }
+            .roi-slider-label {
+              font-size: 13px;
+            }
+          }
+        </style>
+
+        <div class="roi-premium-dashboard" data-aos="zoom-in">
+          
+          <!-- Controls Column -->
+          <div>
+            <!-- Slider 1: Employee Count -->
+            <div class="roi-slider-group">
+              <div class="roi-slider-label">
+                <span><i class="fa-solid fa-users" style="color: var(--accent); margin-right: 8px;"></i> Total Workforce Size</span>
+                <span class="roi-val-badge" id="calcEmpDisplay">250 Staff</span>
+              </div>
+              <input type="range" class="roi-range-slider" id="calcEmployees" min="20" max="2500" step="10" value="250">
+            </div>
+
+            <!-- Slider 2: Average Hourly Wage -->
+            <div class="roi-slider-group">
+              <div class="roi-slider-label">
+                <span><i class="fa-solid fa-clock" style="color: var(--accent); margin-right: 8px;"></i> HR/Admin Avg Hourly Wage</span>
+                <span class="roi-val-badge" id="calcWageDisplay">$45/hr</span>
+              </div>
+              <input type="range" class="roi-range-slider" id="calcHourlyWage" min="25" max="150" step="5" value="45">
+            </div>
+
+            <div class="visual-frame" style="height: 120px; border-radius: var(--radius-lg); margin-top: 20px;">
+              <img src="Images/photo-1551288049-bebda4e38f71.webp" alt="Real-Time Data" loading="lazy">
+              <div class="visual-frame-overlay" style="background: linear-gradient(180deg, rgba(29,25,23,0.3) 0%, rgba(29,25,23,0.9) 100%);"></div>
+              <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; display: flex; align-items: center; gap: 12px; font-size: 11px; color: rgba(252,250,246,0.7); line-height: 1.5;">
+                <i class="fa-solid fa-microchip text-accent" style="font-size: 1.5rem;"></i> 
+                Savings calculated via proprietary AI model based on 4.2 admin hours saved per employee annually + complete elimination of tax penalty exposure.
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Output Box -->
+          <div class="roi-output-col">
+            <span class="roi-output-label">Estimated Annual Savings</span>
+            <div class="roi-output-number" id="calcSavingsResult">$74,800</div>
+            
+            <div class="roi-submetrics-grid">
+              <div class="roi-submetric-box">
+                <span>Admin Time Saved</span>
+                <strong id="calcHoursResult">966 hrs</strong>
+              </div>
+              <div class="roi-submetric-box highlight">
+                <span>Audit Shield Value</span>
+                <strong class="text-accent" id="calcErrorSavings">$31,250</strong>
+              </div>
+            </div>
+
+            <a href="404.html" class="btn btn-accent btn-md btn-block btn-magnetic" style="margin-top: 24px; padding: 12px 16px; font-size: 13px;">
+              <i class="fa-solid fa-file-pdf"></i>
+              <span>Download Detailed ROI Report</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ⑤ ENTERPRISE ASSURANCE & COMPLIANCE (SPLIT VISUAL)
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="pricing-assurance" style="background: var(--bg-light); padding: var(--space-3xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">INSTITUTIONAL GUARANTEES</div>
+          <h2 class="section-title">Zero Risk Enterprise Commitment</h2>
+          <p class="section-subtitle">
+            Every plan includes legal indemnification, sovereign encryption, and regulatory bonding.
+          </p>
+        </div>
+
+        <div class="assurance-split-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: var(--space-2xl);">
+          
+          <!-- Left Side: Editorial Image -->
+          <div class="assurance-visual-col" data-aos="fade-right">
+            <div class="visual-frame" style="border-radius: var(--radius-2xl); height: 500px; box-shadow: 0 24px 60px rgba(0,0,0,0.12);">
+              <img src="Images/photo-1554224155-8d04cb21cd6c.webp" alt="Enterprise Security Vault" loading="lazy">
+              <div class="visual-frame-overlay" style="background: linear-gradient(135deg, rgba(29,25,23,0.6) 0%, rgba(201,162,39,0.15) 100%);"></div>
+              
+              <div style="position: absolute; bottom: -20px; right: 40px; background: var(--secondary); padding: 20px 24px; border-radius: var(--radius-lg); display: flex; align-items: center; gap: 16px; border-left: 4px solid var(--accent); box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
+                <i class="fa-solid fa-shield-check" style="font-size: 2rem; color: var(--accent);"></i>
+                <div>
+                  <strong style="display: block; font-size: 14px; color: var(--primary);">Zero-Trust Architecture</strong>
+                  <span style="font-size: 11px; color: var(--primary-muted);">Continuously Monitored</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side: Clean List -->
+          <div class="assurance-content-col" data-aos="fade-left">
+            
+            <div style="display: flex; gap: 24px; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(47,42,38,0.08);">
+              <div style="width: 52px; height: 52px; background: rgba(201,162,39,0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 6px;">100% Legal Guarantee</h4>
+                <p style="font-size: 14px; color: var(--primary-muted); line-height: 1.6; margin-bottom: 0;">We assume full statutory penalty liability with airtight legal indemnification contracts.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 24px; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(47,42,38,0.08);">
+              <div style="width: 52px; height: 52px; background: rgba(201,162,39,0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 6px;">Federal Reserve NACHA</h4>
+                <p style="font-size: 14px; color: var(--primary-muted); line-height: 1.6; margin-bottom: 0;">Direct FedLine clearing with sub-second verified clearing and tracing.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 24px; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(47,42,38,0.08);">
+              <div style="width: 52px; height: 52px; background: rgba(201,162,39,0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 6px;">SOC-2 Type II Certified</h4>
+                <p style="font-size: 14px; color: var(--primary-muted); line-height: 1.6; margin-bottom: 0;">Audited continuously by third-party Big 4 accounting firms for peace of mind.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 24px;">
+              <div style="width: 52px; height: 52px; background: rgba(201,162,39,0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;">
+                <i class="fa-solid fa-file-contract"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 6px;">$5M Cyber Liability Bond</h4>
+                <p style="font-size: 14px; color: var(--primary-muted); line-height: 1.6; margin-bottom: 0;">Underwritten insurance policy actively protecting all client payroll disbursements.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <style>
+          @media (max-width: 992px) {
+            .assurance-split-layout {
+              grid-template-columns: 1fr !important;
+              gap: 40px !important;
+            }
+            .assurance-visual-col {
+              margin-bottom: 20px;
+            }
+          }
+        </style>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ⑥ PRICING FAQ ACCORDION
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="pricing-faq" style="background: var(--primary); color: var(--secondary); padding: var(--space-3xl) 0;">
+      <div class="container" style="max-width: 1000px;">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">COMMERCIAL TERMS</div>
+          <h2 class="section-title" style="color: var(--secondary) !important;">Pricing & Billing FAQs</h2>
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.8) !important;">
+            Clear terms, zero hidden line-items, and transparent billing schedules.
+          </p>
+        </div>
+
+        <style>
+          .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: var(--space-2xl);
+          }
+          @media (max-width: 768px) {
+            .faq-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+          .faq-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(201,162,39,0.15);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+          }
+          .faq-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+          }
+          .faq-card h4 {
+            color: var(--secondary);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.4;
+          }
+          .faq-card h4 i {
+            color: var(--accent);
+            margin-top: 4px;
+            font-size: 1.2rem;
+          }
+          .faq-card p {
+            color: rgba(252,250,246,0.7);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 0;
+          }
+        </style>
+
+        <div class="faq-grid" data-aos="fade-up">
+          
+          <div class="faq-card">
+            <h4><i class="fa-solid fa-clipboard-question"></i> Are there any setup or onboarding fees?</h4>
+            <p>Zero. Unlike legacy providers that charge thousands in "implementation fees" or charge per state tax registration, Stackly includes complete white-glove onboarding and multi-state nexus registrations in your base subscription.</p>
+          </div>
+
+          <div class="faq-card">
+            <h4><i class="fa-solid fa-file-invoice"></i> What about year-end W-2/1099 filing surcharges?</h4>
+            <p>None. We never charge extra for year-end filings. Legacy providers often charge $3 to $5 per W-2 or 1099 form, but all statutory reporting and filing is 100% included in your standard plan at no additional cost.</p>
+          </div>
+
+          <div class="faq-card">
+            <h4><i class="fa-solid fa-user-clock"></i> How do contractor (1099) payouts compare?</h4>
+            <p>Contractors are billed dynamically only during the months they receive an active disbursement. If a contractor is inactive for a given month, you are charged $0.00 for their profile on the platform.</p>
+          </div>
+
+          <div class="faq-card">
+            <h4><i class="fa-solid fa-calendar-check"></i> Can we switch to Annual billing?</h4>
+            <p>Yes. You can switch to annual billing at any point to unlock the 20% institutional discount. Annual treasury billing also provides access to dedicated yield rebates on tax impound balances.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ⑦ CTA BANNER WITH PANORAMIC CITYSCAPE
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="panoramic-cta-section" id="pricing-cta" style="background-image: url('Images/photo-1486406146926-c627a92ad1ab.webp');">
+      <div class="panoramic-cta-bg-overlay"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="panoramic-cta-content" data-aos="zoom-in">
+          <div class="page-hero-tag" style="background: rgba(201, 162, 39, 0.2); margin-bottom: var(--space-md); display: inline-flex;">
+            <i class="fa-solid fa-handshake text-accent"></i>
+            <span>CUSTOM VOLUME ARCHITECTURE</span>
+          </div>
+          <h2 class="panoramic-cta-title">Need a Custom Quote for 500+ Employees?</h2>
+          <p class="panoramic-cta-desc">
+            Speak directly with an Stackly Enterprise Account Executive for custom tiering, dedicated clearing rails, and custom ERP integration SLAs.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <a href="404.html" class="btn btn-accent btn-lg btn-magnetic">
+              <i class="fa-solid fa-headset"></i>
+              <span>Speak with Enterprise Sales</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SOVEREIGN ENTERPRISE MASTER LEDGER FOOTER
+       ══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--secondary);">
+            <div class="brand-icon-mark">
+              <div class="brand-logo-img"></div>
+            </div>
+          </a>
+          <p>
+            Award-winning enterprise payroll automation, multi-jurisdiction tax defense, and sovereign workforce treasury infrastructure engineered for finance leaders.
+          </p>
+          <div class="compliance-badges">
+            <div class="compliance-badge"><i class="fa-solid fa-shield-halved"></i> SOC-2 Type II</div>
+            <div class="compliance-badge"><i class="fa-solid fa-lock"></i> ISO 27001</div>
+            <div class="compliance-badge"><i class="fa-solid fa-globe"></i> GDPR Compliant</div>
+            <div class="compliance-badge"><i class="fa-solid fa-building-columns"></i> IRS Registered</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-nav-list">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+            <li><a href="platform.html"><i class="fa-solid fa-chevron-right"></i> Platform</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Pricing</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Architecture & Trust</div>
+          <ul class="footer-nav-list">
+            <li><a href="platform.html"><i class="fa-solid fa-chevron-right"></i> 7-Pillar Defense System</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Continuous Transit Pipeline</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Real-Time ROI Engine</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Transparent Pricing Matrix</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Statutory Knowledge & FAQ</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> VIP Priority Scheduling</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-intel-column">
+          <div class="footer-col-title">Executive Briefing</div>
+          <p style="font-size: var(--text-xs); color: rgba(252, 250, 246, 0.75); line-height: 1.5; margin-bottom: var(--space-xs);">
+            Subscribe to quarterly CFO payroll analysis, tax law amendments, and workforce treasury reports.
+          </p>
+          <form class="footer-newsletter-form" id="newsletter-form">
+            <div class="newsletter-input-wrap">
+              <input type="email" class="newsletter-input" placeholder="cfo@enterprise.com" required aria-label="Corporate Email Address">
+              <button type="submit" class="newsletter-submit-btn">Subscribe</button>
+            </div>
+          </form>
+          <div class="footer-network-status">
+            <div class="status-node-indicator">
+              <span class="status-live-beacon"></span>
+              <span class="status-node-text">FedLine ACH Gateway: <strong>Operational (99.999% SLA)</strong></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; 2026 Stackly Payroll Services Inc. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <a href="404.html">Privacy Shield</a>
+          <span>&bull;</span>
+          <a href="404.html">Terms of Service</a>
+          <span>&bull;</span>
+          <a href="404.html">Security Disclosure</a>
+          <span>&bull;</span>
+          <a href="404.html">IRS Indemnity Policy</a>
+        </div>
+        <div class="footer-social-links">
+          <a href="#" class="social-icon-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-icon-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="js/animations.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

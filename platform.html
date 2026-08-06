@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Financial Platform & Automation | Stackly Payroll</title>
+  <meta name="description" content="Discover Stackly's enterprise platform: real-time financial telemetry, autonomous gross-to-net engines, radial SOC-2 security, bento grid modules, and ERP integrations.">
+  <!-- Google Fonts: Inter & Outfit + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS & Swiper CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Core Design Tokens & Styles -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body class="page-platform">
+
+  <!-- Top Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STICKY LUXURY GLASS HEADER
+       ══════════════════════════════════════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      
+      <a href="index.html" class="brand-logo" aria-label="Stackly Payroll Home">
+        <div class="brand-icon-mark">
+          <div class="brand-logo-img"></div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (5 Items Only) -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="platform.html" class="nav-link active">Platform</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-accent btn-md btn-magnetic header-cta-btn">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Login</span>
+        </a>
+
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Drawer" aria-expanded="false">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="brand-logo" aria-label="Stackly Payroll Home">
+        <div class="brand-icon-mark">
+          <div class="brand-logo-img"></div>
+        </div>
+      </a>
+      <button class="mobile-drawer-close-btn" id="mobileDrawerClose" aria-label="Close Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-nav-scroll-area">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">01</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-house"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Home</span>
+              <span class="mobile-nav-subtitle">Enterprise Overview</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="services.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">02</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-cubes"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Services</span>
+              <span class="mobile-nav-subtitle">Architectural Workbench</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="platform.html" class="mobile-nav-card active">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">03</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Platform</span>
+              <span class="mobile-nav-subtitle">Smart Features & Pipeline</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="pricing.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">04</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-calculator"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Pricing</span>
+              <span class="mobile-nav-subtitle">Comparative Matrix & ROI</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+
+        <a href="contact.html" class="mobile-nav-card">
+          <div class="mobile-nav-card-left">
+            <span class="mobile-nav-index">05</span>
+            <div class="mobile-nav-icon"><i class="fa-solid fa-headset"></i></div>
+            <div class="mobile-nav-meta">
+              <span class="mobile-nav-title">Contact</span>
+              <span class="mobile-nav-subtitle">VIP Consultation & 24/7 SLA</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long mobile-nav-arrow"></i>
+        </a>
+      </div>
+
+      <!-- Drawer Footer Action -->
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="btn btn-primary btn-md" style="width: 100%; justify-content: center;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Login</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ══════════════════════════════════════════════════════════════
+         ① PLATFORM HERO: COCKPIT SHELL + TELEMETRY VISUALS
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="page-hero" id="platform-hero">
+      <div class="container">
+        
+        <div class="section-header text-center" style="margin-bottom: var(--space-xl);" data-aos="fade-up">
+          <div class="page-hero-tag">
+            <i class="fa-solid fa-microchip text-accent"></i>
+            <span>ENTERPRISE COCKPIT // CLOUD WORKFORCE TELEMETRY</span>
+          </div>
+          <h1 class="page-hero-title" style="max-width: 860px; margin-left: auto; margin-right: auto;">
+            The Financial Operating System for <span class="text-accent">Autonomous Payroll</span>.
+          </h1>
+          <p class="page-hero-desc" style="margin-left: auto; margin-right: auto;">
+            A high-concurrency cloud control plane engineered for CFOs, controllers, and enterprise payroll leaders. Stream live pay runs, monitor 50-state tax nexus, and audit GL journals in real time.
+          </p>
+        </div>
+
+        <!-- Panoramic Interactive Cockpit Shell -->
+        <div class="platform-cockpit-stage" data-aos="fade-up" data-aos-delay="100">
+          
+          <!-- Cockpit Top Header Strip & Module Switcher -->
+          <div class="cockpit-header-strip">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="live-pulse-dot" style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent);"></span>
+              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--secondary);">CONTROL_PLANE // ACTIVE TELEMETRY</span>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="cockpit-tabs-nav">
+              <button class="cockpit-tab-btn active" data-cockpit-tab="tab-payroll">
+                <i class="fa-solid fa-money-check-dollar"></i>
+                <span>Disbursal Feed</span>
+              </button>
+              <button class="cockpit-tab-btn" data-cockpit-tab="tab-tax">
+                <i class="fa-solid fa-landmark"></i>
+                <span>Tax Nexus Radar</span>
+              </button>
+              <button class="cockpit-tab-btn" data-cockpit-tab="tab-attendance">
+                <i class="fa-solid fa-fingerprint"></i>
+                <span>Biometric Edge</span>
+              </button>
+              <button class="cockpit-tab-btn" data-cockpit-tab="tab-gl">
+                <i class="fa-solid fa-book"></i>
+                <span>ERP Ledger Post</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 1: DISBURSAL FEED (DEFAULT ACTIVE) -->
+          <div class="cockpit-view-screen" data-screen-id="tab-payroll">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;">
+              <div style="background: rgba(0,0,0,0.35); padding: 16px; border-radius: var(--radius-md); border: 1px solid rgba(201,162,39,0.2);">
+                <span style="font-size: 11px; color: rgba(252,250,246,0.6); text-transform: uppercase;">Total Batch Disbursal</span>
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--secondary); font-family: var(--font-heading);">$2,485,600.00</div>
+                <span style="font-size: 11px; color: var(--accent);">1,248 Staff &bull; 100% Cleared</span>
+              </div>
+              <div style="background: rgba(0,0,0,0.35); padding: 16px; border-radius: var(--radius-md); border: 1px solid rgba(201,162,39,0.2);">
+                <span style="font-size: 11px; color: rgba(252,250,246,0.6); text-transform: uppercase;">FICA & Statutory Tax Remitted</span>
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--secondary); font-family: var(--font-heading);">$412,850.20</div>
+                <span style="font-size: 11px; color: #4caf50;">IRS EFTPS Validated</span>
+              </div>
+              <div style="background: rgba(0,0,0,0.35); padding: 16px; border-radius: var(--radius-md); border: 1px solid rgba(201,162,39,0.2);">
+                <span style="font-size: 11px; color: rgba(252,250,246,0.6); text-transform: uppercase;">Average Clearing Latency</span>
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--secondary); font-family: var(--font-heading);">14.2 ms</div>
+                <span style="font-size: 11px; color: var(--accent);">NACHA Tier-1 Channel</span>
+              </div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 16px; border: 1px solid rgba(252,250,246,0.08); font-family: var(--font-mono); font-size: 12px;">
+              <div style="color: var(--accent); margin-bottom: 8px;">// LIVE FEDLINE NACHA DISPATCH LOG (REAL-TIME STREAM)</div>
+              <div style="color: rgba(252,250,246,0.8); line-height: 1.6;">
+                [11:42:01.042] ACH_BATCH_8920 &bull; SEC_CODE: PPD &bull; COUNT: 850 &bull; TOTAL: $1,684,200.00 &bull; STATUS: <span style="color:#4caf50;">CLEARED_FEDLINE</span><br>
+                [11:42:01.189] ACH_BATCH_8921 &bull; SEC_CODE: CCD &bull; COUNT: 398 &bull; TOTAL: $801,400.00 &bull; STATUS: <span style="color:#4caf50;">CLEARED_FEDLINE</span><br>
+                [11:42:01.310] GL_JOURNAL_POST &bull; NETSUITE_SYNC &bull; DEBIT: $2,485,600.00 &bull; CREDIT: $2,485,600.00 &bull; STATUS: <span style="color:var(--accent);">RECONCILED</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: TAX NEXUS RADAR -->
+          <div class="cockpit-view-screen" data-screen-id="tab-tax" style="display: none;">
+            <div style="background: rgba(0,0,0,0.35); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(201,162,39,0.2); margin-bottom: 16px;">
+              <h4 style="color: var(--secondary); margin-bottom: 6px;">50-State Multi-Nexus Statutory Radar</h4>
+              <p style="font-size: 13px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 16px;">
+                Continuous geo-nexus arbitration across 4,800+ taxing jurisdictions. Automatic municipal reciprocity calculations for remote workforces.
+              </p>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 4px;">
+                  <span style="color: var(--accent); font-weight: 700;">CA (EDD / SDI)</span>: <span style="color:#4caf50;">Filed & Impounded</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 4px;">
+                  <span style="color: var(--accent); font-weight: 700;">NY (MCTMT / SUI)</span>: <span style="color:#4caf50;">Filed & Impounded</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 4px;">
+                  <span style="color: var(--accent); font-weight: 700;">TX (TWC / $0 State)</span>: <span style="color:#4caf50;">Filed & Impounded</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 4px;">
+                  <span style="color: var(--accent); font-weight: 700;">WA (PFML / Cares)</span>: <span style="color:#4caf50;">Filed & Impounded</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: BIOMETRIC EDGE ATTENDANCE -->
+          <div class="cockpit-view-screen" data-screen-id="tab-attendance" style="display: none;">
+            <div style="background: rgba(0,0,0,0.35); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(201,162,39,0.2);">
+              <h4 style="color: var(--secondary); margin-bottom: 6px;">Biometric Edge Hardware & Shift Engine</h4>
+              <p style="font-size: 13px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 16px;">
+                Real-time terminal pulse telemetry across 48 corporate turnstiles and GPS geofence mobile check-ins.
+              </p>
+              <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <div class="badge badge-gold"><i class="fa-solid fa-circle-check"></i> SF HQ Turnstile: 480 Active Punches</div>
+                <div class="badge badge-gold"><i class="fa-solid fa-circle-check"></i> NY Floor 14 Terminal: 312 Active Punches</div>
+                <div class="badge badge-gold"><i class="fa-solid fa-circle-check"></i> Austin Tech Hub: 216 Active Punches</div>
+                <div class="badge badge-gold"><i class="fa-solid fa-circle-check"></i> Mobile GPS Geofence: 240 Verified Check-ins</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: GENERAL LEDGER SYNC -->
+          <div class="cockpit-view-screen" data-screen-id="tab-gl" style="display: none;">
+            <div style="background: rgba(0,0,0,0.35); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(201,162,39,0.2);">
+              <h4 style="color: var(--secondary); margin-bottom: 6px;">Automated ERP General Ledger Journal Balancing</h4>
+              <p style="font-size: 13px; color: rgba(252,250,246,0.7); line-height: 1.5; margin-bottom: 16px;">
+                Dual-entry journal posting with departmental dimension allocations (Engineering, Sales, G&A, Operations).
+              </p>
+              <div style="font-family: var(--font-mono); font-size: 11px; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 4px; color: rgba(252,250,246,0.85);">
+                DEBIT: 6010-001 Executive Wages ...................... $485,000.00<br>
+                DEBIT: 6010-002 Engineering R&D Salaries ............. $1,250,600.00<br>
+                DEBIT: 6020-001 Employer FICA Match .................. $124,500.00<br>
+                CREDIT: 2010-000 Direct Deposit Clearing ............. $1,447,250.00<br>
+                CREDIT: 2020-000 Federal Tax Withholding ............. $412,850.00<br>
+                STATUS: <span style="color:#4caf50;">BALANCED (VARIANCE $0.0000) &bull; POSTED TO ORACLE NETSUITE</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ③ PLATFORM MODULES: ASYMMETRIC BENTO GRID WITH INTEGRATED VISUALS
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="platform-modules" style="background: var(--bg-light); padding: var(--space-3xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">MODULAR ARCHITECTURE</div>
+          <h2 class="section-title">The Stackly Enterprise Suite</h2>
+          <p class="section-subtitle">
+            Six interconnected financial infrastructure engines working collaboratively in real time.
+          </p>
+        </div>
+
+        <div class="platform-bento-grid">
+          
+          <!-- Module 1: Unified Autonomous Payroll (Span 2) with Graphic Mockup -->
+          <div class="bento-cell bento-span-2" data-aos="fade-up" style="position: relative; overflow: hidden;">
+            <div style="position: relative; z-index: 2;">
+              <div class="bento-icon-tag"><i class="fa-solid fa-coins"></i></div>
+              <h3 class="bento-title">Autonomous Gross-to-Net Engine</h3>
+              <p class="bento-desc">
+                Continuous background pay runs that recalculate employee earnings the moment timecard punches, salary adjustments, or 401(k) percentage changes occur. Zero manual batch processing.
+              </p>
+            </div>
+            
+            <div class="visual-frame" style="height: 140px; margin: 12px 0; border-radius: var(--radius-sm);">
+              <img src="Images/photo-1551288049-bebda4e38f71.webp" alt="Gross to Net Calculation Telemetry" loading="lazy">
+              <div class="visual-frame-overlay" style="background: linear-gradient(180deg, rgba(29,25,23,0.2) 0%, rgba(29,25,23,0.85) 100%);"></div>
+              <div class="floating-glass-badge bottom-left" style="font-size: 10px;">
+                <i class="fa-solid fa-bolt text-accent"></i> 14ms Clearing &bull; Same-Day FedLine ACH
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 2: Biometric Time Radar with Terminal Photo -->
+          <div class="bento-cell" data-aos="fade-up" data-aos-delay="100">
+            <div>
+              <div class="bento-icon-tag"><i class="fa-solid fa-fingerprint"></i></div>
+              <h3 class="bento-title">Biometric Edge Radar</h3>
+              <p class="bento-desc">
+                Turnkey integration with optical biometric turnstiles and GPS geofence mobile check-ins with anti-spoofing algorithms.
+              </p>
+            </div>
+            <div class="visual-frame" style="height: 110px; margin: 10px 0; border-radius: var(--radius-sm);">
+              <img src="Images/photo-1563986768609-322da13575f3.webp" alt="Biometric Edge Security" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+            </div>
+            <span class="badge badge-gold">Sub-Second Sync</span>
+          </div>
+
+          <!-- Module 3: Statutory Tax Vault (Span 2) with Compliance Visual -->
+          <div class="bento-cell bento-span-2" data-aos="fade-up" data-aos-delay="150">
+            <div>
+              <div class="bento-icon-tag"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3 class="bento-title">50-State Multi-Nexus Statutory Shield</h3>
+              <p class="bento-desc">
+                Automatic filing, impounding, and remittance for federal 941, state unemployment, and local municipal taxes backed by our 100% legal indemnity guarantee and CPA representation.
+              </p>
+            </div>
+            
+            <div class="visual-frame" style="height: 140px; margin: 12px 0; border-radius: var(--radius-sm);">
+              <img src="Images/photo-1450133064473-71024230f91b.webp" alt="Statutory Tax Shield Ledger" loading="lazy">
+              <div class="visual-frame-overlay" style="background: linear-gradient(180deg, rgba(29,25,23,0.2) 0%, rgba(29,25,23,0.85) 100%);"></div>
+              <div class="floating-glass-badge bottom-left" style="font-size: 10px;">
+                <i class="fa-solid fa-shield-check text-accent"></i> 100% Statutory Penalty Indemnity
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="badge badge-gold">100% Legal Indemnity</span>
+              <span class="badge badge-gold">IRS Power of Attorney</span>
+              <span class="badge badge-gold">Zero Penalty Warranty</span>
+            </div>
+          </div>
+
+          <!-- Module 4: Predictive Labor AI -->
+          <div class="bento-cell" data-aos="fade-up" data-aos-delay="200">
+            <div>
+              <div class="bento-icon-tag"><i class="fa-solid fa-chart-line"></i></div>
+              <h3 class="bento-title">Predictive Labor AI</h3>
+              <p class="bento-desc">
+                Machine learning models that forecast overtime surge costs, shift shortages, and department budget runaways 3 weeks before month-end.
+              </p>
+            </div>
+            <div class="visual-frame" style="height: 110px; margin: 10px 0; border-radius: var(--radius-sm);">
+              <img src="Images/photo-1504868584819-f8e8b4b6d7e3.webp" alt="Predictive Labor Forecasting" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+            </div>
+            <span class="badge badge-gold">94.8% Forecast Accuracy</span>
+          </div>
+
+          <!-- Module 5: Executive Board Reports -->
+          <div class="bento-cell" data-aos="fade-up" data-aos-delay="250">
+            <div>
+              <div class="bento-icon-tag"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+              <h3 class="bento-title">Audit-Grade Board Reports</h3>
+              <p class="bento-desc">
+                One-click board decks, department cost-center heatmaps, and SOX Section 404 audit packs with cryptographic tamper-proof signatures.
+              </p>
+            </div>
+            <div class="visual-frame" style="height: 110px; margin: 10px 0; border-radius: var(--radius-sm);">
+              <img src="Images/photo-1460925895917-afdab827c52f.webp" alt="Board Decks & Financial Reports" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+            </div>
+            <span class="badge badge-gold">SOX 404 Compliant</span>
+          </div>
+
+          <!-- Module 6: Open REST & GraphQL API -->
+          <div class="bento-cell" data-aos="fade-up" data-aos-delay="300">
+            <div>
+              <div class="bento-icon-tag"><i class="fa-solid fa-code"></i></div>
+              <h3 class="bento-title">Open Developer API</h3>
+              <p class="bento-desc">
+                RESTful and Webhook endpoints enabling enterprise engineering teams to programmatically trigger off-cycle pay runs, query YTD balances, and provision employees.
+              </p>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 10px; color: var(--accent); margin: 10px 0;">
+              POST /v1/disbursals/instant<br>
+              Host: api.stacklypay.com<br>
+              Authorization: Bearer sec_live_...
+            </div>
+            <span class="badge badge-gold">OAuth2 & Webhooks</span>
+          </div>
+
+          <!-- Module 7: Global Treasury Core -->
+          <div class="bento-cell" data-aos="fade-up" data-aos-delay="350">
+            <div>
+              <div class="bento-icon-tag"><i class="fa-solid fa-globe"></i></div>
+              <h3 class="bento-title">Global Treasury Core</h3>
+              <p class="bento-desc">
+                Native integration with major global banks to fund international payroll seamlessly without third-party wallet risk or excessive FX spread fees.
+              </p>
+            </div>
+            <div class="visual-frame" style="height: 110px; margin: 10px 0; border-radius: var(--radius-sm);">
+              <img src="Images/photo-1551288049-bebda4e38f71.webp" alt="Global Treasury Dashboard" loading="lazy">
+              <div class="visual-frame-overlay"></div>
+            </div>
+            <span class="badge badge-gold">42+ Local Currencies</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ④ SMART AUTOMATION: HORIZONTAL TRANSIT PIPELINE + INFOGRAPHIC
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="platform-automation" style="background: var(--primary); color: var(--secondary); padding: var(--space-3xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">AUTONOMOUS TRANSIT</div>
+          <h2 class="section-title" style="color: var(--secondary) !important;">Smart Automation Pipeline</h2>
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.8) !important;">
+            How data travels seamlessly without manual spreadsheets, CSV uploads, or batch windows.
+          </p>
+        </div>
+
+        <style>
+          .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-top: var(--space-2xl);
+            position: relative;
+          }
+          @media (max-width: 992px) {
+            .pipeline-grid {
+              grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            }
+          }
+          .pipeline-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl) var(--space-md);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            text-align: center;
+            backdrop-filter: blur(12px);
+          }
+          .pipeline-card:hover {
+            background: rgba(201, 162, 39, 0.05);
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 25px rgba(201, 162, 39, 0.25);
+          }
+          .pipeline-step-number {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent), #e0b838);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 15px rgba(201, 162, 39, 0.4);
+            position: relative;
+            z-index: 2;
+          }
+          .pipeline-connector {
+            position: absolute;
+            top: 54px;
+            right: -20px;
+            width: 20px;
+            height: 2px;
+            background: rgba(201, 162, 39, 0.3);
+            z-index: 1;
+          }
+          .pipeline-connector::after {
+            content: '\f054'; /* fa-chevron-right */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -8px;
+            top: -7px;
+            color: var(--accent);
+            font-size: 14px;
+          }
+          @media (max-width: 992px) {
+            .pipeline-connector {
+              display: none;
+            }
+          }
+          .pipeline-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: block;
+            opacity: 0.9;
+          }
+        </style>
+
+        <div class="pipeline-grid">
+          
+          <!-- Step 1 -->
+          <div class="pipeline-card" data-aos="fade-up" data-aos-delay="50">
+            <div class="pipeline-step-number">01</div>
+            <div class="pipeline-connector"></div>
+            <i class="fa-solid fa-cloud-arrow-down pipeline-icon"></i>
+            <h4 style="font-size: 1.1rem; color: var(--secondary); margin: 8px 0;">Continuous Sync</h4>
+            <p style="font-size: 13px; color: rgba(252,250,246,0.7); line-height: 1.5;">Pulls raw shift timestamps over encrypted websocket edge connections.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="pipeline-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="pipeline-step-number">02</div>
+            <div class="pipeline-connector"></div>
+            <i class="fa-solid fa-calculator pipeline-icon"></i>
+            <h4 style="font-size: 1.1rem; color: var(--secondary); margin: 8px 0;">Instant Gross-to-Net</h4>
+            <p style="font-size: 13px; color: rgba(252,250,246,0.7); line-height: 1.5;">Evaluates 4,800+ tax formulas, garnishments, and pre-tax deductions.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="pipeline-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="pipeline-step-number">03</div>
+            <div class="pipeline-connector"></div>
+            <i class="fa-solid fa-user-shield pipeline-icon"></i>
+            <h4 style="font-size: 1.1rem; color: var(--secondary); margin: 8px 0;">Anomaly Inspection</h4>
+            <p style="font-size: 13px; color: rgba(252,250,246,0.7); line-height: 1.5;">Statistical machine learning flags ghost employees or wage outliers.</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="pipeline-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="pipeline-step-number">04</div>
+            <div class="pipeline-connector"></div>
+            <i class="fa-solid fa-paper-plane pipeline-icon"></i>
+            <h4 style="font-size: 1.1rem; color: var(--secondary); margin: 8px 0;">FedLine ACH Wire</h4>
+            <p style="font-size: 13px; color: rgba(252,250,246,0.7); line-height: 1.5;">Transmits encrypted settlement batches directly to Federal Reserve rails.</p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="pipeline-card" data-aos="fade-up" data-aos-delay="250">
+            <div class="pipeline-step-number">05</div>
+            <i class="fa-solid fa-file-invoice-dollar pipeline-icon"></i>
+            <h4 style="font-size: 1.1rem; color: var(--secondary); margin: 8px 0;">ERP Ledger Post</h4>
+            <p style="font-size: 13px; color: rgba(252,250,246,0.7); line-height: 1.5;">Auto-reconciles journal entries across NetSuite, SAP, or Workday without human touch.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ⑤ SECURITY & COMPLIANCE: RADIAL RADAR DEFENSE MATRIX
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="security-radial-section" id="platform-security">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">BANK-GRADE DEFENSE MATRIX</div>
+          <h2 class="section-title" style="color: var(--secondary) !important;">Institutional Security Architecture</h2>
+          <p class="section-subtitle" style="color: rgba(252,250,246,0.8) !important;">
+            Concentric defense rings safeguarding sensitive workforce identities, SSNs, and banking rails.
+          </p>
+        </div>
+
+        <div class="radial-radar-wrapper" data-aos="zoom-in">
+          <!-- Concentric Orbiting Rings -->
+          <div class="radar-ring radar-ring-1"></div>
+          <div class="radar-ring radar-ring-2"></div>
+          <div class="radar-ring radar-ring-3"></div>
+
+          <!-- Central Core Hub -->
+          <div class="radar-core-hub">
+            <i class="fa-solid fa-shield-halved"></i>
+            <strong>SOC-2 TYPE II</strong>
+            <span style="font-size: 9px;">AUDIT CORE</span>
+          </div>
+
+          <!-- Satellite Nodes (North, South, East, West) -->
+          <div class="radar-satellite-node rsn-top">
+            <i class="fa-solid fa-lock text-accent"></i>
+            <div style="font-weight: 700; color: var(--secondary); margin-top: 2px;">AES-256 GCM</div>
+            <div style="color: rgba(252,250,246,0.6); font-size: 10px;">At-Rest & In-Flight</div>
+          </div>
+
+          <div class="radar-satellite-node rsn-bottom">
+            <i class="fa-solid fa-fingerprint text-accent"></i>
+            <div style="font-weight: 700; color: var(--secondary); margin-top: 2px;">FIDO2 / WebAuthn</div>
+            <div style="color: rgba(252,250,246,0.6); font-size: 10px;">Hardware Key MFA</div>
+          </div>
+
+          <div class="radar-satellite-node rsn-left">
+            <i class="fa-solid fa-building-columns text-accent"></i>
+            <div style="font-weight: 700; color: var(--secondary); margin-top: 2px;">NACHA Tier-1</div>
+            <div style="color: rgba(252,250,246,0.6); font-size: 10px;">FedLine Member</div>
+          </div>
+
+          <div class="radar-satellite-node rsn-right">
+            <i class="fa-solid fa-file-shield text-accent"></i>
+            <div style="font-weight: 700; color: var(--secondary); margin-top: 2px;">ISO 27001</div>
+            <div style="color: rgba(252,250,246,0.6); font-size: 10px;">GDPR & HIPAA Shield</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ⑥ ANALYTICS & EXECUTIVE BOARD TELEMETRY: SPLIT VISUAL
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="platform-analytics" style="background: var(--bg-light); padding: var(--space-3xl) 0;">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">EXECUTIVE TELEMETRY</div>
+          <h2 class="section-title">Deep Financial Workforce Analytics</h2>
+          <p class="section-subtitle">
+            Uncover overtime anomalies, department labor allocations, and projected payroll run rates.
+          </p>
+        </div>
+
+        <div class="analytics-split-layout">
+          
+          <!-- Left: Department Breakdown -->
+          <div class="analytics-cost-card" data-aos="fade-right">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <h3 style="font-size: 1.4rem; color: var(--secondary); margin-bottom: 4px;">Cost-Center Allocation</h3>
+                <span style="font-size: 12px; color: rgba(252,250,246,0.7);">October 2026 Pay Run Cycle &bull; Reconciled</span>
+              </div>
+              <span class="badge badge-gold">Variance $0.00</span>
+            </div>
+
+            <!-- Department Breakdown Bars -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; flex-wrap: wrap; gap: 4px;">
+                  <span>Engineering & R&D (48.2%)</span>
+                  <strong class="text-accent">$1,198,000.00</strong>
+                </div>
+                <div style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                  <div style="width: 48.2%; height: 100%; background: var(--accent);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; flex-wrap: wrap; gap: 4px;">
+                  <span>Sales & Global Go-to-Market (28.4%)</span>
+                  <strong class="text-accent">$705,900.00</strong>
+                </div>
+                <div style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                  <div style="width: 28.4%; height: 100%; background: #e0b838;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; flex-wrap: wrap; gap: 4px;">
+                  <span>Operations & Customer Success (14.6%)</span>
+                  <strong class="text-accent">$362,900.00</strong>
+                </div>
+                <div style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                  <div style="width: 14.6%; height: 100%; background: #b89220;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; flex-wrap: wrap; gap: 4px;">
+                  <span>General & Administrative (8.8%)</span>
+                  <strong class="text-accent">$218,800.00</strong>
+                </div>
+                <div style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                  <div style="width: 8.8%; height: 100%; background: #8a6c14;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Visual Analytics Board Preview -->
+          <div class="visual-frame" style="min-height: 280px;" data-aos="fade-left">
+            <img src="Images/photo-1551836022-d5d88e9218df.webp" alt="Executive Analytics Review Board" loading="lazy">
+            <div class="visual-frame-overlay" style="background: linear-gradient(180deg, rgba(29,25,23,0.2) 0%, rgba(29,25,23,0.9) 100%);"></div>
+            <div class="floating-glass-badge top-right">
+              <i class="fa-solid fa-brain text-accent"></i>
+              <span>Predictive Labor Engine Active</span>
+            </div>
+            <div class="floating-glass-badge bottom-left">
+              <span style="font-size: 13px; font-weight: 700; color: var(--secondary);">Real-Time Controller Intelligence Stream</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ⑦ INTEGRATIONS: DUAL INFINITE LOGO MARQUEE
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="infinite-marquee-section" id="platform-integrations">
+      <div class="container">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+          <div class="section-tag-gold">ECOSYSTEM & ERP CONNECTIVITY</div>
+          <h2 class="section-title">Native Enterprise Connectors</h2>
+          <p class="section-subtitle">
+            Plug-and-play bi-directional synchronization with your existing HRIS, General Ledger, and identity providers.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Marquee Track Row 1 -->
+      <div class="marquee-track">
+        <div class="marquee-pill"><i class="fa-solid fa-building-columns"></i> Oracle NetSuite</div>
+        <div class="marquee-pill"><i class="fa-solid fa-cubes"></i> SAP S/4HANA</div>
+        <div class="marquee-pill"><i class="fa-solid fa-users"></i> Workday Financials</div>
+        <div class="marquee-pill"><i class="fa-solid fa-bolt"></i> QuickBooks Enterprise</div>
+        <div class="marquee-pill"><i class="fa-solid fa-tree"></i> BambooHR</div>
+        <div class="marquee-pill"><i class="fa-solid fa-shield-halved"></i> Okta Identity</div>
+        <div class="marquee-pill"><i class="fa-brands fa-microsoft"></i> Microsoft Entra ID</div>
+        <div class="marquee-pill"><i class="fa-solid fa-calculator"></i> Xero Enterprise</div>
+        <!-- Duplicated for smooth infinite loop -->
+        <div class="marquee-pill"><i class="fa-solid fa-building-columns"></i> Oracle NetSuite</div>
+        <div class="marquee-pill"><i class="fa-solid fa-cubes"></i> SAP S/4HANA</div>
+        <div class="marquee-pill"><i class="fa-solid fa-users"></i> Workday Financials</div>
+        <div class="marquee-pill"><i class="fa-solid fa-bolt"></i> QuickBooks Enterprise</div>
+        <div class="marquee-pill"><i class="fa-solid fa-tree"></i> BambooHR</div>
+        <div class="marquee-pill"><i class="fa-solid fa-shield-halved"></i> Okta Identity</div>
+        <div class="marquee-pill"><i class="fa-brands fa-microsoft"></i> Microsoft Entra ID</div>
+        <div class="marquee-pill"><i class="fa-solid fa-calculator"></i> Xero Enterprise</div>
+      </div>
+
+      <!-- Marquee Track Row 2 (Reverse) -->
+      <div class="marquee-track reverse">
+        <div class="marquee-pill"><i class="fa-brands fa-slack"></i> Slack Real-Time Bot</div>
+        <div class="marquee-pill"><i class="fa-brands fa-stripe"></i> Stripe Treasury</div>
+        <div class="marquee-pill"><i class="fa-solid fa-clock"></i> ZKTeco Biometrics</div>
+        <div class="marquee-pill"><i class="fa-solid fa-fingerprint"></i> Suprema BioStar</div>
+        <div class="marquee-pill"><i class="fa-solid fa-id-card"></i> HID Global Access</div>
+        <div class="marquee-pill"><i class="fa-solid fa-chart-pie"></i> PowerBI Dashboards</div>
+        <div class="marquee-pill"><i class="fa-solid fa-table"></i> Tableau Server</div>
+        <!-- Duplicated -->
+        <div class="marquee-pill"><i class="fa-brands fa-slack"></i> Slack Real-Time Bot</div>
+        <div class="marquee-pill"><i class="fa-brands fa-stripe"></i> Stripe Treasury</div>
+        <div class="marquee-pill"><i class="fa-solid fa-clock"></i> ZKTeco Biometrics</div>
+        <div class="marquee-pill"><i class="fa-solid fa-fingerprint"></i> Suprema BioStar</div>
+        <div class="marquee-pill"><i class="fa-solid fa-id-card"></i> HID Global Access</div>
+        <div class="marquee-pill"><i class="fa-solid fa-chart-pie"></i> PowerBI Dashboards</div>
+        <div class="marquee-pill"><i class="fa-solid fa-table"></i> Tableau Server</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         ⑧ CTA: FULL WIDTH SOVEREIGN BANNER WITH INFRASTRUCTURE BACKDROP
+         ══════════════════════════════════════════════════════════════ -->
+    <section class="panoramic-cta-section" id="platform-cta" style="background-image: url('Images/photo-1486406146926-c627a92ad1ab.webp');">
+      <div class="panoramic-cta-bg-overlay"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="panoramic-cta-content" data-aos="zoom-in">
+          <div class="page-hero-tag" style="background: rgba(201, 162, 39, 0.2); margin-bottom: var(--space-md); display: inline-flex;">
+            <i class="fa-solid fa-terminal text-accent"></i>
+            <span>SANDBOX ACCESS AVAILABLE</span>
+          </div>
+          <h2 class="panoramic-cta-title">Test Drive the Stackly Control Plane</h2>
+          <p class="panoramic-cta-desc">
+            Experience 14ms clearing speeds, automated GL journal generation, and 50-state tax arbitration with live synthetic test data.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <a href="404.html" class="btn btn-accent btn-lg btn-magnetic">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Launch 14-Day Enterprise Sandbox</span>
+            </a>
+            <a href="404.html" class="btn btn-outline-gold btn-lg btn-magnetic">
+              <i class="fa-solid fa-calculator"></i>
+              <span>View Transparent Pricing</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SOVEREIGN ENTERPRISE MASTER LEDGER FOOTER
+       ══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--secondary);">
+            <div class="brand-icon-mark">
+              <div class="brand-logo-img"></div>
+            </div>
+          </a>
+          <p>
+            Award-winning enterprise payroll automation, multi-jurisdiction tax defense, and sovereign workforce treasury infrastructure engineered for finance leaders.
+          </p>
+          <div class="compliance-badges">
+            <div class="compliance-badge"><i class="fa-solid fa-shield-halved"></i> SOC-2 Type II</div>
+            <div class="compliance-badge"><i class="fa-solid fa-lock"></i> ISO 27001</div>
+            <div class="compliance-badge"><i class="fa-solid fa-globe"></i> GDPR Compliant</div>
+            <div class="compliance-badge"><i class="fa-solid fa-building-columns"></i> IRS Registered</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-nav-list">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+            <li><a href="platform.html"><i class="fa-solid fa-chevron-right"></i> Platform</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Pricing</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Architecture & Trust</div>
+          <ul class="footer-nav-list">
+            <li><a href="platform.html"><i class="fa-solid fa-chevron-right"></i> 7-Pillar Defense System</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Continuous Transit Pipeline</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Real-Time ROI Engine</a></li>
+            <li><a href="pricing.html"><i class="fa-solid fa-chevron-right"></i> Transparent Pricing Matrix</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Statutory Knowledge & FAQ</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> VIP Priority Scheduling</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-intel-column">
+          <div class="footer-col-title">Executive Briefing</div>
+          <p style="font-size: var(--text-xs); color: rgba(252, 250, 246, 0.75); line-height: 1.5; margin-bottom: var(--space-xs);">
+            Subscribe to quarterly CFO payroll analysis, tax law amendments, and workforce treasury reports.
+          </p>
+          <form class="footer-newsletter-form" id="newsletter-form">
+            <div class="newsletter-input-wrap">
+              <input type="email" class="newsletter-input" placeholder="cfo@enterprise.com" required aria-label="Corporate Email Address">
+              <button type="submit" class="newsletter-submit-btn">Subscribe</button>
+            </div>
+          </form>
+          <div class="footer-network-status">
+            <div class="status-node-indicator">
+              <span class="status-live-beacon"></span>
+              <span class="status-node-text">FedLine ACH Gateway: <strong>Operational (99.999% SLA)</strong></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; 2026 Stackly Payroll Services Inc. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <a href="404.html">Privacy Shield</a>
+          <span>&bull;</span>
+          <a href="404.html">Terms of Service</a>
+          <span>&bull;</span>
+          <a href="404.html">Security Disclosure</a>
+          <span>&bull;</span>
+          <a href="404.html">IRS Indemnity Policy</a>
+        </div>
+        <div class="footer-social-links">
+          <a href="#" class="social-icon-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-icon-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="js/animations.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
